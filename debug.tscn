@@ -43,10 +43,18 @@ albedo_texture = ExtResource("3_obyai")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
 shader = ExtResource("4_obyai")
 shader_parameter/pixel_size = Vector2(3, 3)
-shader_parameter/aberration_amount = 0.008
+shader_parameter/aberration_amount = 0.04
 shader_parameter/bulge_strength = 0.2
-shader_parameter/scanline_intensity = 0.2
+shader_parameter/scanline_intensity = 0.3
 shader_parameter/scanline_size = 4.0
+shader_parameter/pixel_lfo_amount = 0.0
+shader_parameter/aberration_lfo_amount = 1.0
+shader_parameter/bulge_lfo_amount = 0.117
+shader_parameter/scanline_lfo_amount = 0.296
+shader_parameter/pixel_lfo_speed = 0.25
+shader_parameter/aberration_lfo_speed = 0.45
+shader_parameter/bulge_lfo_speed = 0.8
+shader_parameter/scanline_lfo_speed = 0.82
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txpwr"]
 viewport_path = NodePath("SubViewport")
@@ -236,7 +244,7 @@ size = Vector3(0.221019, 1.24289, 0.612256)
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
 transform = Transform3D(0.103448, 0.457298, -0.883277, 0.0068179, 0.887694, 0.460383, 0.994612, -0.053648, 0.0887127, -67.3385, 12.704, -0.0727971)
-light_color = Color(0.790125, 0.742766, 0.68079, 1)
+light_color = Color(0.754812, 0.396398, 0.0772562, 1)
 light_indirect_energy = 2.0
 light_specular = 0.015
 shadow_enabled = true
@@ -244,7 +252,7 @@ shadow_bias = 1.0
 distance_fade_begin = 743.35
 distance_fade_shadow = 0.0
 distance_fade_length = 11.1
-spot_range = 73.7848
+spot_range = 57.3247
 spot_attenuation = -1.0
 spot_angle = 29.0573
 spot_angle_attenuation = 0.0334928
@@ -324,7 +332,7 @@ cam_bar = NodePath("../barman_speak_cam")
 
 [node name="3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_soqm1")
-volume_db = -14.095
+volume_db = -80.0
 autoplay = true
 
 [node name="RigidBody3D" type="StaticBody3D" parent="."]
