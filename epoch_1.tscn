@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bqlu3fyvyxibk"]
+[gd_scene load_steps=31 format=3 uid="uid://unup48h6ht1e"]
 
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_bdgdk"]
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="2_18q1m"]
@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bobo5u3bmx73q" path="res://dialogue_box.tscn" id="7_qdad5"]
 [ext_resource type="Script" uid="uid://bhdfm3iv3wd1a" path="res://control_tactil.gd" id="8_gxj0l"]
 [ext_resource type="Texture2D" uid="uid://cejgkqqdvvoss" path="res://Nouveau projet (53).png" id="9_2mr14"]
-[ext_resource type="Script" uid="uid://crr0ldo5demo4" path="res://interact_gui.gd" id="9_5xhjj"]
+[ext_resource type="Script" path="res://interact_gui.gd" id="9_5xhjj"]
 [ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="9_eflqh"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="10_7af3h"]
 [ext_resource type="AudioStream" uid="uid://ccfl1moc5g3ho" path="res://musique/3.wav" id="11_8v5ii"]
-[ext_resource type="Script" uid="uid://ci4oisbpnk0y2" path="res://scene_switcher.gd" id="12_18q1m"]
+[ext_resource type="Script" path="res://scene_switcher.gd" id="12_18q1m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -50,6 +50,14 @@ shader_parameter/aberration_amount = 0.008
 shader_parameter/bulge_strength = 0.2
 shader_parameter/scanline_intensity = 0.2
 shader_parameter/scanline_size = 4.0
+shader_parameter/pixel_lfo_amount = 0.0
+shader_parameter/aberration_lfo_amount = 0.0
+shader_parameter/bulge_lfo_amount = 0.0
+shader_parameter/scanline_lfo_amount = 0.0
+shader_parameter/pixel_lfo_speed = 0.25
+shader_parameter/aberration_lfo_speed = 0.25
+shader_parameter/bulge_lfo_speed = 0.25
+shader_parameter/scanline_lfo_speed = 0.25
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txpwr"]
 viewport_path = NodePath("SubViewport")
@@ -71,6 +79,16 @@ point_count = 3
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6xqm2"]
 plane = Plane(0, 0, -1, 0)
 
+[sub_resource type="Animation" id="Animation_k0cjh"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/OmniLight3D2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.178214, -0.651064, -0.156181, 0.721085)
+
 [sub_resource type="Animation" id="Animation_5xhjj"]
 resource_name = "day_timming"
 length = 180.0
@@ -88,16 +106,6 @@ tracks/1/path = NodePath("SubViewport/OmniLight3D2")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0.0333333, 1, -0.178214, -0.651064, -0.156181, 0.721085, 179.967, 1, -0.178214, -0.651064, -0.156181, 0.721085)
-
-[sub_resource type="Animation" id="Animation_k0cjh"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/OmniLight3D2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.178214, -0.651064, -0.156181, 0.721085)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k0cjh"]
 _data = {
@@ -164,6 +172,8 @@ size = Vector3(1.97493, 11.6281, 2.2862)
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
 script = ExtResource("4_5xhjj")
 fov = 4.0
+
+[node name="RayCast3D" type="RayCast3D" parent="SubViewport"]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
@@ -272,7 +282,7 @@ use_collision = true
 size = Vector3(0.221019, 1.24289, 0.612256)
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
-transform = Transform3D(0.103448, 0.457298, -0.883277, 0.00681776, 0.887694, 0.460383, 0.994612, -0.0536475, 0.0887121, -52.76, 11, -8.945)
+transform = Transform3D(0.103447, 0.457297, -0.883277, 0.00681793, 0.887695, 0.460382, 0.994612, -0.0536472, 0.0887114, -52.76, 11, -8.945)
 light_color = Color(0.790125, 0.742766, 0.68079, 1)
 light_indirect_energy = 2.0
 light_specular = 0.015
@@ -326,7 +336,7 @@ script = ExtResource("6_jga8u")
 
 [node name="DialogueBox" parent="." instance=ExtResource("7_qdad5")]
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp", "camera", "raycast")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -336,6 +346,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_gxj0l")
 tmp = NodePath("../SubViewport/Player")
+camera = NodePath("../SubViewport/Camera3D")
+raycast = NodePath("../SubViewport/RayCast3D")
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
