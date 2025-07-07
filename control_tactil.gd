@@ -65,7 +65,7 @@ func _update_direction_from_position(screen_pos: Vector2) -> void:
 
 		# Use only XZ direction (ignore vertical Y component)
 		dir_analogue = Vector3(direction.x, 0.0, direction.z)
-		print("New direction set toward: ", hit_position, " as ", dir_analogue)
+		#print("New direction set toward: ", hit_position, " as ", dir_analogue)
 
 func _on_single_tap(pos: Vector2) -> void:
 	if tmp.current_interact != null:
@@ -75,7 +75,7 @@ func _on_single_tap(pos: Vector2) -> void:
 		else:
 			tmp.in_dialogue = true
 			tmp.current_interact.interact()
-	print("Single tap at: ", pos)
+	#print("Single tap at: ", pos)
 	# You can now trigger interactions, attacks, pickups, etc.
 	# Example: tmp.interact() or emit_signal("tap_action", pos)
 
