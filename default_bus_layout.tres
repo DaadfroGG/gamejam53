@@ -1,0 +1,5 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://csiawgheaxfvm"]
+
+[resource]
+bus/0/mute = true
+bus/0/volume_db = -35.0067

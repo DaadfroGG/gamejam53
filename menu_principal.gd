@@ -1,6 +1,6 @@
 extends ColorRect
 
-@export var game_scene: PackedScene   # Choisissez la scène dans l’inspecteur
+@export var game_scene: String   # Choisissez la scène dans l’inspecteur
 @export var param_scene: PackedScene   # Choisissez la scène dans l’inspecteur
 @export var credit_scene: PackedScene   # Choisissez la scène dans l’inspecteur
 @export var logs_scene: PackedScene   # Choisissez la scène dans l’inspecteur
@@ -13,25 +13,25 @@ func _ready() -> void:
 
 func go_play() -> void:
 	if game_scene:
-		get_tree().change_scene_to_packed(game_scene)
+		get_tree().change_scene_to_packed(load(game_scene))
 	else:
 		push_warning("Aucune scène n’est assignée à 'target_scene' !")
 
 func go_param() -> void:
 	if game_scene:
-		get_tree().change_scene_to_packed(game_scene)
+		get_tree().change_scene_to_packed(load(game_scene))
 	else:
 		push_warning("Aucune scène n’est assignée à 'target_scene' !")
 
 func go_credit() -> void:
 	if game_scene:
-		get_tree().change_scene_to_packed(game_scene)
+		get_tree().change_scene_to_packed(load(game_scene))
 	else:
 		push_warning("Aucune scène n’est assignée à 'target_scene' !")
 		
 func go_logs() -> void:
 	if game_scene:
-		get_tree().change_scene_to_packed(game_scene)
+		get_tree().change_scene_to_packed(load(game_scene))
 	else:
 		push_warning("Aucune scène n’est assignée à 'target_scene' !")
 

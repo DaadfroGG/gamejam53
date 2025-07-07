@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhf36jrxvdida"]
+[gd_scene load_steps=7 format=3 uid="uid://c2qjfi8fdgh0i"]
 
-[ext_resource type="Script" uid="uid://vewasy3st2lh" path="res://switch_scene.gd" id="1_g84i0"]
+[ext_resource type="Script" uid="uid://vewasy3st2lh" path="res://switch_scene.gd" id="1_nifhg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qr07r"]
 font_size = 64
@@ -164,8 +164,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("1_g84i0")
-target_scene = "res://epoch_1.tscn"
+script = ExtResource("1_nifhg")
+target_scene = "res://Menu_principal.tscn"
 
 [node name="year" type="Label" parent="ColorRect"]
 layout_mode = 1
