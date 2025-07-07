@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxbykvhf27ebs"]
+[gd_scene load_steps=9 format=3 uid="uid://cxbykvhf27ebs"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
 [ext_resource type="Texture2D" uid="uid://jynoi5yxn0j8" path="res://wood.webp" id="2_lvjdj"]
+[ext_resource type="Script" uid="uid://bhdfm3iv3wd1a" path="res://control_tactil.gd" id="3_rdi1l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -30,8 +31,19 @@ texture_filter = 0
 
 [node name="Debug" type="Node3D"]
 
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_rdi1l")
+tmp = NodePath("../Player")
+
 [node name="Player" parent="." instance=ExtResource("1_1uwqr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.26502, 0)
+tactil_ctrl = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -13.3891, 0, 0.364417)

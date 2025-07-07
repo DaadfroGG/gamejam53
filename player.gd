@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 @onready var hitbox: Area3D = $HitBox
 
+@export var tactil_ctrl : bool
+@export var input_dir : Vector2
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const HITBOX_OFFSET_DISTANCE = 1.3
@@ -14,7 +17,9 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "up", "down")
+	if (not tactil_ctrl):
+		input_dir = Input.get_vector("left", "right", "up", "down")
+		
 	if input_dir.length() > 0:
 		last_input_dir = input_dir.normalized()
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
