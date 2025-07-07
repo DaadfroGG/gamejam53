@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cxbykvhf27ebs"]
+[gd_scene load_steps=24 format=3 uid="uid://cxbykvhf27ebs"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_txpwr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cpghwsv5cuind" path="res://cam_point.gd" id="7_e0a3d"]
 [ext_resource type="PackedScene" uid="uid://dfp22rdjq0s28" path="res://dialogue_box.tscn" id="7_pk40j"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="8_jwave"]
+[ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="9_6xqm2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -62,6 +63,9 @@ point_count = 2
 [sub_resource type="Curve" id="Curve_6xqm2"]
 _data = [Vector2(0.35536, 0), 0.0, 0.0, 0, 0, Vector2(0.772394, 0.792774), 4.55704, 3.9514, 0, 0, Vector2(0.922173, 1), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6xqm2"]
+plane = Plane(0, 0, -1, 0)
 
 [node name="Debug" type="Node3D"]
 
@@ -260,6 +264,7 @@ script = ExtResource("5_16g7q")
 [node name="DialogueBox" parent="." instance=ExtResource("7_pk40j")]
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -285,10 +290,12 @@ offset_right = 1058.0
 offset_bottom = 152.0
 text = "base cam"
 
-[node name="Barman" type="CharacterBody3D" parent="."]
+[node name="Barman" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2984, 1.50319, -5.93192)
 collision_layer = 3
 collision_mask = 3
+script = ExtResource("9_6xqm2")
+dialoguebox = NodePath("../DialogueBox")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Barman"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081543, 0, 0.991638)
@@ -314,5 +321,13 @@ duree = 2.0
 cam_base = NodePath("../SubViewport/cam_base")
 cam_bar = NodePath("../barman_speak_cam")
 
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.4057)
+shape = SubResource("WorldBoundaryShape3D_6xqm2")
+
 [connection signal="button_down" from="Control/Button" to="CamCtrl" method="go_base"]
 [connection signal="button_down" from="Control/Button2" to="CamCtrl" method="go_bar"]
+[connection signal="cam_in" from="Barman" to="CamCtrl" method="go_bar"]
+[connection signal="cam_out" from="Barman" to="CamCtrl" method="go_base"]
