@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		# Optional: tell other UI elements we handled this touch
 		get_viewport().set_input_as_handled()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Debug: draw the base circle + stick in the editor/game. Remove if you have your own graphics.
 	if Engine.is_editor_hint():
 		queue_redraw()

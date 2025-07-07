@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Player
 @onready var hitbox: Area3D = $HitBox
 
 @export var tactil_ctrl : bool
@@ -19,7 +19,18 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if (not tactil_ctrl):
 		input_dir = Input.get_vector("left", "right", "up", "down")
+	if Input.is_action_just_pressed("interact") and current_interact != null:
+		var body_name = current_interact.name
+		print("NAME: ", body_name)
 		
+		match body_name:
+			"Barman":
+				print("You are talking to the Barman.")
+			"Jukebox":
+				print("You are interacting with the Jukebox.")
+			_:
+				print("Unknown interactable: ", body_name)
+
 	if input_dir.length() > 0:
 		last_input_dir = input_dir.normalized()
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()

@@ -1,12 +1,13 @@
 [gd_scene load_steps=22 format=3 uid="uid://cxbykvhf27ebs"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
-[ext_resource type="Script" path="res://sub_viewport.gd" id="1_txpwr"]
+[ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_txpwr"]
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_obyai"]
 [ext_resource type="Script" uid="uid://bhdfm3iv3wd1a" path="res://control_tactil.gd" id="3_rdi1l"]
 [ext_resource type="Shader" uid="uid://ch7fewxklubsl" path="res://debug.gdshader" id="4_obyai"]
 [ext_resource type="Script" uid="uid://tmg63aoclq8p" path="res://texture_rect.gd" id="5_16g7q"]
 [ext_resource type="Script" uid="uid://cpghwsv5cuind" path="res://cam_point.gd" id="7_e0a3d"]
+[ext_resource type="PackedScene" uid="uid://dfp22rdjq0s28" path="res://dialogue_box.tscn" id="7_pk40j"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="8_jwave"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
@@ -23,16 +24,13 @@ texture_filter = 0
 texture_repeat = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1uwqr"]
-size = Vector3(4, 4, 5)
+size = Vector3(3.30371, 4, 3.73499)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvjdj"]
 size = Vector3(4, 4, 5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_16g7q"]
-load_path = "res://.godot/imported/wood.webp-842f7a4b60546071dc78c4c3d3b2be7b.s3tc.ctex"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txpwr"]
-albedo_texture = SubResource("CompressedTexture2D_16g7q")
+albedo_texture = ExtResource("3_obyai")
 uv1_scale = Vector3(0.02, 0.02, 0.02)
 uv1_triplanar = true
 texture_filter = 0
@@ -192,17 +190,6 @@ shape = SubResource("BoxShape3D_1uwqr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D5"]
 mesh = SubResource("BoxMesh_lvjdj")
 
-[node name="RigidBody3D6" type="RigidBody3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.629, 0.849736, -7.88263)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D6"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D6"]
-mesh = SubResource("BoxMesh_lvjdj")
-
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="SubViewport"]
 material_override = SubResource("StandardMaterial3D_txpwr")
 use_collision = true
@@ -270,55 +257,7 @@ expand_mode = 3
 stretch_mode = 5
 script = ExtResource("5_16g7q")
 
-[node name="Control2" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control2"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 270.0
-offset_top = 32.0
-offset_right = -270.0
-offset_bottom = 124.0
-grow_horizontal = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control2/ColorRect"]
-layout_mode = 0
-offset_left = 81.0
-offset_top = 18.0
-offset_right = 169.0
-offset_bottom = 106.0
-rotation = 0.826098
-
-[node name="ColorRect2" type="ColorRect" parent="Control2/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = 7.0
-offset_right = -11.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control2/ColorRect/ColorRect2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Bonjours, je suis le barman un tiger mongo en 1884"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="DialogueBox" parent="." instance=ExtResource("7_pk40j")]
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
 layout_mode = 3
@@ -346,8 +285,16 @@ offset_right = 1058.0
 offset_bottom = 152.0
 text = "base cam"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Barman" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2984, 1.50319, -5.93192)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barman"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.081543, 0, 0.991638)
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="Mesh" type="MeshInstance3D" parent="Barman"]
 mesh = SubResource("CapsuleMesh_obyai")
 skeleton = NodePath("")
 

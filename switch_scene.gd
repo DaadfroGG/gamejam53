@@ -10,6 +10,6 @@ func change_to_target_scene() -> void:
 		push_warning("Aucune scène n’est assignée à 'target_scene' !")
 
 
-func _on_gui_input(event: InputEvent) -> void:
+func _on_gui_input(_event: InputEvent) -> void:
 	change_to_target_scene()
 	pass # Replace with function body.
