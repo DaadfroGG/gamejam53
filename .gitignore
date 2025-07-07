@@ -1,0 +1,70 @@
+###############################################################################
+# Godot – fichiers et dossiers générés automatiquement
+###############################################################################
+
+# Cache de l’éditeur (positions des fenêtres, historique, etc.)
+.godot/
+
+# Fichiers importés dans le cache (.import contient les textures converties, etc.)
+.import/
+
+# Dossiers d’export (créés lorsqu’on génère un APK, EXE, etc.)
+.export/
+export/*
+
+###############################################################################
+# Plate-forme Android
+# (le projet Gradle généré par Godot/Gradle – inutile au dépôt)
+###############################################################################
+android/
+
+###############################################################################
+# Artefacts de compilation / binaires courants
+###############################################################################
+
+# Paquets Godot
+*.pck
+*.zip
+
+# Exécutables et bibliothèques natives
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Fichiers temporaires et logs
+*.log
+*.tmp
+*.temp
+
+###############################################################################
+# IDE / éditeurs
+###############################################################################
+
+# VS Code
+.vscode/
+
+# Rider / JetBrains
+.idea/
+*.sln
+*.csproj
+obj/
+bin/
+
+###############################################################################
+# Systèmes d’exploitation
+###############################################################################
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+###############################################################################
+# Contrôle de fin de ligne (optionnel)
+###############################################################################
+# Si vous rencontrez les avertissements “LF will be replaced by CRLF” :
+#   git config --global core.autocrlf true   (Windows)
+#   git config --global core.autocrlf input  (macOS/Linux)

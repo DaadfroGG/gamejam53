@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctxtfk52xaxyy"]
+
+[ext_resource type="Script" uid="uid://vewasy3st2lh" path="res://switch_scene.gd" id="1_ncxyx"]
+[ext_resource type="PackedScene" path="res://Menu_princiapl.tscn" id="2_pevhg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hsg2v"]
+font_size = 32
+font_color = Color(0.617455, 0.617455, 0.617455, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ncxyx"]
+font_size = 64
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.566048, 0.251633, 0.15708, 1)
+script = ExtResource("1_ncxyx")
+target_scene = ExtResource("2_pevhg")
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -153.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Tap Screen"
+label_settings = SubResource("LabelSettings_hsg2v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -525.0
+offset_bottom = -372.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Nom du jeux dans le bar 1"
+label_settings = SubResource("LabelSettings_ncxyx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="ColorRect" to="ColorRect" method="_on_gui_input"]
