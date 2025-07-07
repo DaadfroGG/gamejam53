@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dvefhbom2ydf1"]
+[gd_scene load_steps=25 format=3 uid="uid://dvefhbom2ydf1"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_txpwr"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bobo5u3bmx73q" path="res://dialogue_box.tscn" id="7_pk40j"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="8_jwave"]
 [ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="9_6xqm2"]
+[ext_resource type="AudioStream" uid="uid://ccfl1moc5g3ho" path="res://musique/3.wav" id="11_soqm1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -245,8 +246,8 @@ distance_fade_shadow = 0.0
 distance_fade_length = 11.1
 spot_range = 73.7848
 spot_attenuation = -1.0
-spot_angle = 23.8541
-spot_angle_attenuation = 1.03526
+spot_angle = 29.0573
+spot_angle_attenuation = 0.0334928
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -320,6 +321,11 @@ curve_rot = SubResource("Curve_6xqm2")
 duree = 2.0
 cam_base = NodePath("../SubViewport/cam_base")
 cam_bar = NodePath("../barman_speak_cam")
+
+[node name="3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_soqm1")
+volume_db = -14.095
+autoplay = true
 
 [node name="RigidBody3D" type="StaticBody3D" parent="."]
 
