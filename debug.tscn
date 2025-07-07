@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxbykvhf27ebs"]
+[gd_scene load_steps=14 format=3 uid="uid://cxbykvhf27ebs"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
+[ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_txpwr"]
 [ext_resource type="Texture2D" uid="uid://jynoi5yxn0j8" path="res://wood.webp" id="2_lvjdj"]
 [ext_resource type="Script" uid="uid://bhdfm3iv3wd1a" path="res://control_tactil.gd" id="3_rdi1l"]
+[ext_resource type="Shader" uid="uid://ch7fewxklubsl" path="res://debug.gdshader" id="4_obyai"]
+[ext_resource type="Script" uid="uid://tmg63aoclq8p" path="res://texture_rect.gd" id="5_16g7q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -29,7 +32,204 @@ uv1_scale = Vector3(0.02, 0.02, 0.02)
 uv1_triplanar = true
 texture_filter = 0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
+shader = ExtResource("4_obyai")
+shader_parameter/pixel_size = Vector2(3, 4)
+shader_parameter/aberration_amount = 0.005
+shader_parameter/bulge_strength = 0.02
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_txpwr"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Debug" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+script = ExtResource("1_txpwr")
+
+[node name="Player" parent="SubViewport" instance=ExtResource("1_1uwqr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.26502, 0)
+tactil_ctrl = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewport"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -13.3891, 0, 0.364417)
+material_override = SubResource("StandardMaterial3D_rdi1l")
+gi_lightmap_texel_scale = 0.01
+use_collision = true
+size = Vector3(3.28162, 1, 2.40338)
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="SubViewport"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -37.2716, 6.8902, 0.364417)
+material_override = SubResource("StandardMaterial3D_lvjdj")
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewport/CSGCombiner3D2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999998, 0, 0, 0, 1, -4.51116, 0, 0)
+material_override = SubResource("StandardMaterial3D_rdi1l")
+use_collision = true
+size = Vector3(9.18657, 14.7804, 2.40338)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewport/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12364, 0, 0)
+material_override = SubResource("StandardMaterial3D_rdi1l")
+use_collision = true
+size = Vector3(0.164248, 14.7804, 2.40338)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewport/CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57144, 0, -1.36329)
+material_override = SubResource("StandardMaterial3D_rdi1l")
+use_collision = true
+size = Vector3(3.26865, 14.7804, 0.450713)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewport/CSGCombiner3D2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999991, 0, 0, 0, 1, 0.00804138, -2.88477, 0.285583)
+operation = 2
+size = Vector3(0.199005, 6.76953, 0.428833)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewport/CSGCombiner3D2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999988, 0, 0, 0, 1, 0.0632782, -1.03799, -0.50817)
+operation = 2
+size = Vector3(0.0885315, 3.5705, 0.428833)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewport/CSGCombiner3D2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999984, 0, 0, 0, 1, -0.959407, 0.0882406, 0.0662042)
+operation = 2
+size = Vector3(1.97493, 11.6281, 1.30914)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 335.805, 330.595)
+fov = 4.0
+size = 30.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7167, 13.3033, -9.45531)
+light_color = Color(0.993802, 0.590624, 0.360597, 1)
+light_energy = 1.323
+omni_range = 2549.53
+omni_attenuation = -0.01
+
+[node name="RigidBody3D" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81762, 0.849736, -9.25651)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D"]
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D"]
+mesh = SubResource("BoxMesh_lvjdj")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81762, 0.849736, 8.43669)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D2"]
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D2"]
+mesh = SubResource("BoxMesh_lvjdj")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17189, 0.849736, 11.5284)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D3"]
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D3"]
+mesh = SubResource("BoxMesh_lvjdj")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4721, 0.849736, -4.40068)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D4"]
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D4"]
+mesh = SubResource("BoxMesh_lvjdj")
+
+[node name="RigidBody3D5" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70231, 0.849736, -9.26502)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D5"]
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D5"]
+mesh = SubResource("BoxMesh_lvjdj")
+
+[node name="RigidBody3D6" type="RigidBody3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.629, 0.849736, -7.88263)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/RigidBody3D6"]
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/RigidBody3D6"]
+mesh = SubResource("BoxMesh_lvjdj")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="SubViewport"]
+material_override = SubResource("StandardMaterial3D_txpwr")
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -18.5803, 0.693952, -4.09232)
+use_collision = true
+size = Vector3(1.20788, 1.24289, 0.187111)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -8.04438, 0.693952, -7.7698)
+use_collision = true
+size = Vector3(0.22714, 1.24289, 0.868946)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, 6.40073, 0.693952, -4.68908)
+use_collision = true
+size = Vector3(0.454734, 1.24289, 0.297754)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, 6.40073, 0.693952, 4.25052)
+use_collision = true
+size = Vector3(0.454734, 1.24289, 0.297754)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -23.3498, 0.693952, 11.5562)
+use_collision = true
+size = Vector3(0.221019, 1.24289, 0.612256)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
+transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -12.0651, 0.693952, 11.5562)
+use_collision = true
+size = Vector3(0.221019, 1.24289, 0.612256)
+
+[node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
+transform = Transform3D(0.101614, 0.334777, -0.936803, 0.0205586, 0.940769, 0.338425, 0.994612, -0.053648, 0.0887127, -80.3668, 14.1249, -0.0727971)
+light_color = Color(0.790125, 0.742766, 0.68079, 1)
+light_indirect_energy = 2.0
+light_specular = 0.015
+shadow_enabled = true
+shadow_bias = 1.0
+distance_fade_begin = 743.35
+distance_fade_shadow = 0.0
+distance_fade_length = 11.1
+spot_range = 73.7848
+spot_attenuation = -1.0
+spot_angle = 16.5128
+spot_angle_attenuation = 1.03526
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_e0a3d")
+offset_left = -1.0
+offset_right = 511.0
+offset_bottom = 512.0
+texture = SubResource("ViewportTexture_txpwr")
+script = ExtResource("5_16g7q")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
 layout_mode = 3
@@ -39,179 +239,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_rdi1l")
-tmp = NodePath("../Player")
-
-[node name="Player" parent="." instance=ExtResource("1_1uwqr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.26502, 0)
-tactil_ctrl = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -13.3891, 0, 0.364417)
-material_override = SubResource("StandardMaterial3D_rdi1l")
-gi_lightmap_texel_scale = 0.01
-use_collision = true
-size = Vector3(3.28162, 1, 2.40338)
-
-[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -37.2716, 6.8902, 0.364417)
-material_override = SubResource("StandardMaterial3D_lvjdj")
-use_collision = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999998, 0, 0, 0, 1, -4.51116, 0, 0)
-material_override = SubResource("StandardMaterial3D_rdi1l")
-use_collision = true
-size = Vector3(9.18657, 14.7804, 2.40338)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12364, 0, 0)
-material_override = SubResource("StandardMaterial3D_rdi1l")
-use_collision = true
-size = Vector3(0.164248, 14.7804, 2.40338)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.57144, 0, -1.36329)
-material_override = SubResource("StandardMaterial3D_rdi1l")
-use_collision = true
-size = Vector3(3.26865, 14.7804, 0.450713)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999991, 0, 0, 0, 1, 0.00804138, -2.88477, 0.285583)
-operation = 2
-size = Vector3(0.199005, 6.76953, 0.428833)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999988, 0, 0, 0, 1, 0.0632782, -1.03799, -0.50817)
-operation = 2
-size = Vector3(0.0885315, 3.5705, 0.428833)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D2"]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999984, 0, 0, 0, 1, -0.959407, 0.0882406, 0.0662042)
-operation = 2
-size = Vector3(1.97493, 11.6281, 1.30914)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 335.805, 330.595)
-fov = 4.0
-size = 30.0
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7167, 13.3033, -9.45531)
-light_color = Color(0.993802, 0.590624, 0.360597, 1)
-light_energy = 1.323
-omni_range = 2549.53
-omni_attenuation = -0.01
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81762, 0.849736, -9.25651)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("BoxMesh_lvjdj")
-
-[node name="RigidBody3D2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.81762, 0.849736, 8.43669)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
-mesh = SubResource("BoxMesh_lvjdj")
-
-[node name="RigidBody3D3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.17189, 0.849736, 11.5284)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3"]
-mesh = SubResource("BoxMesh_lvjdj")
-
-[node name="RigidBody3D4" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4721, 0.849736, -4.40068)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4"]
-mesh = SubResource("BoxMesh_lvjdj")
-
-[node name="RigidBody3D5" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70231, 0.849736, -9.26502)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D5"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D5"]
-mesh = SubResource("BoxMesh_lvjdj")
-
-[node name="RigidBody3D6" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.629, 0.849736, -7.88263)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D6"]
-shape = SubResource("BoxShape3D_1uwqr")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D6"]
-mesh = SubResource("BoxMesh_lvjdj")
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-material_override = SubResource("StandardMaterial3D_txpwr")
-use_collision = true
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -18.5803, 0.693952, -4.09232)
-use_collision = true
-size = Vector3(1.20788, 1.24289, 0.187111)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -8.04438, 0.693952, -7.7698)
-use_collision = true
-size = Vector3(0.22714, 1.24289, 0.868946)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, 6.40073, 0.693952, -4.68908)
-use_collision = true
-size = Vector3(0.454734, 1.24289, 0.297754)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, 6.40073, 0.693952, 4.25052)
-use_collision = true
-size = Vector3(0.454734, 1.24289, 0.297754)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -23.3498, 0.693952, 11.5562)
-use_collision = true
-size = Vector3(0.221019, 1.24289, 0.612256)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -12.0651, 0.693952, 11.5562)
-use_collision = true
-size = Vector3(0.221019, 1.24289, 0.612256)
-
-[node name="OmniLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(-0.0966294, 0.172293, -0.980295, 0.0380159, 0.984824, 0.169341, 0.994594, -0.0209034, -0.101713, -59.6836, 7.17425, -3.2322)
-light_indirect_energy = 2.0
-light_specular = 0.015
-shadow_enabled = true
-shadow_bias = 5.0
-distance_fade_begin = 743.35
-distance_fade_shadow = 0.0
-distance_fade_length = 11.1
-spot_range = 71.5524
-spot_attenuation = -1.0
-spot_angle = 16.5128
-spot_angle_attenuation = 1.03526
+tmp = NodePath("../SubViewport/Player")
