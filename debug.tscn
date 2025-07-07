@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-[gd_scene load_steps=24 format=3 uid="uid://cxbykvhf27ebs"]
-=======
-[gd_scene load_steps=23 format=3 uid="uid://cxbykvhf27ebs"]
->>>>>>> refs/remotes/origin/main
+[gd_scene load_steps=24 format=3 uid="uid://dvefhbom2ydf1"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_txpwr"]
@@ -11,13 +7,9 @@
 [ext_resource type="Shader" uid="uid://ch7fewxklubsl" path="res://debug.gdshader" id="4_obyai"]
 [ext_resource type="Script" uid="uid://tmg63aoclq8p" path="res://texture_rect.gd" id="5_16g7q"]
 [ext_resource type="Script" uid="uid://cpghwsv5cuind" path="res://cam_point.gd" id="7_e0a3d"]
-[ext_resource type="PackedScene" uid="uid://dfp22rdjq0s28" path="res://dialogue_box.tscn" id="7_pk40j"]
+[ext_resource type="PackedScene" uid="uid://bobo5u3bmx73q" path="res://dialogue_box.tscn" id="7_pk40j"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="8_jwave"]
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="9_6xqm2"]
-=======
-[ext_resource type="AudioStream" uid="uid://ccfl1moc5g3ho" path="res://musique/3.wav" id="10_6xqm2"]
->>>>>>> refs/remotes/origin/main
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -329,16 +321,11 @@ duree = 2.0
 cam_base = NodePath("../SubViewport/cam_base")
 cam_bar = NodePath("../barman_speak_cam")
 
-<<<<<<< HEAD
 [node name="RigidBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.4057)
 shape = SubResource("WorldBoundaryShape3D_6xqm2")
-=======
-[node name="3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_6xqm2")
->>>>>>> refs/remotes/origin/main
 
 [connection signal="button_down" from="Control/Button" to="CamCtrl" method="go_base"]
 [connection signal="button_down" from="Control/Button2" to="CamCtrl" method="go_bar"]
