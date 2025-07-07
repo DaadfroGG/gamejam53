@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bmpsrl0gfvaec"]
+[gd_scene load_steps=26 format=3 uid="uid://dp73uj50ca6ch"]
 
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_81vs3"]
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="2_t4le4"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="9_btlhs"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="10_771cr"]
 [ext_resource type="AudioStream" uid="uid://ccfl1moc5g3ho" path="res://musique/3.wav" id="11_qct44"]
-[ext_resource type="Script" path="res://scene_switcher.gd" id="12_3lyvf"]
+[ext_resource type="Script" uid="uid://ci4oisbpnk0y2" path="res://scene_switcher.gd" id="12_3lyvf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -77,7 +77,7 @@ point_count = 3
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6xqm2"]
 plane = Plane(0, 0, -1, 0)
 
-[node name="Debug" type="Node3D"]
+[node name="Debug2" type="Node3D"]
 
 [node name="SubViewport" type="SubViewport" parent="."]
 canvas_item_default_texture_filter = 0

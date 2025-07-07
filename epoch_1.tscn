@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://unup48h6ht1e"]
+[gd_scene load_steps=31 format=3 uid="uid://bqlu3fyvyxibk"]
 
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_bdgdk"]
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="2_18q1m"]
@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bobo5u3bmx73q" path="res://dialogue_box.tscn" id="7_qdad5"]
 [ext_resource type="Script" uid="uid://bhdfm3iv3wd1a" path="res://control_tactil.gd" id="8_gxj0l"]
 [ext_resource type="Texture2D" uid="uid://cejgkqqdvvoss" path="res://Nouveau projet (53).png" id="9_2mr14"]
-[ext_resource type="Script" path="res://interact_gui.gd" id="9_5xhjj"]
+[ext_resource type="Script" uid="uid://crr0ldo5demo4" path="res://interact_gui.gd" id="9_5xhjj"]
 [ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="9_eflqh"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="10_7af3h"]
 [ext_resource type="AudioStream" uid="uid://ccfl1moc5g3ho" path="res://musique/3.wav" id="11_8v5ii"]
-[ext_resource type="Script" path="res://scene_switcher.gd" id="12_18q1m"]
+[ext_resource type="Script" uid="uid://ci4oisbpnk0y2" path="res://scene_switcher.gd" id="12_18q1m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
@@ -282,7 +282,7 @@ use_collision = true
 size = Vector3(0.221019, 1.24289, 0.612256)
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
-transform = Transform3D(0.103447, 0.457297, -0.883277, 0.00681793, 0.887695, 0.460382, 0.994612, -0.0536472, 0.0887114, -52.76, 11, -8.945)
+transform = Transform3D(0.103447, 0.457297, -0.883277, 0.00681792, 0.887695, 0.460382, 0.994612, -0.0536472, 0.0887113, -52.76, 11, -8.945)
 light_color = Color(0.790125, 0.742766, 0.68079, 1)
 light_indirect_energy = 2.0
 light_specular = 0.015
@@ -302,7 +302,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control" type="Control" parent="SubViewport/interact_screen" node_paths=PackedStringArray("pnj", "player")]
+[node name="Control" type="Control" parent="SubViewport/interact_screen" node_paths=PackedStringArray("pnj", "player", "pnj_pos", "cam")]
 anchors_preset = 0
 offset_left = 389.0
 offset_top = 261.0
@@ -311,6 +311,9 @@ offset_bottom = 261.0
 script = ExtResource("9_5xhjj")
 pnj = NodePath("../../../Barman")
 player = NodePath("../../Player")
+pnj_pos = NodePath("../../../Barman/Marker3D2")
+cam = NodePath("../../Camera3D")
+is_active = true
 
 [node name="TextureRect" type="TextureRect" parent="SubViewport/interact_screen/Control"]
 layout_mode = 0
@@ -379,6 +382,11 @@ shape = SubResource("BoxShape3D_1uwqr")
 [node name="Mesh" type="MeshInstance3D" parent="Barman"]
 mesh = SubResource("CapsuleMesh_obyai")
 skeleton = NodePath("")
+
+[node name="Marker3D" type="Marker3D" parent="Barman"]
+
+[node name="Marker3D2" type="Marker3D" parent="Barman"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86042, 0)
 
 [node name="barman_speak_cam" type="Marker3D" parent="."]
 transform = Transform3D(-4.36018e-08, 0.0707663, -0.997493, 3.09329e-09, 0.997493, 0.0707663, 1, 8.88178e-16, -4.37114e-08, -26.04, 2.11441, -4.1895)
