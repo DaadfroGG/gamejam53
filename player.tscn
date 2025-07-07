@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cek4xwlnld8ny"]
+
+[ext_resource type="Script" uid="uid://bs30ygienuc80" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4flbx"]
+radius = 0.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+gi_lightmap_texel_scale = 0.01
+mesh = SubResource("CapsuleMesh_i3pqv")
+
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("SphereShape3D_4flbx")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
