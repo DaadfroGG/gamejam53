@@ -34,9 +34,11 @@ texture_filter = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
 shader = ExtResource("4_obyai")
-shader_parameter/pixel_size = Vector2(3, 4)
-shader_parameter/aberration_amount = 0.005
-shader_parameter/bulge_strength = 0.02
+shader_parameter/pixel_size = Vector2(3, 3)
+shader_parameter/aberration_amount = 0.008
+shader_parameter/bulge_strength = 0.2
+shader_parameter/scanline_intensity = 0.2
+shader_parameter/scanline_size = 4.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txpwr"]
 viewport_path = NodePath("SubViewport")
@@ -44,6 +46,7 @@ viewport_path = NodePath("SubViewport")
 [node name="Debug" type="Node3D"]
 
 [node name="SubViewport" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
 script = ExtResource("1_txpwr")
 
 [node name="Player" parent="SubViewport" instance=ExtResource("1_1uwqr")]
@@ -96,7 +99,7 @@ operation = 2
 size = Vector3(1.97493, 11.6281, 1.30914)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 335.805, 330.595)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
 fov = 4.0
 size = 30.0
 
@@ -208,7 +211,7 @@ use_collision = true
 size = Vector3(0.221019, 1.24289, 0.612256)
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
-transform = Transform3D(0.101614, 0.334777, -0.936803, 0.0205586, 0.940769, 0.338425, 0.994612, -0.053648, 0.0887127, -80.3668, 14.1249, -0.0727971)
+transform = Transform3D(0.103448, 0.457298, -0.883277, 0.0068179, 0.887694, 0.460383, 0.994612, -0.053648, 0.0887127, -67.3385, 12.704, -0.0727971)
 light_color = Color(0.790125, 0.742766, 0.68079, 1)
 light_indirect_energy = 2.0
 light_specular = 0.015
@@ -219,16 +222,20 @@ distance_fade_shadow = 0.0
 distance_fade_length = 11.1
 spot_range = 73.7848
 spot_attenuation = -1.0
-spot_angle = 16.5128
+spot_angle = 23.8541
 spot_angle_attenuation = 1.03526
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_e0a3d")
-offset_left = -1.0
-offset_right = 511.0
-offset_bottom = 512.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("ViewportTexture_txpwr")
+expand_mode = 3
+stretch_mode = 5
 script = ExtResource("5_16g7q")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
