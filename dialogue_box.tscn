@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://dfp22rdjq0s28"]
 
 [ext_resource type="Script" uid="uid://ddvnp65dhp0aa" path="res://dialogue_box.gd" id="1_senjy"]
+=======
+[gd_scene load_steps=0 format=3 uid="uid://dfp22rdjq0s28"]
+>>>>>>> refs/remotes/origin/main
 
 [node name="DialogueBox" type="Control"]
 layout_mode = 3

@@ -27,6 +27,7 @@ var end_fov : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+<<<<<<< HEAD
 	cadre = cam_pos.base
 	get_marker(cadre)
 	beg_setup()
@@ -36,6 +37,10 @@ func _ready() -> void:
 	cam.global_rotation = end_rot
 	cam.fov = end_fov
 
+=======
+	go_base()
+	pass # Replace with function body.
+>>>>>>> refs/remotes/origin/main
 
 
 func go_base():
