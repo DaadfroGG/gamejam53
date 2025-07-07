@@ -18,8 +18,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	if (not tactil_ctrl):
-		input_dir = Input.get_vector("left", "right", "up", "down")
+	#if (not tactil_ctrl):
+	input_dir += Input.get_vector("left", "right", "up", "down")
 	if Input.is_action_just_pressed("interact") and current_interact != null:
 		var body_name = current_interact.name
 		print("NAME: ", body_name)

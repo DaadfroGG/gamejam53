@@ -7,7 +7,7 @@ func _ready() -> void:
 	dialoguebox.visible = false
 
 func interact():
-	dialoguebox.text_box.text = "Je suis le barman du Tigre Mongo. Le bar ferme à 18h."
+	#dialoguebox.text_box.text = 
 	emit_signal("cam_in")
 	dialoguebox.visible = true
 

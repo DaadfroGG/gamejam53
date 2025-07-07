@@ -3,9 +3,11 @@ extends Control
 # Public: resulting direction, X = horizontal, Z = vertical (Y kept for 3‑D compatibility)
 @export var dir_analogue: Vector3 = Vector3.ZERO
 @export var tmp : CharacterBody3D 
+@export var camera : Camera3D 
+@export var raycast : RayCast3D
 # Maximum distance (in pixels) the stick can travel before being clamped
 @export var max_distance := 120.0
-@export var tap_max_time := 0.45  # Seconds
+@export var tap_max_time := 0.25  # Seconds
 @export var tap_max_distance := 20.0  # Pixels
 
 # Private state
@@ -18,7 +20,6 @@ func _ready() -> void:
 	set_process_input(true)
 
 func _input(event: InputEvent) -> void:
-	# --- A finger touches the screen ---
 	if event is InputEventScreenTouch:
 		var st := event as InputEventScreenTouch
 		if st.pressed:
@@ -28,9 +29,11 @@ func _input(event: InputEvent) -> void:
 				_start_pos = st.position
 				_touch_time = 0.0  # Start timer
 				dir_analogue = Vector3.ZERO
+				
+				# Raycast direction update on touch down
+				_update_direction_from_position(_start_pos)
 		else:
-			# Finger released → reset everything
-#			here check if last tap distance blabla for single tap interact
+			# Finger released → reset everything and check for single tap
 			if st.index == _touch_id:
 				var tap_distance := (st.position - _start_pos).length()
 				if _touch_time < tap_max_time and tap_distance < tap_max_distance:
@@ -38,20 +41,32 @@ func _input(event: InputEvent) -> void:
 				_touch_id = -1
 				dir_analogue = Vector3.ZERO
 
-	# --- Finger is moving while pressed ---
 	elif event is InputEventScreenDrag and event.index == _touch_id:
 		var drag := event as InputEventScreenDrag
-		var delta: Vector2 = drag.position - _start_pos
-
-		# Clamp to the desired max radius
-		if delta.length() > max_distance:
-			delta = delta.normalized() * max_distance
-		# Convert 2‑D delta → 3‑D direction (XZ plane)
-		var dir2d := delta / max_distance  # Now in the range [‑1,1]
-		dir_analogue = Vector3(dir2d.x, 0.0, dir2d.y)
+		# Raycast direction update on drag position
+		_update_direction_from_position(drag.position)
 
 		# Optional: tell other UI elements we handled this touch
 		get_viewport().set_input_as_handled()
+
+func _update_direction_from_position(screen_pos: Vector2) -> void:
+	var ray_origin = camera.project_ray_origin(screen_pos)
+	var ray_direction = camera.project_ray_normal(screen_pos).normalized()
+	var ray_length = 1000.0
+
+	raycast.global_transform.origin = ray_origin
+	raycast.target_position = ray_direction * ray_length
+	raycast.force_raycast_update()
+
+	if raycast.is_colliding():
+		var hit_position = raycast.get_collision_point()
+		var from_player = tmp.global_transform.origin
+		var direction = (hit_position - from_player).normalized()
+
+		# Use only XZ direction (ignore vertical Y component)
+		dir_analogue = Vector3(direction.x, 0.0, direction.z)
+		print("New direction set toward: ", hit_position, " as ", dir_analogue)
+
 func _on_single_tap(pos: Vector2) -> void:
 	if tmp.current_interact != null:
 		if tmp.in_dialogue:

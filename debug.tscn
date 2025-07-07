@@ -43,14 +43,14 @@ albedo_texture = ExtResource("3_obyai")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
 shader = ExtResource("4_obyai")
 shader_parameter/pixel_size = Vector2(3, 3)
-shader_parameter/aberration_amount = 0.04
-shader_parameter/bulge_strength = 0.2
-shader_parameter/scanline_intensity = 0.3
+shader_parameter/aberration_amount = 0.01
+shader_parameter/bulge_strength = 0.02
+shader_parameter/scanline_intensity = 0.15
 shader_parameter/scanline_size = 4.0
 shader_parameter/pixel_lfo_amount = 0.0
-shader_parameter/aberration_lfo_amount = 1.0
-shader_parameter/bulge_lfo_amount = 0.117
-shader_parameter/scanline_lfo_amount = 0.296
+shader_parameter/aberration_lfo_amount = 0.0
+shader_parameter/bulge_lfo_amount = 0.0
+shader_parameter/scanline_lfo_amount = 0.0
 shader_parameter/pixel_lfo_speed = 0.25
 shader_parameter/aberration_lfo_speed = 0.45
 shader_parameter/bulge_lfo_speed = 0.8
@@ -135,6 +135,8 @@ size = Vector3(1.97493, 11.6281, 1.30914)
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
 script = ExtResource("7_e0a3d")
 fov = 4.0
+
+[node name="RayCast3D" type="RayCast3D" parent="SubViewport"]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
@@ -272,7 +274,7 @@ script = ExtResource("5_16g7q")
 
 [node name="DialogueBox" parent="." instance=ExtResource("7_pk40j")]
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp", "camera", "raycast")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -282,6 +284,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_rdi1l")
 tmp = NodePath("../SubViewport/Player")
+camera = NodePath("../SubViewport/Camera3D")
+raycast = NodePath("../SubViewport/RayCast3D")
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
