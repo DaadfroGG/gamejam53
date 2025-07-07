@@ -1,2 +1,10 @@
+ColorRect
+RichTextLabel
+Control
+Button
+Node3D
+Marker3D
+MeshInstance3D
+Camera3D
 TextureRect
 SubViewport

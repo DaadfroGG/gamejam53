@@ -1,20 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://cxbykvhf27ebs"]
+[gd_scene load_steps=22 format=3 uid="uid://cxbykvhf27ebs"]
 
 [ext_resource type="PackedScene" uid="uid://cek4xwlnld8ny" path="res://player.tscn" id="1_1uwqr"]
-[ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_txpwr"]
-[ext_resource type="Texture2D" uid="uid://jynoi5yxn0j8" path="res://wood.webp" id="2_lvjdj"]
+[ext_resource type="Script" path="res://sub_viewport.gd" id="1_txpwr"]
+[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_obyai"]
 [ext_resource type="Script" uid="uid://bhdfm3iv3wd1a" path="res://control_tactil.gd" id="3_rdi1l"]
 [ext_resource type="Shader" uid="uid://ch7fewxklubsl" path="res://debug.gdshader" id="4_obyai"]
 [ext_resource type="Script" uid="uid://tmg63aoclq8p" path="res://texture_rect.gd" id="5_16g7q"]
+[ext_resource type="Script" uid="uid://cpghwsv5cuind" path="res://cam_point.gd" id="7_e0a3d"]
+[ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="8_jwave"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdi1l"]
 albedo_color = Color(0.793056, 0.575061, 4.62055e-06, 1)
-albedo_texture = ExtResource("2_lvjdj")
+albedo_texture = ExtResource("3_obyai")
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvjdj"]
-albedo_texture = ExtResource("2_lvjdj")
+albedo_texture = ExtResource("3_obyai")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(0.3, 0.1, 0.5)
 texture_filter = 0
@@ -26,11 +28,17 @@ size = Vector3(4, 4, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_lvjdj"]
 size = Vector3(4, 4, 5)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_16g7q"]
+load_path = "res://.godot/imported/wood.webp-842f7a4b60546071dc78c4c3d3b2be7b.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txpwr"]
-albedo_texture = ExtResource("2_lvjdj")
+albedo_texture = SubResource("CompressedTexture2D_16g7q")
 uv1_scale = Vector3(0.02, 0.02, 0.02)
 uv1_triplanar = true
 texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obyai"]
+albedo_texture = ExtResource("3_obyai")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
 shader = ExtResource("4_obyai")
@@ -42,6 +50,20 @@ shader_parameter/scanline_size = 4.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txpwr"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_obyai"]
+
+[sub_resource type="Curve" id="Curve_jwave"]
+_data = [Vector2(0, 0.0053134), 0.0, 0.237704, 0, 0, Vector2(0.910426, 1), 2.11682, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pk40j"]
+_data = [Vector2(0, 0.00876725), 0.0, 1.30473, 0, 0, Vector2(0.820852, 1), 0.0904623, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6xqm2"]
+_data = [Vector2(0.35536, 0), 0.0, 0.0, 0, 0, Vector2(0.772394, 0.792774), 4.55704, 3.9514, 0, 0, Vector2(0.922173, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Debug" type="Node3D"]
 
@@ -97,6 +119,11 @@ size = Vector3(0.0885315, 3.5705, 0.428833)
 transform = Transform3D(0.999999, 0, 0, 0, 0.999984, 0, 0, 0, 1, -0.959407, 0.0882406, 0.0662042)
 operation = 2
 size = Vector3(1.97493, 11.6281, 1.30914)
+
+[node name="cam_base" type="Marker3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
+script = ExtResource("7_e0a3d")
+fov = 4.0
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
@@ -182,6 +209,7 @@ use_collision = true
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
 transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -18.5803, 0.693952, -4.09232)
+material_override = SubResource("StandardMaterial3D_obyai")
 use_collision = true
 size = Vector3(1.20788, 1.24289, 0.187111)
 
@@ -192,21 +220,25 @@ size = Vector3(0.22714, 1.24289, 0.868946)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
 transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, 6.40073, 0.693952, -4.68908)
+material_override = SubResource("StandardMaterial3D_obyai")
 use_collision = true
 size = Vector3(0.454734, 1.24289, 0.297754)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
 transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, 6.40073, 0.693952, 4.25052)
+material_override = SubResource("StandardMaterial3D_obyai")
 use_collision = true
 size = Vector3(0.454734, 1.24289, 0.297754)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
 transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -23.3498, 0.693952, 11.5562)
+material_override = SubResource("StandardMaterial3D_obyai")
 use_collision = true
 size = Vector3(0.221019, 1.24289, 0.612256)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="SubViewport/CSGCombiner3D"]
 transform = Transform3D(15.3222, 0, 0, 0, 1, 0, 0, 0, 10.787, -12.0651, 0.693952, 11.5562)
+material_override = SubResource("StandardMaterial3D_obyai")
 use_collision = true
 size = Vector3(0.221019, 1.24289, 0.612256)
 
@@ -238,6 +270,56 @@ expand_mode = 3
 stretch_mode = 5
 script = ExtResource("5_16g7q")
 
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 270.0
+offset_top = 32.0
+offset_right = -270.0
+offset_bottom = 124.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control2/ColorRect"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 18.0
+offset_right = 169.0
+offset_bottom = 106.0
+rotation = 0.826098
+
+[node name="ColorRect2" type="ColorRect" parent="Control2/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 7.0
+offset_right = -11.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/ColorRect/ColorRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bonjours, je suis le barman un tiger mongo en 1884"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("tmp")]
 layout_mode = 3
 anchors_preset = 15
@@ -247,3 +329,43 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_rdi1l")
 tmp = NodePath("../SubViewport/Player")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 52.0
+offset_right = 1058.0
+offset_bottom = 92.0
+text = "base cam"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 112.0
+offset_right = 1058.0
+offset_bottom = 152.0
+text = "base cam"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2984, 1.50319, -5.93192)
+mesh = SubResource("CapsuleMesh_obyai")
+skeleton = NodePath("")
+
+[node name="barman_speak_cam" type="Marker3D" parent="."]
+transform = Transform3D(-4.36018e-08, 0.0707663, -0.997493, 3.09329e-09, 0.997493, 0.0707663, 1, 8.88178e-16, -4.37114e-08, -26.04, 2.11441, -4.1895)
+script = ExtResource("7_e0a3d")
+fov = 45.0
+
+[node name="CamCtrl" type="Node3D" parent="." node_paths=PackedStringArray("cam", "cam_base", "cam_bar")]
+script = ExtResource("8_jwave")
+cam = NodePath("../SubViewport/Camera3D")
+cadre = 1
+curve_fov = SubResource("Curve_jwave")
+curve_pos = SubResource("Curve_pk40j")
+curve_rot = SubResource("Curve_6xqm2")
+duree = 2.0
+cam_base = NodePath("../SubViewport/cam_base")
+cam_bar = NodePath("../barman_speak_cam")
+
+[connection signal="button_down" from="Control/Button" to="CamCtrl" method="go_base"]
+[connection signal="button_down" from="Control/Button2" to="CamCtrl" method="go_bar"]

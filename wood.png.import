@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jynoi5yxn0j8"
-path.s3tc="res://.godot/imported/wood.webp-842f7a4b60546071dc78c4c3d3b2be7b.s3tc.ctex"
+uid="uid://cg14x5er1ayda"
+path.s3tc="res://.godot/imported/wood.png-320746db63b5a5eb1bb7f02275994b36.s3tc.ctex"
+path.etc2="res://.godot/imported/wood.png-320746db63b5a5eb1bb7f02275994b36.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
-source_file="res://wood.webp"
-dest_files=["res://.godot/imported/wood.webp-842f7a4b60546071dc78c4c3d3b2be7b.s3tc.ctex"]
+source_file="res://wood.png"
+dest_files=["res://.godot/imported/wood.png-320746db63b5a5eb1bb7f02275994b36.s3tc.ctex", "res://.godot/imported/wood.png-320746db63b5a5eb1bb7f02275994b36.etc2.ctex"]
 
 [params]
 
