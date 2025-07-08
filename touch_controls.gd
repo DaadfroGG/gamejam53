@@ -3,6 +3,7 @@ extends Control
 @onready var joystick_base := $JoystickBase
 @onready var joystick_handle := $JoystickHandle
 var dead_zone_radius := 2000.0  # pixels; tweak as needed
+@export var default_alpha : float = 0.5  # Default alpha when joystick is shown
 
 var radius := 100.0
 var start_pos := Vector2.ZERO
@@ -15,9 +16,28 @@ var max_tap_distance := 20  # max movement allowed to count as a tap
 var tap_start_time := 0.0
 var max_tap_duration := 0.25  # seconds, max time for a tap
 
+var tap_flash_duration := 1.0  # seconds the tap color stays visible
+var tap_flash_timer := 0.0
+var is_flashing_tap := false
+
+var fade_delay := 0.5  # seconds before fading starts
+var fade_duration := 0.2  # seconds to fully fade out
+
+var fade_timer := 0.0
+var fading_out := false
+
 var original_start_pos := Vector2.ZERO  # store initial joystick base pos
+func set_joystick_alpha(alpha: float) -> void:
+	var color = Color(1, 1, 1, alpha)
+	joystick_base.modulate = color
+	joystick_handle.modulate = color
+func set_joystick_color(color: Color) -> void:
+	joystick_base.modulate = color
+	joystick_handle.modulate = color
 
 func _ready() -> void:
+	set_joystick_color(Color(1, 1, 1, 0.0))  # white but fully transparent
+
 	Controls.is_touch_enabled = true
 	
 	var base_size = get_viewport_rect().size.x * 0.15
@@ -42,9 +62,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.pressed:
 			tap_detected = true
 			touch_start_pos = pos
-			tap_start_time = Time.get_ticks_msec() / 1000.0  # current time in seconds
-			
-			# Move joystick base under finger as before
+			tap_start_time = Time.get_ticks_msec() / 1000.0
+
+			set_joystick_alpha(default_alpha)
+			fading_out = false  # cancel any ongoing fade
+
 			start_pos = pos
 			joystick_base.position = start_pos - joystick_base.size * 0.5
 			target_handle_pos = start_pos - joystick_handle.size * 0.5
@@ -52,16 +74,22 @@ func _unhandled_input(event: InputEvent) -> void:
 			Controls.joystick_vector = Vector2.ZERO
 
 		else:
-			# On release, check if it was a tap with time limit
 			var tap_duration = (Time.get_ticks_msec() / 1000.0) - tap_start_time
 			if tap_detected and pos.distance_to(touch_start_pos) <= max_tap_distance and tap_duration <= max_tap_duration:
 				Controls.interact_pressed = true
-				print("Joystick tap detected! interact_pressed set to true. Duration: ", tap_duration)
-			tap_detected = false
 
-			# Leave joystick base where it was; reset vector and optionally center handle
+				# Change to gray color temporarily
+				set_joystick_color(Color(0.6, 0.6, 1, default_alpha))  # gray with full alpha
+				is_flashing_tap = true
+				tap_flash_timer = tap_flash_duration
+
+			tap_detected = false
 			Controls.joystick_vector = Vector2.ZERO
 			target_handle_pos = start_pos - joystick_handle.size * 0.5
+
+			# Start fade-out countdown
+			fade_timer = fade_delay
+			fading_out = true
 
 	elif event is InputEventScreenDrag:
 		var pos = get_local_mouse_position()
@@ -88,3 +116,22 @@ func _process(_delta: float) -> void:
 		target_handle_pos,
 		1.0 - pow(1.0 - lerp_speed, _delta)
 	)
+
+	if is_flashing_tap:
+		tap_flash_timer -= _delta
+		if tap_flash_timer <= 0.0:
+			is_flashing_tap = false
+			var current_alpha = joystick_base.modulate.a
+			set_joystick_color(Color(1, 1, 1, current_alpha))  # restore white with same alpha
+
+	if fading_out:
+		if fade_timer > 0.0:
+			fade_timer -= _delta
+		else:
+			var current_alpha = joystick_base.modulate.a
+			var new_alpha = lerp(current_alpha, 0.0, _delta / fade_duration)
+			set_joystick_color(Color(1, 1, 1, new_alpha))  # fade white to transparent
+
+			if new_alpha <= 0.01:
+				set_joystick_color(Color(1, 1, 1, 0.0))
+				fading_out = false
