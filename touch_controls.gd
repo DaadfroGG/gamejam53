@@ -6,7 +6,7 @@ var dead_zone_radius := 2000.0  # pixels; tweak as needed
 @export var default_alpha : float = 0.5  # Default alpha when joystick is shown
 @export var base_texture_scale: float = 0.15  # percent of screen width
 @export var handle_size_multiplier: float = 3.0  # multiplier of base size
-@export var radius_multiplier: float = 0.5  # Radius as a fraction of base size
+@export var radius_multiplier: float = 0.5	  # Radius as a fraction of base size
 
 var radius := 70.0
 var start_pos := Vector2.ZERO
