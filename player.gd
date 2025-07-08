@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 
 	# Interaction (single tap or key)
 	if Controls.interact_pressed and current_interact != null:
+		Controls.interact_pressed = false
 		var body_name = current_interact.name
 		print("NAME: ", body_name)
 
