@@ -1,0 +1,46 @@
+{
+  "actions": [
+	{
+	  "nom": "arrive au bar",
+	  "type": "move",
+	  "target": "center",
+	  "anim": "walk"
+	},
+	{
+	  "nom": "observe le bar",
+	  "type": "anim",
+	  "target": "corner",
+	  "anim": "observation"
+	},
+	{
+	  "nom": "demande au barman sa bouteille",
+	  "type": "speak",
+	  "target": "barman",
+	  "anim": "speak"
+	},
+	{
+	  "nom": "va voir l'homme mystérieux",
+	  "type": "move",
+	  "target": "corner",
+	  "anim": "walk"
+	},
+	{
+	  "nom": "demande le journal à l'homme mystérieux",
+	  "type": "speak",
+	  "target": "homme mystérieux",
+	  "anim": "take_object"
+	},
+	{
+	  "nom": "retourne au bar",
+	  "type": "move",
+	  "target": "bar_corner",
+	  "anim": "walk"
+	},
+	{
+	  "nom": "s'assoit et ouvre sa bouteille",
+	  "type": "action",
+	  "target": "bouteille",
+	  "anim": "sit_and_open"
+	}
+  ]
+}

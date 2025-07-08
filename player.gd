@@ -26,12 +26,17 @@ func _physics_process(delta: float) -> void:
 		match body_name:
 			"Barman":
 				print("You are talking to the Barman.")
-				if not in_dialogue:
+				current_interact.interact()
+				if (not current_interact.is_finish):
 					in_dialogue = true
-					current_interact.interact()
 				else:
 					in_dialogue = false
-					current_interact.stop_interact()
+				#if not in_dialogue:
+				#	in_dialogue = true
+				#	current_interact.interact()
+				#else:
+				#	in_dialogue = false
+				#	current_interact.stop_interact()
 			"Jukebox":
 				print("You are interacting with the Jukebox.")
 			_:
