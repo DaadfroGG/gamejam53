@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4ag5k0nbd3xu"]
 
 [ext_resource type="Script" uid="uid://c8vd17fmk46yf" path="res://touch_controls.gd" id="1_1gcqp"]
-[ext_resource type="Texture2D" uid="uid://csgyh2hudlslr" path="res://tactil_joystick.png" id="2_ep0mg"]
-[ext_resource type="Texture2D" uid="uid://dsqwma8ee136r" path="res://tactil_joystick_handle.png" id="3_ep0mg"]
+[ext_resource type="Texture2D" uid="uid://cmrg0slwlmdja" path="res://tactil_joystick.png" id="2_ep0mg"]
+[ext_resource type="Texture2D" uid="uid://cwtb7mpdkx1sn" path="res://tactil_joystick_handle.png" id="3_ep0mg"]
 
 [node name="TouchControls" type="Control"]
 layout_mode = 3

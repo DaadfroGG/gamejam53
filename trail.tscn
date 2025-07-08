@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://brc4g0pr046im"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_at0vl"]
+size = Vector2(0.03, 0.03)
+orientation = 2
+
+[node name="Trail" type="CPUParticles3D"]
+amount = 64
+mesh = SubResource("PlaneMesh_at0vl")
+gravity = Vector3(0, -0.8, 0)

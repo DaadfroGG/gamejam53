@@ -15,6 +15,7 @@ var was_held := false
 @onready var score_text: RichTextLabel = $"../RichTextLabel"
 var total_score: float = 0.0
 const PARTICLE = preload("res://particle.tscn")
+const TRAIL_PARTICLE = preload("res://trail.tscn")
 var center_rotation: Vector3
 var current_rotation: Vector3
 
@@ -55,7 +56,7 @@ func _process(delta: float) -> void:
 	ray_cast_3d.target_position = -transform.basis.z * 1000.0
 	ray_cast_3d.force_raycast_update()
 	if ray_cast_3d.is_colliding():
-		print("ohyeaaah")
+		#print("ohyeaaah")
 		var collision_point: Vector3 = ray_cast_3d.get_collision_point()
 		var collision_center: Vector3 = target_collision.global_transform.origin
 
@@ -70,7 +71,7 @@ func _process(delta: float) -> void:
 	else:
 		fov = lerp(fov, fov_normal, delta * fov_anim_speed)
 func _spawn_projectile() -> void:
-	# If already 3 darts, clear them all and reset score before spawning new
+	# Reset if max darts reached ...
 	if projectiles.size() >= 3:
 		for p in projectiles:
 			if is_instance_valid(p["node"]):
@@ -85,7 +86,6 @@ func _spawn_projectile() -> void:
 	if ray_cast_3d.is_colliding():
 		target_pos = ray_cast_3d.get_collision_point()
 	else:
-		# No collision: shoot forward 100 units ahead
 		target_pos = global_transform.origin + (-global_transform.basis.z.normalized() * 100)
 
 	var proj = MeshInstance3D.new()
@@ -93,8 +93,13 @@ func _spawn_projectile() -> void:
 	proj.mesh = SphereMesh.new()
 	proj.scale = Vector3(0.05, 0.05, 0.1)
 	var forward = -global_transform.basis.z.normalized()
-	proj.global_transform.origin = global_transform.origin + forward * 1.5
+	proj.global_transform.origin = global_transform.origin + forward * 1.0
 	proj.visible = true
+
+	var trail = TRAIL_PARTICLE.instantiate()
+	proj.add_child(trail)
+	trail.position = Vector3.ZERO
+	trail.emitting = true
 
 	projectiles.append({
 		"node": proj,
@@ -135,22 +140,35 @@ func _update_projectiles(delta: float) -> void:
 				p["moving"] = false
 				print("Projectile hit target!")
 
-				# Spawn particle effect at impact
+				# Stop trail emission on all particle children
+				for child in proj.get_children():
+					if child.has_method("set_emitting"):
+						child.emitting = false
+						print("Stopped trail emission on hit")
+
+				# Spawn impact particles
 				var particles_instance = PARTICLE.instantiate()
 				get_tree().current_scene.add_child(particles_instance)
 				particles_instance.global_transform.origin = result.position
 				particles_instance.emitting = true
 
-				# Optional: free particles after they finish emitting
 				particles_instance.one_shot = true
 				particles_instance.finished.connect(particles_instance.queue_free)
-				
+
 			elif step >= distance_left:
 				proj.global_transform.origin = target_pos
 				p["moving"] = false
 				print("Projectile reached target")
+
+				# Stop trail emission on all particle children
+				for child in proj.get_children():
+					if child.has_method("set_emitting"):
+						child.emitting = false
+						print("Stopped trail emission on reach")
+
 			else:
 				proj.global_transform.origin = next_pos
+
 		
 		var dist_to_center = proj.global_transform.origin.distance_to(collision_center)
 		var cylinder_shape = target_collision.shape as CylinderShape3D

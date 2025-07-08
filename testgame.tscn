@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://culn8pvrvmbt2"]
+[gd_scene load_steps=7 format=3 uid="uid://culn8pvrvmbt2"]
 
+[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="1_dx8bf"]
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="1_sbslj"]
 [ext_resource type="Script" uid="uid://cwihs4lj4sp8k" path="res://gameplay.gd" id="3_qr8fx"]
 
@@ -7,7 +8,13 @@
 height = 0.5
 radius = 0.8
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr8fx"]
+albedo_texture = ExtResource("1_dx8bf")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_qr8fx"]
+material = SubResource("StandardMaterial3D_qr8fx")
 top_radius = 0.8
 height = 0.2
 

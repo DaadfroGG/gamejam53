@@ -23,6 +23,5 @@ mesh = SubResource("PlaneMesh_qa6nv")
 emission_shape = 1
 emission_sphere_radius = 0.01
 direction = Vector3(-1, 0, 0)
-gravity = Vector3(0, -5.8, 0)
 initial_velocity_max = 1.5
 angular_velocity_max = 1.0
