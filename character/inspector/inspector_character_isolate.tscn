@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5aalye3guo7n"]
+
+[ext_resource type="PackedScene" uid="uid://drj23hep2k5fg" path="res://character/inspector/inspector_character.glb" id="1_abm0k"]
+
+[node name="inspector_character" instance=ExtResource("1_abm0k")]
+
+[node name="Cylinder_001" parent="Armature_002/Skeleton3D" index="0"]
+transform = Transform3D(1.16589, 0.181449, 0.170035, -0.17955, 1.17823, -0.0261857, -0.17204, 4.28408e-08, 1.17964, -0.0289311, 0.956247, 0.0318603)

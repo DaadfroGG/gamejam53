@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxwy78dnm8pb2"]
+
+[ext_resource type="PackedScene" uid="uid://drj23hep2k5fg" path="res://character/inspector/inspector_character.glb" id="1_cd1ds"]
+[ext_resource type="Script" uid="uid://dltn82km4av3b" path="res://character/inspector/commedient_ctrl.gd" id="1_gc0rj"]
+
+[node name="Inspector" type="Node3D" node_paths=PackedStringArray("nav_ag") groups=["pnj"]]
+script = ExtResource("1_gc0rj")
+nav_ag = NodePath("NavigationAgent3D")
+
+[node name="char" parent="." instance=ExtResource("1_cd1ds")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true

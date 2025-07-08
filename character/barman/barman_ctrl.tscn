@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2gpx7gn3vmmx"]
+
+[ext_resource type="Script" uid="uid://dltn82km4av3b" path="res://character/inspector/commedient_ctrl.gd" id="1_qjpen"]
+[ext_resource type="PackedScene" uid="uid://cbv7n807nhm63" path="res://character/barman/barman_ctrl_2.tscn" id="2_qjpen"]
+
+[node name="barman" type="Node3D" node_paths=PackedStringArray("nav_ag") groups=["pnj"]]
+script = ExtResource("1_qjpen")
+nav_ag = NodePath("NavigationAgent3D")
+default_walk = "walking_tkt"
+
+[node name="char" parent="." instance=ExtResource("2_qjpen")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
