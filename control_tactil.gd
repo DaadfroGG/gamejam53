@@ -9,45 +9,45 @@ extends Control
 @export var max_distance := 120.0
 @export var tap_max_time := 0.25  # Seconds
 @export var tap_max_distance := 20.0  # Pixels
-
 # Private state
 var _touch_id: int = -1           # Id of the finger that owns this joystick, -1 when free
 var _start_pos: Vector2 = Vector2.ZERO  # Position where the touch started
 var _touch_time := 0.0
 
 func _ready() -> void:
+	pass
 	# We want to receive the raw touch events
-	set_process_input(true)
+	#set_process_input(true)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		var st := event as InputEventScreenTouch
-		if st.pressed:
-			# Grab the first free finger
-			if _touch_id == -1:
-				_touch_id = st.index
-				_start_pos = st.position
-				_touch_time = 0.0  # Start timer
-				dir_analogue = Vector3.ZERO
-				
-				# Raycast direction update on touch down
-				_update_direction_from_position(_start_pos)
-		else:
-			# Finger released → reset everything and check for single tap
-			if st.index == _touch_id:
-				var tap_distance := (st.position - _start_pos).length()
-				if _touch_time < tap_max_time and tap_distance < tap_max_distance:
-					_on_single_tap(st.position)
-				_touch_id = -1
-				dir_analogue = Vector3.ZERO
-
-	elif event is InputEventScreenDrag and event.index == _touch_id:
-		var drag := event as InputEventScreenDrag
-		# Raycast direction update on drag position
-		_update_direction_from_position(drag.position)
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventScreenTouch:
+		#var st := event as InputEventScreenTouch
+		#if st.pressed:
+			## Grab the first free finger
+			#if _touch_id == -1:
+				#_touch_id = st.index
+				#_start_pos = st.position
+				#_touch_time = 0.0  # Start timer
+				#dir_analogue = Vector3.ZERO
+				#
+				## Raycast direction update on touch down
+				#_update_direction_from_position(_start_pos)
+		#else:
+			## Finger released → reset everything and check for single tap
+			#if st.index == _touch_id:
+				#var tap_distance := (st.position - _start_pos).length()
+				#if _touch_time < tap_max_time and tap_distance < tap_max_distance:
+					#_on_single_tap(st.position)
+				#_touch_id = -1
+				#dir_analogue = Vector3.ZERO
+#
+	#elif event is InputEventScreenDrag and event.index == _touch_id:
+		#var drag := event as InputEventScreenDrag
+		## Raycast direction update on drag position
+		#_update_direction_from_position(drag.position)
 
 		# Optional: tell other UI elements we handled this touch
-		get_viewport().set_input_as_handled()
+		#get_viewport().set_input_as_handled()
 
 func _update_direction_from_position(screen_pos: Vector2) -> void:
 	var ray_origin = camera.project_ray_origin(screen_pos)

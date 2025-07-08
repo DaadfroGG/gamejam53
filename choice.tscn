@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://c74ra3og71lu8"]
+
+[ext_resource type="Script" uid="uid://320x7vt6exb6" path="res://choice.gd" id="1_0cj1k"]
+
+[sub_resource type="Gradient" id="Gradient_0cj1k"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.337255)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hb6q3"]
+gradient = SubResource("Gradient_0cj1k")
+
+[node name="Choice" type="ColorRect"]
+custom_minimum_size = Vector2(400, 100)
+size_flags_horizontal = 8
+script = ExtResource("1_0cj1k")
+
+[node name="Button" type="TouchScreenButton" parent="."]
+z_index = 10
+z_as_relative = false
+position = Vector2(13, 13)
+scale = Vector2(5.85045, 1.16573)
+texture_normal = SubResource("GradientTexture2D_hb6q3")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(375, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -37.5
+offset_right = 87.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ça c'est un choix de qualité"
+horizontal_alignment = 1
+vertical_alignment = 1

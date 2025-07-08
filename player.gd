@@ -1,81 +1,72 @@
 extends CharacterBody3D
 class_name Player
+
 @onready var hitbox: Area3D = $HitBox
 
-@export var tactil_ctrl : bool
-@export var input_dir : Vector2
+@export var tactil_ctrl: bool  # Optional; not needed anymore unless you use it elsewhere
+
+
+@export var input_dir: Vector2  # ✅ Add this line if not already defined
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const HITBOX_OFFSET_DISTANCE = 1.3
+
 var last_input_dir := Vector2.ZERO
 var current_interact: Node3D = null
-var in_dialogue : bool = false
+var in_dialogue: bool = false
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#if (not tactil_ctrl):
-	input_dir += Input.get_vector("left", "right", "up", "down")
-	if Input.is_action_just_pressed("interact") and current_interact != null:
+
+	# Get movement direction from Controls
+	var input_dir := Controls.direction
+
+	# Save last direction if any input
+	if input_dir.length() > 0:
+		last_input_dir = input_dir
+
+	# Interaction (single tap or key)
+	if Controls.interact_pressed and current_interact != null:
 		var body_name = current_interact.name
 		print("NAME: ", body_name)
+
 		match body_name:
 			"Barman":
 				print("You are talking to the Barman.")
 				current_interact.interact()
-				if (not current_interact.is_finish):
-					in_dialogue = true
-				else:
-					in_dialogue = false
-				#if not in_dialogue:
-				#	in_dialogue = true
-				#	current_interact.interact()
-				#else:
-				#	in_dialogue = false
-				#	current_interact.stop_interact()
+				in_dialogue = not current_interact.is_finish  # ← update dialogue state *after* interact
 			"Jukebox":
 				print("You are interacting with the Jukebox.")
 			_:
 				print("Unknown interactable: ", body_name)
 
-	if input_dir.length() > 0:
-		last_input_dir = input_dir.normalized()
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Only move if not in dialogue
 	if not in_dialogue:
-		if direction:
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
+		if direction != Vector3.ZERO:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
-		var offset_direction = (transform.basis * Vector3(last_input_dir.x, 0, last_input_dir.y)).normalized()
-		hitbox.transform.origin = Vector3(
-			offset_direction.x,
-			0,
-			offset_direction.z
-		) * HITBOX_OFFSET_DISTANCE
+
+		# Move hitbox in last direction
+		var offset_direction = (transform.basis * Vector3(last_input_dir.x, 0, last_input_dir.y))
+		hitbox.transform.origin = offset_direction * HITBOX_OFFSET_DISTANCE
+
 		move_and_slide()
-	#if Input.is_action_pressed("run"):
-		#print("run")
-		#velocity.x = direction.x * SPEED*3
-		#velocity.z = direction.z * SPEED*3
-	# Offset hitbox in last input direction
-	#var current_y := 1
 
 
 func _on_hit_box_body_entered(body: Node3D) -> void:
 	if current_interact == null:
 		print("Body detected:", body)
 		current_interact = body
-	pass # Replace with function body.
 
 
 func _on_hit_box_body_exited(body: Node3D) -> void:
 	if body == current_interact:
 		print("Body Out:", body)
 		current_interact = null
-	pass # Replace with function body.
