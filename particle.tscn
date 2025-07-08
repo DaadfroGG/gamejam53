@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://lh6vp1e0x6qu"]
+
+[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="1_kgu82"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxd2d"]
+albedo_texture = ExtResource("1_kgu82")
+albedo_texture_force_srgb = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qa6nv"]
+material = SubResource("StandardMaterial3D_pxd2d")
+size = Vector2(0.05, 0.05)
+orientation = 2
+
+[node name="Node3D" type="CPUParticles3D"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("PlaneMesh_qa6nv")
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, -5.8, 0)
+initial_velocity_max = 1.5
+angular_velocity_max = 1.0

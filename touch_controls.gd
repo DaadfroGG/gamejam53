@@ -12,6 +12,7 @@ var radius := 70.0
 var start_pos := Vector2.ZERO
 var target_handle_pos := Vector2.ZERO
 
+var is_dragged := false
 
 var tap_detected := false
 var touch_start_pos := Vector2.ZERO
@@ -62,11 +63,11 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		var pos = get_local_mouse_position()
-
 		if event.pressed:
 			tap_detected = true
 			touch_start_pos = pos
 			tap_start_time = Time.get_ticks_msec() / 1000.0
+			is_dragged = false  # Reset drag state
 
 			set_joystick_alpha(default_alpha)
 			fading_out = false  # cancel any ongoing fade
@@ -96,6 +97,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			fading_out = true
 
 	elif event is InputEventScreenDrag:
+		is_dragged = true  # Dragging started
+
 		var pos = get_local_mouse_position()
 		# If drag moves too far, cancel tap detection
 		if tap_detected and pos.distance_to(touch_start_pos) > max_tap_distance:
@@ -125,9 +128,9 @@ func _process(_delta: float) -> void:
 		tap_flash_timer -= _delta
 		if tap_flash_timer <= 0.0:
 			is_flashing_tap = false
+			Controls.interact_pressed = false
 			var current_alpha = joystick_base.modulate.a
 			set_joystick_color(Color(1, 1, 1, current_alpha))  # restore white with same alpha
-
 	if fading_out:
 		if fade_timer > 0.0:
 			fade_timer -= _delta
