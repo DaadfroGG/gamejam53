@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://e5upva4cfb4r"]
+[gd_scene load_steps=21 format=3 uid="uid://e5upva4cfb4r"]
 
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="1_cp3xf"]
 [ext_resource type="Script" uid="uid://chi6r7pl0ne3w" path="res://mini_game/jukebox_integration.gd" id="1_rtnei"]
 [ext_resource type="Script" uid="uid://dpuo4u3wqirb8" path="res://jukebox_gameplay.gd" id="2_wcrds"]
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_bxxc5"]
+[ext_resource type="AudioStream" uid="uid://cyfja2b85oagx" path="res://musique/4.wav" id="4_trss6"]
 [ext_resource type="AudioStream" uid="uid://rpka8hx8kjph" path="res://JukeboxClick.wav" id="4_wrvnl"]
 [ext_resource type="Script" uid="uid://cp1pdaxxevkca" path="res://mini_game/parent_interact.gd" id="6_8nkal"]
 [ext_resource type="Texture2D" uid="uid://b7hfwfix7v2m8" path="res://mini_game/icon_junkbox.png" id="7_8nkal"]
@@ -78,6 +79,7 @@ offset_bottom = 79.0
 text = "BACK"
 
 [node name="TouchControls" parent="." instance=ExtResource("1_cp3xf")]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999974, 0.0072082, 0, -0.0072082, 0.999974, 0, 0.487035, 1.51983)
@@ -88,9 +90,11 @@ script = ExtResource("2_wcrds")
 collision_mask = 3
 
 [node name="SfxPlayer" type="AudioStreamPlayer3D" parent="Camera3D"]
-attenuation_model = 3
+stream = ExtResource("4_trss6")
+unit_size = 23.17
 autoplay = true
-max_distance = 10.0
+max_distance = 120.0
+bus = &"musique"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.812373, 0.996615, 1.93035)

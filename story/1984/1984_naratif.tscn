@@ -164,6 +164,7 @@ size = Vector3(11.8691, 6.46973, 11.0967)
 
 [node name="SubViewport" type="SubViewport" parent="."]
 canvas_item_default_texture_filter = 0
+audio_listener_enable_3d = true
 script = ExtResource("1_a4i6k")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="SubViewport"]
@@ -354,7 +355,7 @@ omni_range = 2549.53
 omni_attenuation = -0.01
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
-transform = Transform3D(0.103446, 0.457297, -0.883275, 0.00681788, 0.887695, 0.460381, 0.994605, -0.0536472, 0.0887112, -50.8661, 8.15721, 0)
+transform = Transform3D(0.103446, 0.457297, -0.883275, 0.00681787, 0.887695, 0.460381, 0.994604, -0.0536472, 0.0887111, -50.8661, 8.15721, 0)
 light_color = Color(0.790125, 0.742766, 0.68079, 1)
 light_energy = 0.1
 light_indirect_energy = 2.0

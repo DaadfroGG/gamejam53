@@ -96,6 +96,8 @@ func get_audio_files_from_folder(folder_path: String) -> Array[AudioStream]:
 	return streams
 
 func _process(delta: float) -> void:
+	if (not self.get_parent_node_3d().is_in_game):
+		return
 	var input_dir: Vector2 = Controls.direction
 	var interact_pressed = Controls.interact_pressed  # or use Input.is_action_pressed("interact")
 
