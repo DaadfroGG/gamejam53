@@ -323,8 +323,7 @@ fov = 4.0
 [node name="RayCast3D" type="RayCast3D" parent="SubViewport"]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
-fov = 4.0
+transform = Transform3D(0.0402175, -0.164929, 0.985485, 0.0059507, 0.986305, 0.164824, -0.999173, -0.000764481, 0.0406482, -27.557, 6.57974, 3.49896)
 size = 30.0
 script = ExtResource("5_6weqx")
 
@@ -810,9 +809,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.72661, 1.44482, 1.47249)
 shape = SubResource("BoxShape3D_a4i6k")
 
 [connection signal="cam_in" from="Barman" to="SubViewport/interact_screen/Control" method="_on_barman_cam_in"]
-[connection signal="cam_in" from="Barman" to="CamCtrl" method="go_bar"]
 [connection signal="cam_out" from="Barman" to="SubViewport/interact_screen/Control" method="_on_barman_cam_out"]
-[connection signal="cam_out" from="Barman" to="CamCtrl" method="go_base"]
 [connection signal="cam_in" from="Detective" to="SubViewport/interact_screen/Control" method="_on_barman_cam_in"]
 [connection signal="cam_in" from="Detective" to="CamCtrl" method="go_bar"]
 [connection signal="cam_out" from="Detective" to="SubViewport/interact_screen/Control" method="_on_barman_cam_out"]
