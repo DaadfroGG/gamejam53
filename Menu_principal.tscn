@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvbxpn2r4mn4u"]
+[gd_scene load_steps=5 format=3 uid="uid://dvbxpn2r4mn4u"]
 
 [ext_resource type="Script" uid="uid://r80vyi7ahoa" path="res://menu_principal.gd" id="1_563nb"]
 [ext_resource type="PackedScene" uid="uid://bun3ws2siacw5" path="res://Assets/ui/item_collection.tscn" id="2_f5lth"]
+[ext_resource type="Script" uid="uid://d0raa2ocarfl4" path="res://params_viewer.gd" id="3_40ble"]
+[ext_resource type="Script" uid="uid://dgg2olsdsv23k" path="res://param_audio.gd" id="4_5k5fk"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -62,6 +64,7 @@ offset_bottom = 601.0
 text = "Quitter"
 
 [node name="Control" type="Control" parent="ColorRect"]
+visible = false
 anchors_preset = 0
 offset_left = 334.0
 offset_top = 34.0
@@ -93,8 +96,85 @@ columns = 5
 [node name="Item collection" parent="ColorRect/Control/ColorRect/GridContainer" instance=ExtResource("2_f5lth")]
 layout_mode = 2
 
+[node name="params" type="Control" parent="ColorRect" node_paths=PackedStringArray("menu_control", "menu_jouability", "menu_audio")]
+anchors_preset = 0
+offset_left = 330.0
+offset_top = 36.0
+offset_right = 1105.0
+offset_bottom = 612.0
+script = ExtResource("3_40ble")
+menu_control = NodePath("ControlPanel")
+menu_jouability = NodePath("JouabilityPanel")
+menu_audio = NodePath("ControlAudio")
+
+[node name="ControlPanel" type="ColorRect" parent="ColorRect/params"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.558908, 0.239379, 0.0463527, 1)
+
+[node name="JouabilityPanel" type="ColorRect" parent="ColorRect/params"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.558908, 0.239379, 0.0463527, 1)
+
+[node name="ControlAudio" type="ColorRect" parent="ColorRect/params"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.558908, 0.239379, 0.0463527, 1)
+script = ExtResource("4_5k5fk")
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/params/ControlAudio"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 767.0
+offset_bottom = 80.0
+color = Color(0.500612, 0.239197, 0.0141573, 1)
+
+[node name="HSlider" type="HSlider" parent="ColorRect/params/ControlAudio/ColorRect"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 16.0
+offset_right = 746.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="ColorRect/params/ControlAudio/ColorRect"]
+layout_mode = 0
+offset_right = 195.0
+offset_bottom = 48.0
+text = "Audio Général"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TabBar" type="TabBar" parent="ColorRect/params"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -37.0
+offset_right = 329.0
+current_tab = 0
+tab_count = 3
+tab_0/title = "Control"
+tab_1/title = "Jouabilité"
+tab_2/title = "Audio"
+
 [connection signal="button_down" from="ColorRect/Play" to="ColorRect" method="go_play"]
 [connection signal="button_down" from="ColorRect/Param" to="ColorRect" method="go_param"]
 [connection signal="button_down" from="ColorRect/Logs" to="ColorRect" method="go_logs"]
 [connection signal="button_down" from="ColorRect/Credit" to="ColorRect" method="go_credit"]
 [connection signal="button_down" from="ColorRect/Quite" to="ColorRect" method="quit_game"]
+[connection signal="changed" from="ColorRect/params/ControlAudio/ColorRect/HSlider" to="ColorRect/params/ControlAudio" method="_on_h_slider_changed"]
+[connection signal="tab_clicked" from="ColorRect/params/TabBar" to="ColorRect/params" method="_on_tab_bar_tab_clicked"]

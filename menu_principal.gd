@@ -4,6 +4,7 @@ extends ColorRect
 @export var param_scene: PackedScene   # Choisissez la scène dans l’inspecteur
 @export var credit_scene: PackedScene   # Choisissez la scène dans l’inspecteur
 @export var logs_scene: PackedScene   # Choisissez la scène dans l’inspecteur
+@onready var params: Control = $params
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +20,8 @@ func go_play() -> void:
 
 func go_param() -> void:
 	if game_scene:
-		get_tree().change_scene_to_packed(load(game_scene))
+		params.on_display()
+		#get_tree().change_scene_to_packed(load(game_scene))
 	else:
 		push_warning("Aucune scène n’est assignée à 'target_scene' !")
 
