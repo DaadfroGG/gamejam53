@@ -47,6 +47,7 @@ func interact():
 	old_cam = get_viewport().get_camera_3d()
 	old_cam.visible = false
 	old_cam.current = false
+	camera_3d.reset_state()
 	camera_3d.current = true
 	AutoRun.player.can_control = false
 	AutoRun.player.global_position = player_place.global_position

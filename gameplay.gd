@@ -22,6 +22,13 @@ var center_rotation: Vector3
 var current_rotation: Vector3
 
 var projectiles := []
+func reset_state():
+	was_held = false
+	for p in projectiles:
+			if is_instance_valid(p["node"]):
+				p["node"].queue_free()
+	projectiles.clear()
+	total_score = 0.0
 
 func _ready() -> void:
 	center_rotation = rotation_degrees
@@ -77,17 +84,14 @@ func _process(delta: float) -> void:
 
 
 func _spawn_projectile() -> void:
-	if not interaction_node.is_in_game:
+	if not interaction_node.is_in_game or not was_held:
 		return
-	if projectiles.size() == 2:
-		interaction_node.out_game()
+
 	if projectiles.size() >= 3:
+		interaction_node.out_game()
 		for p in projectiles:
 			if is_instance_valid(p["node"]):
 				p["node"].queue_free()
-		projectiles.clear()
-		total_score = 0.0
-		score_text.bbcode_text = "[center][b]Score: 0[/b][/center]"
 		print("Max darts reached — resetting all darts and score")
 
 	var target_pos: Vector3
@@ -186,6 +190,14 @@ func _update_projectiles(delta: float) -> void:
 		var score = 1.0 - normalized_distance
 		
 		total_score += score
+		
+
 
 	var display_score = int(round(total_score * 100))
 	score_text.bbcode_text = "[center][b]Score: %d[/b][/center]" % display_score
+
+	# ✅ Check if all projectiles have stopped and there are exactly 3
+	if projectiles.size() == 3 and projectiles.all(func(p): return p["moving"] == false):
+		print("All darts landed — ending game in 2 seconds")
+		await get_tree().create_timer(2.0).timeout
+		interaction_node.out_game()
