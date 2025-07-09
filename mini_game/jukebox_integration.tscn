@@ -1,15 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctvydqncpxr8j"]
+[gd_scene load_steps=20 format=3 uid="uid://e5upva4cfb4r"]
 
-[ext_resource type="Script" uid="uid://dpuo4u3wqirb8" path="res://jukebox_gameplay.gd" id="1_wkbq2"]
-[ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="2_wya6i"]
-[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_3gga5"]
-[ext_resource type="AudioStream" uid="uid://rpka8hx8kjph" path="res://JukeboxClick.wav" id="4_jdp8w"]
+[ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="1_cp3xf"]
+[ext_resource type="Script" uid="uid://chi6r7pl0ne3w" path="res://mini_game/jukebox_integration.gd" id="1_rtnei"]
+[ext_resource type="Script" uid="uid://dpuo4u3wqirb8" path="res://jukebox_gameplay.gd" id="2_wcrds"]
+[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_bxxc5"]
+[ext_resource type="AudioStream" uid="uid://rpka8hx8kjph" path="res://JukeboxClick.wav" id="4_wrvnl"]
+[ext_resource type="Script" uid="uid://cp1pdaxxevkca" path="res://mini_game/parent_interact.gd" id="6_8nkal"]
+[ext_resource type="Texture2D" uid="uid://b7hfwfix7v2m8" path="res://mini_game/icon_junkbox.png" id="7_8nkal"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1cj8"]
 size = Vector3(1, 1.95007, 0.108521)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdp8w"]
-albedo_texture = ExtResource("3_3gga5")
+albedo_texture = ExtResource("3_bxxc5")
 albedo_texture_force_srgb = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_wkbq2"]
@@ -18,7 +21,7 @@ size = Vector3(1, 1.5, 0.85)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wwv2"]
 albedo_color = Color(0.43573, 0.269, 4.81308e-08, 1)
-albedo_texture = ExtResource("3_3gga5")
+albedo_texture = ExtResource("3_bxxc5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_h1cj8"]
 material = SubResource("StandardMaterial3D_6wwv2")
@@ -26,7 +29,7 @@ size = Vector3(1, 1.25, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mw1i"]
 albedo_color = Color(0.270625, 0.210471, 0.201821, 1)
-albedo_texture = ExtResource("3_3gga5")
+albedo_texture = ExtResource("3_bxxc5")
 albedo_texture_force_srgb = true
 uv1_triplanar = true
 uv1_triplanar_sharpness = 0.000383097
@@ -42,7 +45,7 @@ size = Vector3(0.14, 0.1, 0.5)
 size = Vector3(0.35, 0.25, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gga5"]
-albedo_texture = ExtResource("3_3gga5")
+albedo_texture = ExtResource("3_bxxc5")
 metallic = 1.0
 metallic_specular = 1.0
 uv1_scale = Vector3(0.08, 0.08, 0.08)
@@ -52,7 +55,12 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_3gga5")
 size = Vector3(0.35, 0.25, 1)
 
-[node name="Jukebox" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8nkal"]
+size = Vector3(1.85181, 1.69348, 2.46625)
+
+[node name="Jukebox" type="Node3D" node_paths=PackedStringArray("camera_3d")]
+script = ExtResource("1_rtnei")
+camera_3d = NodePath("Camera3D")
 
 [node name="RigidBody3D" type="StaticBody3D" parent="."]
 collision_layer = 4
@@ -62,12 +70,19 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225037, 0.44574)
 shape = SubResource("BoxShape3D_h1cj8")
 
-[node name="TouchControls" parent="." instance=ExtResource("2_wya6i")]
+[node name="Button" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 13.0
+offset_right = 151.0
+offset_bottom = 79.0
+text = "BACK"
+
+[node name="TouchControls" parent="." instance=ExtResource("1_cp3xf")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999974, 0.0072082, 0, -0.0072082, 0.999974, 0, 0.487035, 1.51983)
 current = true
-script = ExtResource("1_wkbq2")
+script = ExtResource("2_wcrds")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 collision_mask = 3
@@ -78,6 +93,7 @@ max_distance = 10.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.812373, 0.996615, 1.93035)
+visible = false
 omni_range = 4096.0
 omni_attenuation = -1.75
 
@@ -118,7 +134,36 @@ shape = SubResource("BoxShape3D_wya6i")
 mesh = SubResource("BoxMesh_3gga5")
 
 [node name="ChangeTrackSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_jdp8w")
+stream = ExtResource("4_wrvnl")
 
+[node name="Jukebox" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("6_8nkal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jukebox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.115784, 0.733124)
+shape = SubResource("BoxShape3D_8nkal")
+
+[node name="IconCanPlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="IconCanPlay"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -93.0
+offset_right = 50.0
+offset_bottom = 13.0
+texture = ExtResource("7_8nkal")
+expand_mode = 1
+
+[node name="IconPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245486, 1.19589, 0.36946)
+
+[node name="PlayerPlace" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00738353, -0.62184, 2.18814)
+
+[connection signal="button_down" from="Button" to="." method="out_game"]
 [connection signal="finished" from="Camera3D/SfxPlayer" to="Camera3D" method="_on_sfx_player_finished"]
 [connection signal="finished" from="ChangeTrackSound" to="Camera3D" method="_on_change_track_sound_finished"]
