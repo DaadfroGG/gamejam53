@@ -1,14 +1,14 @@
 extends Control
 
 @export var pnj : Node
-@export var player : Node
+var player : Node
 @export var pnj_pos : Marker3D
 @export var cam : Camera3D
 @export var is_active : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	player = AutoRun.player
 	pass # Replace with function body.
 
 

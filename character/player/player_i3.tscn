@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bocmiqjdq8sfp"]
+
+[ext_resource type="Script" uid="uid://bn121a66t6bod" path="res://character/player/player_i3.gd" id="1_2vphq"]
+[ext_resource type="PackedScene" uid="uid://dg7edr3x1epuk" path="res://character/debug/modular_char/all.glb" id="2_2vphq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4flbx"]
+radius = 0.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_2vphq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+visible = false
+gi_lightmap_texel_scale = 0.01
+mesh = SubResource("CapsuleMesh_i3pqv")
+
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("SphereShape3D_4flbx")
+
+[node name="all" parent="." instance=ExtResource("2_2vphq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.980669, 0)
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]

@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name Player
+#class_name Player
 
 @onready var hitbox: Area3D = $HitBox
 
@@ -16,10 +16,15 @@ var last_input_dir := Vector2.ZERO
 var current_interact: Node3D = null
 var in_dialogue: bool = false
 
+func _ready() -> void:
+	AutoRun.player = self
+
 func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	var cam = get_viewport().get_camera_3d()
 
 	# Get movement direction from Controls
 	var input_dir := Controls.direction
@@ -38,7 +43,7 @@ func _physics_process(delta: float) -> void:
 			"Barman":
 				print("You are talking to the Barman.")
 				current_interact.interact()
-				in_dialogue = not current_interact.is_finish  # ← update dialogue state *after* interact
+				in_dialogue = not current_interact.is_finish
 			"Jukebox":
 				print("You are interacting with the Jukebox.")
 			_:
@@ -46,7 +51,18 @@ func _physics_process(delta: float) -> void:
 
 	# Only move if not in dialogue
 	if not in_dialogue:
-		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y))
+		var cam_basis = cam.global_transform.basis
+
+		var forward = -cam_basis.z
+		forward.y = 0
+		forward = -forward.normalized()
+
+		var right = cam_basis.x
+		right.y = 0
+		right = right.normalized()
+
+		var direction = (right * input_dir.x + forward * input_dir.y).normalized()
+
 		if direction != Vector3.ZERO:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
@@ -55,13 +71,14 @@ func _physics_process(delta: float) -> void:
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 		# Move hitbox in last direction
-		var offset_direction = (transform.basis * Vector3(last_input_dir.x, 0, last_input_dir.y))
+		var offset_direction = (right * last_input_dir.x + forward * last_input_dir.y).normalized()
 		hitbox.transform.origin = offset_direction * HITBOX_OFFSET_DISTANCE
 
 		move_and_slide()
 
 
 func _on_hit_box_body_entered(body: Node3D) -> void:
+	print(body)
 	if current_interact == null:
 		print("Body detected:", body)
 		current_interact = body

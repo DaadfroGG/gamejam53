@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://d225wcmyrweth"]
+[gd_scene load_steps=18 format=4 uid="uid://d225wcmyrweth"]
 
 [ext_resource type="Texture2D" uid="uid://clmpjxe8eh8nr" path="res://character/debug/modular_char/all_texture_barman.png" id="1_bna7s"]
 [ext_resource type="Texture2D" uid="uid://cqslfpoiddj4t" path="res://character/debug/modular_char/all_chemise_texture_1.png" id="2_u57rm"]
 [ext_resource type="Script" uid="uid://cx7a2812dp60o" path="res://player_ctrl_annimed.gd" id="3_sn8ch"]
+[ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="4_u57rm"]
 
 [sub_resource type="Animation" id="Animation_nqj1j"]
 resource_name = "bar_waiting"
@@ -1587,3 +1588,5 @@ blend_shapes/ventre = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991134, 0)
 script = ExtResource("3_sn8ch")
 anim = NodePath("../../AnimationPlayer")
+
+[node name="TouchControls" parent="." instance=ExtResource("4_u57rm")]

@@ -165,7 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_g84i0")
-target_scene = "res://epoch_1.tscn"
+target_scene = "res://story/1984/1984_naratif.tscn"
 
 [node name="year" type="Label" parent="ColorRect"]
 layout_mode = 1

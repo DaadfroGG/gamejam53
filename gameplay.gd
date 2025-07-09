@@ -76,6 +76,7 @@ func _spawn_projectile() -> void:
 		for p in projectiles:
 			if is_instance_valid(p["node"]):
 				p["node"].queue_free()
+				self.get_parent_node_3d().out_game()
 		projectiles.clear()
 		total_score = 0.0
 		score_text.bbcode_text = "[center][b]Score: 0[/b][/center]"

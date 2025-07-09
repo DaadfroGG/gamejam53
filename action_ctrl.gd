@@ -4,6 +4,8 @@ extends Node3D
 @export var action_index : int = 0
 @export var pnj : Node3D
 @export var speed : float
+@export var wait_cnt : float
+@export var is_waiting : bool
 @export var NavAg: NavigationAgent3D
 @export var targer_marker : Marker3D
 
@@ -24,14 +26,30 @@ func _interpret_action(action : Dictionary):
 	if action["type"] == "anim":
 		print("→ Animation :", action["target"])
 		pnj.anim.play(action["target"])
-
+	elif action["type"] == "wait":
+		wait_cnt = float(action["target"])
+		is_waiting = true
+		if (action.has("anim")):
+			pnj.anim.play(action["anim"])
+		else:
+			pnj.anim.play("test/idle")
+	elif action["type"] == "to_time":
+		wait_cnt = float(action["target"]) - AutoRun.moment
+		is_waiting = true
+		if (action.has("anim")):
+			pnj.anim.play(action["anim"])
+		else:
+			pnj.anim.play("test/idle")
 	elif action["type"] == "move":
 		print("→ Déplacement vers :", action["target"])
 		var target_node = get_node_in_group_by_name("gaffeur", action["target"])
 		if target_node:
 			targer_marker = target_node
 			NavAg.target_position = target_node.global_position
-			pnj.anim.play("walking_tkt")
+			if (action.has("anim")):
+				pnj.anim.play(action["anim"])
+			else:
+				pnj.anim.play("walk")
 			moving = true
 		else:
 			print("Cible introuvable")
@@ -63,6 +81,12 @@ func _next_action():
 		print("Toutes les actions ont été traitées.")
 
 func _process(delta: float) -> void:
+	if is_waiting:
+		wait_cnt -= delta
+		if (wait_cnt <= 0):
+			wait_cnt = 0
+			is_waiting = false
+			_next_action()
 	if moving:
 		if NavAg.is_navigation_finished():
 			moving = false

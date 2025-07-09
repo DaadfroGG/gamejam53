@@ -1,6 +1,6 @@
 extends Node3D
 
-enum cam_pos {base, barman}
+enum cam_pos {base, barman, other}
 @export var cam : Camera3D
 @export var cnt : float
 @export var cadre : cam_pos
@@ -43,6 +43,14 @@ func go_bar():
 	beg_setup()
 	get_marker(cadre)
 
+func go_to(marker : Marker3D):
+	cnt = 0
+	cadre = cam_pos.other
+	beg_setup()
+	end_pos = marker.global_position
+	end_rot = marker.global_rotation
+	end_fov = marker.fov
+		
 func get_marker(curr_cam : cam_pos):
 	if (curr_cam == cam_pos.base):
 		end_pos = cam_base.global_position
