@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://nd7w20o65xrd" path="res://action_ctrl.gd" id="14_rjbt5"]
 [ext_resource type="PackedScene" uid="uid://bx4aotomiswka" path="res://character/debug/modular_char/char_all.tscn" id="15_7x6xc"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="15_cn0v3"]
-[ext_resource type="AudioStream" uid="uid://ccfl1moc5g3ho" path="res://musique/3.wav" id="16_oyuoc"]
+[ext_resource type="AudioStream" uid="uid://3gpitsau5wcb" path="res://musique/3.wav" id="16_oyuoc"]
 [ext_resource type="Script" uid="uid://ci4oisbpnk0y2" path="res://scene_switcher.gd" id="17_bd0kc"]
 [ext_resource type="Script" uid="uid://cy11aqs8c853x" path="res://addons/sphere_radius_gizmo/SphereNode.gd" id="18_6etq2"]
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="19_ckt75"]
@@ -60,18 +60,18 @@ albedo_texture = ExtResource("2_oby2q")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
 shader = ExtResource("8_xp5d0")
 shader_parameter/pixel_size = Vector2(3, 3)
-shader_parameter/aberration_amount = 0.008
+shader_parameter/aberration_amount = 0.01
 shader_parameter/bulge_strength = 0.2
 shader_parameter/scanline_intensity = 0.2
-shader_parameter/scanline_size = 4.0
+shader_parameter/scanline_size = 3.0
 shader_parameter/pixel_lfo_amount = 0.0
 shader_parameter/aberration_lfo_amount = 0.0
 shader_parameter/bulge_lfo_amount = 0.0
-shader_parameter/scanline_lfo_amount = 0.0
+shader_parameter/scanline_lfo_amount = 0.22
 shader_parameter/pixel_lfo_speed = 0.25
 shader_parameter/aberration_lfo_speed = 0.25
 shader_parameter/bulge_lfo_speed = 0.25
-shader_parameter/scanline_lfo_speed = 0.25
+shader_parameter/scanline_lfo_speed = 1.25
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_txpwr"]
 viewport_path = NodePath("SubViewport")
@@ -335,7 +335,7 @@ omni_range = 2549.53
 omni_attenuation = -0.01
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
-transform = Transform3D(0.103446, 0.457297, -0.883277, 0.0068179, 0.887695, 0.460382, 0.994608, -0.0536472, 0.0887113, -50.8661, 8.15721, 0)
+transform = Transform3D(0.103446, 0.457297, -0.883277, 0.00681789, 0.887695, 0.460382, 0.994607, -0.0536472, 0.0887113, -50.8661, 8.15721, 0)
 light_color = Color(0.790125, 0.742766, 0.68079, 1)
 light_energy = 0.1
 light_indirect_energy = 2.0
@@ -351,7 +351,7 @@ spot_angle = 29.0573
 spot_angle_attenuation = 0.0334928
 
 [node name="Clock" parent="SubViewport" instance=ExtResource("5_y6gp5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1133, 8.33363, -11.1174)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5314, 6.33363, -11.1174)
 
 [node name="interact_screen" type="Control" parent="SubViewport"]
 layout_mode = 3

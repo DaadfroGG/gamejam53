@@ -1,18 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://hu25mvq6xfo4"]
+[gd_scene load_steps=16 format=3 uid="uid://hu25mvq6xfo4"]
 
 [ext_resource type="Script" uid="uid://s25d6hg2ibl0" path="res://jukebox_gameplay.gd" id="1_wkbq2"]
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="2_wya6i"]
+[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_3gga5"]
+[ext_resource type="AudioStream" uid="uid://bcpgf8auvwvbf" path="res://JukeboxClick.wav" id="4_jdp8w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1cj8"]
 size = Vector3(1, 1.95007, 0.108521)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdp8w"]
+albedo_texture = ExtResource("3_3gga5")
+albedo_texture_force_srgb = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_wkbq2"]
+material = SubResource("StandardMaterial3D_jdp8w")
 size = Vector3(1, 1.5, 0.85)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wwv2"]
+albedo_color = Color(0.43573, 0.269, 4.81308e-08, 1)
+albedo_texture = ExtResource("3_3gga5")
+
 [sub_resource type="BoxMesh" id="BoxMesh_h1cj8"]
+material = SubResource("StandardMaterial3D_6wwv2")
 size = Vector3(1, 1.25, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mw1i"]
+albedo_color = Color(0.270625, 0.210471, 0.201821, 1)
+albedo_texture = ExtResource("3_3gga5")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.000383097
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_wkbq2"]
+material = SubResource("StandardMaterial3D_7mw1i")
 height = 0.7
 
 [sub_resource type="BoxMesh" id="BoxMesh_wya6i"]
@@ -22,6 +42,11 @@ size = Vector3(0.14, 0.1, 0.5)
 size = Vector3(0.35, 0.25, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gga5"]
+albedo_texture = ExtResource("3_3gga5")
+metallic = 1.0
+metallic_specular = 1.0
+uv1_scale = Vector3(0.08, 0.08, 0.08)
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_3gga5"]
 material = SubResource("StandardMaterial3D_3gga5")
@@ -47,6 +72,10 @@ script = ExtResource("1_wkbq2")
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 collision_mask = 3
 
+[node name="SfxPlayer" type="AudioStreamPlayer3D" parent="Camera3D"]
+attenuation_model = 3
+max_distance = 10.0
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.812373, 0.996615, 1.93035)
 omni_range = 4096.0
@@ -67,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 mesh = SubResource("BoxMesh_wya6i")
 
 [node name="Forward" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243375, 0.358658, 0.115283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243375, 0.240505, 0.115283)
 collision_layer = 3
 collision_mask = 3
 
@@ -78,7 +107,7 @@ shape = SubResource("BoxShape3D_wya6i")
 mesh = SubResource("BoxMesh_3gga5")
 
 [node name="Backwards" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.256184, 0.358658, 0.115283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.256184, 0.240505, 0.115283)
 collision_layer = 3
 collision_mask = 3
 
@@ -87,3 +116,9 @@ shape = SubResource("BoxShape3D_wya6i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Backwards"]
 mesh = SubResource("BoxMesh_3gga5")
+
+[node name="ChangeTrackSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_jdp8w")
+
+[connection signal="finished" from="Camera3D/SfxPlayer" to="Camera3D" method="_on_sfx_player_finished"]
+[connection signal="finished" from="ChangeTrackSound" to="Camera3D" method="_on_change_track_sound_finished"]

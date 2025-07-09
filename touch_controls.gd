@@ -9,6 +9,8 @@ var dead_zone_radius := 2000.0  # pixels; tweak as needed
 @export var radius_multiplier: float = 0.5	  # Radius as a fraction of base size
 @onready var forward: StaticBody3D = $"../Forward"
 @onready var backwards: StaticBody3D = $"../Backwards"
+var forward_original_pos: Vector3
+var backwards_original_pos: Vector3
 
 var radius := 70.0
 var start_pos := Vector2.ZERO
