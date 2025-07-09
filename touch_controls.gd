@@ -18,9 +18,9 @@ var tap_detected := false
 var touch_start_pos := Vector2.ZERO
 var max_tap_distance := 20  # max movement allowed to count as a tap
 var tap_start_time := 0.0
-var max_tap_duration := 0.25  # seconds, max time for a tap
+var max_tap_duration := 0.15  # seconds, max time for a tap
 
-var tap_flash_duration := 1.0  # seconds the tap color stays visible
+var tap_flash_duration := 0.2  # seconds the tap color stays visible
 var tap_flash_timer := 0.0
 var is_flashing_tap := false
 

@@ -6,6 +6,8 @@ extends Camera3D
 @export var projectile_speed: float = 10.0
 
 var was_held := false
+@onready var interaction_node: Node3D = get_parent() # or the specific parent node if needed
+
 @onready var target: StaticBody3D = $"../StaticBody3D"
 @onready var target_collision: CollisionShape3D = $"../StaticBody3D/CollisionShape3D"
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
@@ -27,6 +29,8 @@ func _ready() -> void:
 	fov = fov_normal
 
 func _process(delta: float) -> void:
+	if not interaction_node.is_in_game:
+		return
 	var input_dir: Vector2 = Controls.direction
 	var is_held := Controls.is_held
 
@@ -70,13 +74,17 @@ func _process(delta: float) -> void:
 		fov = lerp(fov, fov_zoomed, delta * fov_anim_speed)
 	else:
 		fov = lerp(fov, fov_normal, delta * fov_anim_speed)
+
+
 func _spawn_projectile() -> void:
-	# Reset if max darts reached ...
+	if not interaction_node.is_in_game:
+		return
+	if projectiles.size() == 2:
+		interaction_node.out_game()
 	if projectiles.size() >= 3:
 		for p in projectiles:
 			if is_instance_valid(p["node"]):
 				p["node"].queue_free()
-				self.get_parent_node_3d().out_game()
 		projectiles.clear()
 		total_score = 0.0
 		score_text.bbcode_text = "[center][b]Score: 0[/b][/center]"

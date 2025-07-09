@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="1_dx8bf"]
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="1_sbslj"]
-[ext_resource type="Script" uid="uid://cwihs4lj4sp8k" path="res://gameplay.gd" id="3_qr8fx"]
+[ext_resource type="Script" uid="uid://ddl5wugqfl2pu" path="res://gameplay.gd" id="3_qr8fx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sbslj"]
 height = 0.5

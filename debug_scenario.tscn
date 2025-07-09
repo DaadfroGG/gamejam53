@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d0jjhwloieemj" path="res://story_line.gd" id="2_7iu4b"]
 [ext_resource type="Script" uid="uid://bm6udfet5tqlv" path="res://resources/action.gd" id="3_rg4dh"]
 [ext_resource type="PackedScene" uid="uid://dxwy78dnm8pb2" path="res://character/inspector/inspector_ctrl.tscn" id="4_7iu4b"]
-[ext_resource type="Script" uid="uid://0ph1mvtvtatk" path="res://horloge_temp.gd" id="5_rg4dh"]
+[ext_resource type="Script" path="res://horloge_temp.gd" id="5_rg4dh"]
 [ext_resource type="PackedScene" uid="uid://c2gpx7gn3vmmx" path="res://character/barman/barman_ctrl.tscn" id="6_f75it"]
 
 [sub_resource type="Resource" id="Resource_djsuq"]
