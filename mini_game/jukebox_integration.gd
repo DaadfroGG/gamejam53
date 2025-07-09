@@ -9,6 +9,9 @@ extends Node3D
 @export var old_cam : Camera3D
 @onready var touch_controls: Control = $TouchControls
 @onready var button: Button = $Button
+@onready var back: Choice = $"../../Back"
+var interact_cooldown := 1.5
+var interact_locked_until := 0.0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,20 +20,35 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func interact():
+	back.visible = true
+	if Time.get_ticks_msec() / 1000.0 < interact_locked_until:
+		return
+
 	old_cam = get_viewport().get_camera_3d()
 	AutoRun.player.can_control = false
 	old_cam.current = false
 	camera_3d.current = true
 	is_in_game = true
 	AutoRun.player.global_position = player_place.global_position
-	
-	pass
+
 	
 func out_game():
-	is_in_game = true
-	camera_3d.current = false
-	old_cam.current = true
-	AutoRun.player.can_control = true
+	back.visible = true
+	is_in_game = false
+
+	if AutoRun != null and AutoRun.player != null:
+		AutoRun.player.can_control = true
+
+	if old_cam != null:
+		old_cam.current = true
+		old_cam.visible = true
+
+	if camera_3d != null:
+		camera_3d.current = false
+
+	# Lock interaction for 0.5 seconds
+	interact_locked_until = Time.get_ticks_msec() / 1000.0 + interact_cooldown
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

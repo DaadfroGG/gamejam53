@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctvydqncpxr8j"]
+[gd_scene load_steps=16 format=3 uid="uid://hu25mvq6xfo4"]
 
 [ext_resource type="Script" uid="uid://dpuo4u3wqirb8" path="res://jukebox_gameplay.gd" id="1_wkbq2"]
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="2_wya6i"]

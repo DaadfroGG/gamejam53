@@ -7,10 +7,7 @@ var dead_zone_radius := 2000.0  # pixels; tweak as needed
 @export var base_texture_scale: float = 0.15  # percent of screen width
 @export var handle_size_multiplier: float = 3.0  # multiplier of base size
 @export var radius_multiplier: float = 0.5	  # Radius as a fraction of base size
-@onready var forward: StaticBody3D = $"../Forward"
-@onready var backwards: StaticBody3D = $"../Backwards"
-var forward_original_pos: Vector3
-var backwards_original_pos: Vector3
+
 
 var radius := 70.0
 var start_pos := Vector2.ZERO
@@ -64,7 +61,7 @@ func _ready() -> void:
 	joystick_handle.position = target_handle_pos
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		var pos = get_local_mouse_position()
 		if event.pressed:

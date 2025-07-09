@@ -49,7 +49,6 @@ func _ready() -> void:
 	backwards_original_pos = backwards.global_transform.origin
 	# Initialize hand position
 	hand.global_transform.origin = target_hand_pos
-
 func change_track(direction: int) -> void:
 	var new_index = current_track_index + direction
 	if new_index < 0:
@@ -58,9 +57,7 @@ func change_track(direction: int) -> void:
 		new_index = 0
 
 	pending_track_index = new_index
-	music_player.stop()  # Stop current music immediately before playing the change track sound
 	change_track_sound.play()
-
 
 
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c74ra3og71lu8"]
 
-[ext_resource type="Script" uid="uid://320x7vt6exb6" path="res://choice.gd" id="1_0cj1k"]
+[ext_resource type="Script" uid="uid://c2276mpn5ojq8" path="res://choice.gd" id="1_0cj1k"]
 
 [sub_resource type="Gradient" id="Gradient_0cj1k"]
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.337255)
@@ -8,7 +8,7 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.337255)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hb6q3"]
 gradient = SubResource("Gradient_0cj1k")
 
-[node name="Choice" type="ColorRect"]
+[node name="Back" type="ColorRect"]
 custom_minimum_size = Vector2(400, 100)
 size_flags_horizontal = 8
 script = ExtResource("1_0cj1k")
@@ -43,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "ça c'est un choix de qualité"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -10,6 +10,7 @@ extends Node3D
 @onready var icon_pos : Marker3D = $IconPos
 @onready var player_place : Marker3D = $PlayerPlace
 
+@onready var back: Choice = $"../../Back"
 
 @export var old_cam : Camera3D
 
@@ -33,18 +34,25 @@ func _process(delta: float) -> void:
 	else:
 		can_play_icon.visible = false
 	pass
-	
 func out_game():
 	is_in_game = false
-	AutoRun.player.can_control = true
-	old_cam.current = true
-	camera_3d.current = false
-	old_cam.visible = true
+	back.visible = false
+	
+	if AutoRun != null and AutoRun.player != null:
+		AutoRun.player.can_control = true
+	
+	if old_cam != null:
+		old_cam.current = true
+		old_cam.visible = true
+	
+	if camera_3d != null:
+		camera_3d.current = false
 
 func interact():
 	print("=======================")
 	print("=======Fleshette=======")
 	print("=======================")
+	back.visible = true
 	old_cam = get_viewport().get_camera_3d()
 	old_cam.visible = false
 	old_cam.current = false

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cwtb7mpdkx1sn" path="res://tactil_joystick_handle.png" id="3_ep0mg"]
 
 [node name="TouchControls" type="Control"]
+z_as_relative = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
