@@ -41,7 +41,10 @@ func reset_state():
 
 func _process(delta: float) -> void:
 	if not interaction_node.is_in_game:
+		score_text.visible = false
 		return
+	
+	score_text.visible = true
 	
 	var input_dir: Vector2 = Controls.direction
 	var is_held := Controls.is_held
