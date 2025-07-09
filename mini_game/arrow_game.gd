@@ -5,7 +5,7 @@ extends Node3D
 @export var is_in_game:bool
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
-@onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var rich_text_label: Label = $RichTextLabel
 @onready var can_play_icon : Control = $IconCanPlay
 @onready var icon_pos : Marker3D = $IconPos
 @onready var player_place : Marker3D = $PlayerPlace
@@ -16,6 +16,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
