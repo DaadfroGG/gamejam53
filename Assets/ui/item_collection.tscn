@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bun3ws2siacw5"]
+
+[node name="Item collection" type="ColorRect"]
+custom_minimum_size = Vector2(180, 180)
+color = Color(0.306863, 0.136819, 0.0173567, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = -11.0
+offset_bottom = 151.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "chapeau du Barman"
+horizontal_alignment = 1
+vertical_alignment = 1

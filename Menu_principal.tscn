@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvbxpn2r4mn4u"]
+[gd_scene load_steps=3 format=3 uid="uid://dvbxpn2r4mn4u"]
 
 [ext_resource type="Script" uid="uid://r80vyi7ahoa" path="res://menu_principal.gd" id="1_563nb"]
+[ext_resource type="PackedScene" uid="uid://bun3ws2siacw5" path="res://Assets/ui/item_collection.tscn" id="2_f5lth"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -59,6 +60,38 @@ offset_top = 538.0
 offset_right = 254.0
 offset_bottom = 601.0
 text = "Quitter"
+
+[node name="Control" type="Control" parent="ColorRect"]
+anchors_preset = 0
+offset_left = 334.0
+offset_top = 34.0
+offset_right = 334.0
+offset_bottom = 34.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/Control"]
+layout_mode = 0
+offset_right = 781.0
+offset_bottom = 577.0
+color = Color(0.604398, 0.263229, 1.92523e-07, 1)
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/Control/ColorRect"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = 28.0
+offset_right = -23.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 5
+
+[node name="Item collection" parent="ColorRect/Control/ColorRect/GridContainer" instance=ExtResource("2_f5lth")]
+layout_mode = 2
 
 [connection signal="button_down" from="ColorRect/Play" to="ColorRect" method="go_play"]
 [connection signal="button_down" from="ColorRect/Param" to="ColorRect" method="go_param"]
