@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://hu25mvq6xfo4"]
+
+[ext_resource type="Script" uid="uid://s25d6hg2ibl0" path="res://jukebox_gameplay.gd" id="1_wkbq2"]
+[ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="2_wya6i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1cj8"]
+size = Vector3(1, 1.95007, 0.108521)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wkbq2"]
+size = Vector3(1, 1.5, 0.85)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h1cj8"]
+size = Vector3(1, 1.25, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wkbq2"]
+height = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_wya6i"]
+size = Vector3(0.14, 0.1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wya6i"]
+size = Vector3(0.35, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gga5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3gga5"]
+material = SubResource("StandardMaterial3D_3gga5")
+size = Vector3(0.35, 0.25, 1)
+
+[node name="Jukebox" type="Node3D"]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225037, 0.44574)
+shape = SubResource("BoxShape3D_h1cj8")
+
+[node name="TouchControls" parent="." instance=ExtResource("2_wya6i")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999974, 0.0072082, 0, -0.0072082, 0.999974, 0, 0.487035, 1.51983)
+current = true
+script = ExtResource("1_wkbq2")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+collision_mask = 3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.812373, 0.996615, 1.93035)
+omni_range = 4096.0
+omni_attenuation = -1.75
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wkbq2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h1cj8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.7, 0)
+mesh = SubResource("CylinderMesh_wkbq2")
+
+[node name="hand" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("BoxMesh_wya6i")
+
+[node name="Forward" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243375, 0.358658, 0.115283)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Forward"]
+shape = SubResource("BoxShape3D_wya6i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Forward"]
+mesh = SubResource("BoxMesh_3gga5")
+
+[node name="Backwards" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.256184, 0.358658, 0.115283)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Backwards"]
+shape = SubResource("BoxShape3D_wya6i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Backwards"]
+mesh = SubResource("BoxMesh_3gga5")

@@ -6,27 +6,27 @@ extends Camera3D
 @export var projectile_speed: float = 10.0
 
 var was_held := false
-@onready var interaction_node: Node3D = get_parent() # or the specific parent node if needed
+@onready var interaction_node: Node3D = get_parent()
 
-@onready var target: StaticBody3D = $"../StaticBody3D"
-@onready var target_collision: CollisionShape3D = $"../StaticBody3D/CollisionShape3D"
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
 @export var fov_normal: float = 70.0
 @export var fov_zoomed: float = 50.0
 @export var fov_anim_speed: float = 5.0
-@onready var score_text: RichTextLabel = $"../RichTextLabel"
+@onready var score_text: Label = $"../RichTextLabel"
+
 var total_score: float = 0.0
 const PARTICLE = preload("res://particle.tscn")
 const TRAIL_PARTICLE = preload("res://trail.tscn")
+
 var center_rotation: Vector3
 var current_rotation: Vector3
-
 var projectiles := []
+
 func reset_state():
 	was_held = false
 	for p in projectiles:
-			if is_instance_valid(p["node"]):
-				p["node"].queue_free()
+		if is_instance_valid(p["node"]):
+			p["node"].queue_free()
 	projectiles.clear()
 	total_score = 0.0
 
@@ -35,9 +35,14 @@ func _ready() -> void:
 	current_rotation = rotation_degrees
 	fov = fov_normal
 
+	var font: FontFile = load("res://MouldyCheeseRegular.ttf")
+	score_text.add_theme_font_override("font", font)
+	score_text.add_theme_font_size_override("font_size", 64)
+
 func _process(delta: float) -> void:
 	if not interaction_node.is_in_game:
 		return
+
 	var input_dir: Vector2 = Controls.direction
 	var is_held := Controls.is_held
 
@@ -49,9 +54,9 @@ func _process(delta: float) -> void:
 		_spawn_projectile()
 
 	_update_projectiles(delta)
-
 	was_held = is_held
 
+	# Camera rotation
 	var target_yaw = center_rotation.y - input_dir.x * max_yaw_angle
 	var target_pitch = center_rotation.x - input_dir.y * max_pitch_angle
 
@@ -64,24 +69,15 @@ func _process(delta: float) -> void:
 	rotation_degrees.x = current_rotation.x
 	rotation_degrees.y = current_rotation.y
 
+	# Raycast setup
 	ray_cast_3d.target_position = -transform.basis.z * 1000.0
 	ray_cast_3d.force_raycast_update()
-	if ray_cast_3d.is_colliding():
-		#print("ohyeaaah")
-		var collision_point: Vector3 = ray_cast_3d.get_collision_point()
-		var collision_center: Vector3 = target_collision.global_transform.origin
 
-		var distance_to_center: float = collision_point.distance_to(collision_center)
-
-		var cylinder_shape = target_collision.shape as CylinderShape3D
-		var radius = cylinder_shape.radius if cylinder_shape else 1.0
-
-		var normalized_distance = distance_to_center / radius
+	# FOV zoom effect
 	if is_held:
 		fov = lerp(fov, fov_zoomed, delta * fov_anim_speed)
 	else:
 		fov = lerp(fov, fov_normal, delta * fov_anim_speed)
-
 
 func _spawn_projectile() -> void:
 	if not interaction_node.is_in_game or not was_held:
@@ -95,7 +91,6 @@ func _spawn_projectile() -> void:
 		print("Max darts reached — resetting all darts and score")
 
 	var target_pos: Vector3
-
 	if ray_cast_3d.is_colliding():
 		target_pos = ray_cast_3d.get_collision_point()
 	else:
@@ -123,8 +118,6 @@ func _spawn_projectile() -> void:
 func _update_projectiles(delta: float) -> void:
 	total_score = 0.0
 
-	var collision_center = target_collision.global_transform.origin
-
 	for i in range(projectiles.size() - 1, -1, -1):
 		var p = projectiles[i]
 		var proj = p["node"]
@@ -135,36 +128,30 @@ func _update_projectiles(delta: float) -> void:
 			var direction = (target_pos - current_pos).normalized()
 			var distance_left = current_pos.distance_to(target_pos)
 			var step = projectile_speed * delta
-			
 			var next_pos = current_pos + direction * step
-			
+
 			var space_state = get_world_3d().direct_space_state
-			
 			var query = PhysicsRayQueryParameters3D.new()
 			query.from = current_pos
 			query.to = next_pos
 			query.exclude = [proj]
-			query.collision_mask = target.collision_layer
-			
+
 			var result = space_state.intersect_ray(query)
 
-			if result and result.collider == target:
+			if result:
 				proj.global_transform.origin = result.position
 				p["moving"] = false
-				print("Projectile hit target!")
+				print("Projectile hit something!")
 
-				# Stop trail emission on all particle children
 				for child in proj.get_children():
 					if child.has_method("set_emitting"):
 						child.emitting = false
 						print("Stopped trail emission on hit")
 
-				# Spawn impact particles
 				var particles_instance = PARTICLE.instantiate()
 				get_tree().current_scene.add_child(particles_instance)
 				particles_instance.global_transform.origin = result.position
 				particles_instance.emitting = true
-
 				particles_instance.one_shot = true
 				particles_instance.finished.connect(particles_instance.queue_free)
 
@@ -173,7 +160,6 @@ func _update_projectiles(delta: float) -> void:
 				p["moving"] = false
 				print("Projectile reached target")
 
-				# Stop trail emission on all particle children
 				for child in proj.get_children():
 					if child.has_method("set_emitting"):
 						child.emitting = false
@@ -182,22 +168,10 @@ func _update_projectiles(delta: float) -> void:
 			else:
 				proj.global_transform.origin = next_pos
 
-		
-		var dist_to_center = proj.global_transform.origin.distance_to(collision_center)
-		var cylinder_shape = target_collision.shape as CylinderShape3D
-		var radius = cylinder_shape.radius if cylinder_shape else 1.0
-		var normalized_distance = clamp(dist_to_center / radius, 0, 1)
-		var score = 1.0 - normalized_distance
-		
-		total_score += score
-		
+	# No more target distance/score — just count hits
+	score_text.text = "Hits: %d" % projectiles.count(func(p): return !p["moving"])
 
-
-	var display_score = int(round(total_score * 100))
-	score_text.bbcode_text = "[center][b]Score: %d[/b][/center]" % display_score
-
-	# ✅ Check if all projectiles have stopped and there are exactly 3
 	if projectiles.size() == 3 and projectiles.all(func(p): return p["moving"] == false):
-		print("All darts landed — ending game in 2 seconds")
+		print("All projectiles landed — ending game in 2 seconds")
 		await get_tree().create_timer(2.0).timeout
 		interaction_node.out_game()

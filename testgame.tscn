@@ -62,10 +62,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.099
 mesh = SubResource("CylinderMesh_qr8fx")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(400, 400)
 offset_left = 887.0
 offset_top = 88.0
 offset_right = 1087.0
 offset_bottom = 288.0
 bbcode_enabled = true
-text = "VLAVLABLABLABLA"

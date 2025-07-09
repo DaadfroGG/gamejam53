@@ -1,12 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://pot56cagf6q"]
+[gd_scene load_steps=9 format=3 uid="uid://pot56cagf6q"]
 
-[ext_resource type="Script" uid="uid://wvqopd8s5mom" path="res://clock.gd" id="1_venu5"]
+[ext_resource type="Script" uid="uid://bg1ytdagn55am" path="res://clock.gd" id="1_venu5"]
+[ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="2_kig64"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kig64"]
+albedo_color = Color(0.345098, 0.313726, 0, 1)
+albedo_texture = ExtResource("2_kig64")
 
 [sub_resource type="BoxMesh" id="BoxMesh_kig64"]
-size = Vector3(0.2, 3, 0.5)
+material = SubResource("StandardMaterial3D_kig64")
+size = Vector3(0.05, 1.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqx04"]
+albedo_color = Color(0.635294, 0, 1, 1)
+albedo_texture = ExtResource("2_kig64")
 
 [sub_resource type="BoxMesh" id="BoxMesh_venu5"]
-size = Vector3(0.2, 2, 0.5)
+material = SubResource("StandardMaterial3D_cqx04")
+size = Vector3(0.075, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4n1wf"]
+albedo_texture = ExtResource("2_kig64")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.77228e-05
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cqx04"]
+material = SubResource("StandardMaterial3D_4n1wf")
+top_radius = 1.5
+bottom_radius = 2.0
+height = 0.2
+radial_segments = 12
+rings = 1
 
 [node name="Clock" type="Node3D"]
 script = ExtResource("1_venu5")
@@ -14,13 +39,17 @@ script = ExtResource("1_venu5")
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Minutes" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51501, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.760066, 0)
 mesh = SubResource("BoxMesh_kig64")
 skeleton = NodePath("../..")
 
 [node name="Node3D2" type="Node3D" parent="."]
 
 [node name="Hours" type="MeshInstance3D" parent="Node3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04944, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499391, 0)
 mesh = SubResource("BoxMesh_venu5")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.187622)
+mesh = SubResource("CylinderMesh_cqx04")
