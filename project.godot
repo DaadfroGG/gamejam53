@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="gamejam53"
+config/name="Tiger Mongo"
+config/description="demo de jeux d'enquétte dans un théatre interactive (GameJam)"
+config/version="0.2"
 run/main_scene="uid://ctxtfk52xaxyy"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"

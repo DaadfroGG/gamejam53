@@ -127,7 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.558908, 0.239379, 0.0463527, 1)
 
-[node name="ControlAudio" type="ColorRect" parent="ColorRect/params"]
+[node name="ControlAudio" type="ColorRect" parent="ColorRect/params" node_paths=PackedStringArray("volume_slider")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,6 +136,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.558908, 0.239379, 0.0463527, 1)
 script = ExtResource("4_5k5fk")
+volume_slider = NodePath("ColorRect/HSlider")
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect/params/ControlAudio"]
 layout_mode = 0
