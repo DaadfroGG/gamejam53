@@ -15,7 +15,7 @@ config/description="demo de jeux d'enquétte dans un théatre interactive (GameJ
 config/version="0.2"
 run/main_scene="uid://ctxtfk52xaxyy"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dgiguo081j4oi"
 
 [audio]
 
