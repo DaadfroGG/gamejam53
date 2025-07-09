@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ce0ntu803c5tc"]
+
+[ext_resource type="Script" uid="uid://clh6upt3fbc3p" path="res://viewer_object.gd" id="1_a7fcn"]
+[ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="2_s126b"]
+[ext_resource type="Script" uid="uid://oaj5mkljoaq6" path="res://viewer_ctrl.gd" id="3_8e8mm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myff6"]
+size = Vector3(3.50366, 2.27917, 3.81042)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mu8vr"]
+
+[node name="ObjectViewer" type="Node3D"]
+script = ExtResource("1_a7fcn")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33752)
+
+[node name="Pose_pos" type="Marker3D" parent="."]
+
+[node name="look_pos" type="Marker3D" parent="."]
+
+[node name="TouchControls" parent="." instance=ExtResource("2_s126b")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.919575, -0.248196, 0.3046, 0, 0.775231, 0.631678, -0.392915, -0.580875, 0.712883, 1.72823, 0, 0.555216)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.11782, -0.561117, -0.819309, -0.368647, 0.790811, -0.488587, 0.922073, 0.24447, -0.300027, 1.72823, 0, 0.555216)
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("3_8e8mm")
+speed_rot = 1.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.164612, 0.535095)
+shape = SubResource("BoxShape3D_myff6")
+
+[node name="target_object" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="target_object"]
+mesh = SubResource("BoxMesh_mu8vr")
+skeleton = NodePath("../..")

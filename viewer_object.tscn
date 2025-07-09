@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://djlm647y21ebj"]
+
+[ext_resource type="Script" uid="uid://clh6upt3fbc3p" path="res://viewer_object.gd" id="1_2ql8h"]
+[ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="1_xabv4"]
+[ext_resource type="Script" uid="uid://oaj5mkljoaq6" path="res://viewer_ctrl.gd" id="2_myff6"]
+[ext_resource type="Texture2D" uid="uid://b7hfwfix7v2m8" path="res://mini_game/icon_junkbox.png" id="4_4a1sm"]
+[ext_resource type="Script" uid="uid://cp1pdaxxevkca" path="res://mini_game/parent_interact.gd" id="4_62xcu"]
+[ext_resource type="PackedScene" uid="uid://b5tice00tltyc" path="res://Assets/pack_bar/book_test.glb" id="5_85d3v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myff6"]
+size = Vector3(2.07996, 3.14593, 2.43213)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mu8vr"]
+
+[node name="ObjectViewer" type="Node3D" node_paths=PackedStringArray("camera_3d")]
+script = ExtResource("1_2ql8h")
+camera_3d = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33752)
+
+[node name="Pose_pos" type="Marker3D" parent="."]
+
+[node name="look_pos" type="Marker3D" parent="."]
+
+[node name="TouchControls" parent="." instance=ExtResource("1_xabv4")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.919575, -0.248196, 0.3046, 0, 0.775231, 0.631678, -0.392915, -0.580875, 0.712883, 1.72823, 0, 0.555216)
+visible = false
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.11782, -0.561117, -0.819309, -0.368647, 0.790811, -0.488587, 0.922073, 0.24447, -0.300027, 1.72823, 0, 0.555216)
+visible = false
+
+[node name="Viewer_base" type="Node3D" parent="." node_paths=PackedStringArray("mesh_instance_3d", "origin_pos")]
+script = ExtResource("2_myff6")
+mesh_instance_3d = NodePath("../target_object")
+speed_rot = 1.0
+origin_pos = NodePath("../Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="ObjectViewer" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_62xcu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.164612, 0.535095)
+shape = SubResource("BoxShape3D_myff6")
+
+[node name="target_object" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="target_object"]
+visible = false
+mesh = SubResource("BoxMesh_mu8vr")
+skeleton = NodePath("../..")
+
+[node name="book_test" parent="target_object" instance=ExtResource("5_85d3v")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="PlayerPlace" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16453, 2.52143)
+
+[node name="IconCanPlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="IconCanPlay"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -93.0
+offset_right = 50.0
+offset_bottom = 13.0
+texture = ExtResource("4_4a1sm")
+expand_mode = 1
+
+[node name="IconPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245486, 1.19589, 0.36946)

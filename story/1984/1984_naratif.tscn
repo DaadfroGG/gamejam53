@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dypnoicv6yqhx"]
+[gd_scene load_steps=57 format=3 uid="uid://dypnoicv6yqhx"]
 
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_a4i6k"]
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="2_oby2q"]
@@ -13,13 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://e5upva4cfb4r" path="res://mini_game/jukebox_integration.tscn" id="10_6weqx"]
 [ext_resource type="PackedScene" uid="uid://bobo5u3bmx73q" path="res://dialogue_box.tscn" id="10_n1m5f"]
 [ext_resource type="Script" uid="uid://donng8h7chb0b" path="res://barman.gd" id="11_a2yof"]
+[ext_resource type="Script" uid="uid://clh6upt3fbc3p" path="res://viewer_object.gd" id="12_rygbv"]
 [ext_resource type="PackedScene" uid="uid://cwvpwvk60mppu" path="res://character/barman/barman_i0.glb" id="12_vlra3"]
 [ext_resource type="PackedScene" uid="uid://cefx4alj3bio7" path="res://character/barman/barman_ctrl_1.tscn" id="13_rygbv"]
+[ext_resource type="Script" uid="uid://oaj5mkljoaq6" path="res://viewer_ctrl.gd" id="14_cn0v3"]
 [ext_resource type="Script" uid="uid://nd7w20o65xrd" path="res://action_ctrl.gd" id="14_rjbt5"]
 [ext_resource type="PackedScene" uid="uid://bx4aotomiswka" path="res://character/debug/modular_char/char_all.tscn" id="15_7x6xc"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="15_cn0v3"]
+[ext_resource type="Script" uid="uid://cp1pdaxxevkca" path="res://mini_game/parent_interact.gd" id="15_oyuoc"]
+[ext_resource type="PackedScene" uid="uid://b5tice00tltyc" path="res://Assets/pack_bar/book_test.glb" id="16_bd0kc"]
+[ext_resource type="PackedScene" uid="uid://0sd75usuqd4h" path="res://Assets/pack_bar/chapeau.glb" id="17_6etq2"]
 [ext_resource type="Script" uid="uid://ci4oisbpnk0y2" path="res://scene_switcher.gd" id="17_bd0kc"]
 [ext_resource type="Script" uid="uid://cy11aqs8c853x" path="res://addons/sphere_radius_gizmo/SphereNode.gd" id="18_6etq2"]
+[ext_resource type="Texture2D" uid="uid://b7hfwfix7v2m8" path="res://mini_game/icon_junkbox.png" id="18_ckt75"]
 [ext_resource type="PackedScene" uid="uid://c4ag5k0nbd3xu" path="res://touch_controls.tscn" id="19_ckt75"]
 [ext_resource type="Script" uid="uid://dogucni45bll2" path="res://story/1984/player_cadreur.gd" id="20_oby2q"]
 [ext_resource type="PackedScene" uid="uid://goqretkjbb5r" path="res://mini_game/arrow.tscn" id="22_u6kql"]
@@ -57,6 +63,11 @@ texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obyai"]
 albedo_texture = ExtResource("2_oby2q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myff6"]
+size = Vector3(2.07996, 3.14593, 2.43213)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mu8vr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e0a3d"]
 shader = ExtResource("8_xp5d0")
@@ -343,7 +354,7 @@ omni_range = 2549.53
 omni_attenuation = -0.01
 
 [node name="OmniLight3D2" type="SpotLight3D" parent="SubViewport"]
-transform = Transform3D(0.103446, 0.457297, -0.883277, 0.00681788, 0.887695, 0.460382, 0.994606, -0.0536472, 0.0887113, -50.8661, 8.15721, 0)
+transform = Transform3D(0.103446, 0.457297, -0.883275, 0.00681788, 0.887695, 0.460381, 0.994605, -0.0536472, 0.0887112, -50.8661, 8.15721, 0)
 light_color = Color(0.790125, 0.742766, 0.68079, 1)
 light_energy = 0.1
 light_indirect_energy = 2.0
@@ -407,6 +418,152 @@ light_energy = 40.0
 shadow_enabled = true
 spot_range = 10.7408
 spot_angle = 23.6086
+
+[node name="Node3D" type="Node3D" parent="SubViewport"]
+
+[node name="ObjectViewer" type="Node3D" parent="SubViewport/Node3D" node_paths=PackedStringArray("camera_3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7415, 2.85959, -4.32679)
+script = ExtResource("12_rygbv")
+camera_3d = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D/ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76086, 2.33752)
+
+[node name="Pose_pos" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer"]
+
+[node name="look_pos" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer"]
+
+[node name="TouchControls" parent="SubViewport/Node3D/ObjectViewer" instance=ExtResource("19_ckt75")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Node3D/ObjectViewer"]
+transform = Transform3D(0.919575, -0.248196, 0.3046, 0, 0.775231, 0.631678, -0.392915, -0.580875, 0.712883, 1.72823, 0, 0.555216)
+visible = false
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport/Node3D/ObjectViewer"]
+transform = Transform3D(-0.11782, -0.561117, -0.819309, -0.368647, 0.790811, -0.488587, 0.922073, 0.24447, -0.300027, 1.72823, 0, 0.555216)
+visible = false
+
+[node name="Viewer_base" type="Node3D" parent="SubViewport/Node3D/ObjectViewer" node_paths=PackedStringArray("mesh_instance_3d", "origin_pos")]
+script = ExtResource("14_cn0v3")
+mesh_instance_3d = NodePath("../target_object")
+speed_rot = 1.0
+origin_pos = NodePath("../Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer"]
+
+[node name="ObjectViewer" type="StaticBody3D" parent="SubViewport/Node3D/ObjectViewer"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("15_oyuoc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Node3D/ObjectViewer/ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.164612, 0.535095)
+shape = SubResource("BoxShape3D_myff6")
+
+[node name="target_object" type="Node3D" parent="SubViewport/Node3D/ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.336444, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Node3D/ObjectViewer/target_object"]
+visible = false
+mesh = SubResource("BoxMesh_mu8vr")
+skeleton = NodePath("../..")
+
+[node name="book_test" parent="SubViewport/Node3D/ObjectViewer/target_object" instance=ExtResource("16_bd0kc")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="PlayerPlace" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16453, 2.52143)
+
+[node name="IconCanPlay" type="Control" parent="SubViewport/Node3D/ObjectViewer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/Node3D/ObjectViewer/IconCanPlay"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -93.0
+offset_right = 50.0
+offset_bottom = 13.0
+texture = ExtResource("18_ckt75")
+expand_mode = 1
+
+[node name="IconPos" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245486, 1.19589, 0.36946)
+
+[node name="ObjectViewer2" type="Node3D" parent="SubViewport/Node3D" node_paths=PackedStringArray("camera_3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.425, 2.85959, -3.32679)
+script = ExtResource("12_rygbv")
+camera_3d = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D/ObjectViewer2"]
+transform = Transform3D(-0.300206, 0, 0.953874, 0, 1, 0, -0.953874, 0, -0.300206, 2.10633, 1.5172, -0.0408547)
+
+[node name="Pose_pos" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer2"]
+transform = Transform3D(0.392289, 0.919842, 0, -0.919842, 0.392289, 0, 0, 0, 1, 0.136599, 1.03556, 0)
+
+[node name="look_pos" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer2"]
+
+[node name="TouchControls" parent="SubViewport/Node3D/ObjectViewer2" instance=ExtResource("19_ckt75")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/Node3D/ObjectViewer2"]
+transform = Transform3D(0.919575, -0.248196, 0.3046, 0, 0.775231, 0.631678, -0.392915, -0.580875, 0.712883, 1.72823, 0, 0.555216)
+visible = false
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport/Node3D/ObjectViewer2"]
+transform = Transform3D(-0.11782, -0.561117, -0.819309, -0.368647, 0.790811, -0.488587, 0.922073, 0.24447, -0.300027, 1.72823, 0, 0.555216)
+visible = false
+
+[node name="Viewer_base" type="Node3D" parent="SubViewport/Node3D/ObjectViewer2" node_paths=PackedStringArray("mesh_instance_3d", "origin_pos")]
+script = ExtResource("14_cn0v3")
+mesh_instance_3d = NodePath("../target_object")
+speed_rot = 1.0
+origin_pos = NodePath("../Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer2"]
+
+[node name="ObjectViewer" type="StaticBody3D" parent="SubViewport/Node3D/ObjectViewer2"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("15_oyuoc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Node3D/ObjectViewer2/ObjectViewer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.711853, -0.597993, -0.154051)
+shape = SubResource("BoxShape3D_myff6")
+
+[node name="target_object" type="Node3D" parent="SubViewport/Node3D/ObjectViewer2"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/Node3D/ObjectViewer2/target_object"]
+visible = false
+mesh = SubResource("BoxMesh_mu8vr")
+skeleton = NodePath("../..")
+
+[node name="book_test" parent="SubViewport/Node3D/ObjectViewer2/target_object" instance=ExtResource("16_bd0kc")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+visible = false
+
+[node name="chapeau" parent="SubViewport/Node3D/ObjectViewer2/target_object" instance=ExtResource("17_6etq2")]
+transform = Transform3D(0.15, 0.259808, 0, -0.259808, 0.15, 0, 0, 0, 0.3, 0, 1, 0)
+
+[node name="PlayerPlace" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20706, -1.16453, 1.68997)
+
+[node name="IconCanPlay" type="Control" parent="SubViewport/Node3D/ObjectViewer2"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/Node3D/ObjectViewer2/IconCanPlay"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -93.0
+offset_right = 50.0
+offset_bottom = 13.0
+texture = ExtResource("18_ckt75")
+expand_mode = 1
+
+[node name="IconPos" type="Marker3D" parent="SubViewport/Node3D/ObjectViewer2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0245486, 1.19589, 0.36946)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1

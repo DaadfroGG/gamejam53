@@ -62,6 +62,9 @@ func _physics_process(delta: float) -> void:
 			"Jukebox":
 				print("You are interacting with the Jukebox.")
 				current_interact.interact()
+			"ObjectViewer":
+				print("vous regarder un object.")
+				current_interact.interact()
 			"ArrowGame":
 				print("vous avez intéragie avec le jeu de flechette.")
 				current_interact.interact()

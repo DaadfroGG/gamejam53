@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dpuo4u3wqirb8" path="res://jukebox_gameplay.gd" id="2_wcrds"]
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="3_bxxc5"]
 [ext_resource type="AudioStream" uid="uid://rpka8hx8kjph" path="res://JukeboxClick.wav" id="4_wrvnl"]
-[ext_resource type="Script" path="res://mini_game/parent_interact.gd" id="6_8nkal"]
+[ext_resource type="Script" uid="uid://cp1pdaxxevkca" path="res://mini_game/parent_interact.gd" id="6_8nkal"]
 [ext_resource type="Texture2D" uid="uid://b7hfwfix7v2m8" path="res://mini_game/icon_junkbox.png" id="7_8nkal"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1cj8"]
