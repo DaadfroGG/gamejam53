@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://g1fchvuw3swi"]
+
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="1_cy2ar"]
+
+[resource]
+script = ExtResource("1_cy2ar")
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"

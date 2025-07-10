@@ -17,6 +17,7 @@ func _ready() -> void:
 	#	_interpret_action(actions_scenario.actions[action_index])
 		
 func start_action():
+	action_index = 0
 	print(actions_scenario)
 	print(actions_scenario.actions)
 	print(actions_scenario.actions.size())
@@ -71,7 +72,10 @@ func _interpret_action(action : EventStep):
 		else:
 			print("Cible introuvable")
 			_next_action()
-
+	elif action is EventSpeaking:
+		self.get_parent_node_3d().vocal.stream = action.audio
+		self.get_parent_node_3d().vocal.play()
+		_next_action()
 func get_node_in_group_by_name(group_name: String, node_name: String) -> Node:
 	for node in get_tree().get_nodes_in_group(group_name):
 		if node.name == node_name:

@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var vocal:AudioStreamPlayer3D
 @export var dialogues_2 : Array[dialogue_line]
 #const BARMAN_1 = preload("res://musique/Barman_1.wav")
+@export var scenario_char : Node3D
 
 signal cam_out
 signal cam_in
@@ -54,6 +55,10 @@ func interact():
 			dialoguebox.confirm_selection()
 			cur_dialogue = -1
 
+	print(dialogues_2.size())
+	print(cur_dialogue)
+	print(dialogues_2[cur_dialogue].action_called)
+	
 	cur_dialogue += 1
 	
 	
@@ -64,19 +69,34 @@ func interact():
 		AutoRun.player.in_dialogue = false
 		is_finish = true
 		print("end_conv")
+		
 		return
+	print("par la")
 	# Attention à ne pas dépasser les limites
 	if (cur_dialogue > dialogues_2.size()):
 		if (dialogues_2[cur_dialogue].response.size() == 0):
 			print("stop dial")
+			
+			if (dialogues_2[cur_dialogue-1].action_called != null):
+				print("ca a  fonctionner l'ajout du scenario")
+				scenario_char.actions_scenario = dialogues_2[cur_dialogue-1].action_called
+				scenario_char.start_action()
+			else:
+				print("ca a pas fonctionner l'ajout du scenario")
 			stop_interact()
+			
 			cur_dialogue = -1
 			is_finish = true
+			
 		else:
 			print("reponse du joueur")
 			dialoguebox.choix()
 	else:
-		
+		print("ici peut étre")
+		if (dialogues_2[cur_dialogue].action_called):
+			scenario_char.actions_scenario = dialogues_2[cur_dialogue].action_called
+			scenario_char.start_action()
+			pass
 		
 		
 		print("pas fini")

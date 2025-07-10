@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://dx5j18j0c8we6"]
+[gd_scene load_steps=80 format=3 uid="uid://dx5j18j0c8we6"]
 
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_q2oed"]
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="2_c76rr"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://cwug5oqd72jc6" path="res://Audio/Dialogue/quepuis-je-vous-servire.wav" id="23_4aorp"]
 [ext_resource type="AudioStream" uid="uid://csxgipuyyf65x" path="res://Audio/Dialogue/barman/vous1.wav" id="24_p7unu"]
 [ext_resource type="AudioStream" uid="uid://b5g36imrbh23g" path="res://Audio/Dialogue/barman/vous-etes-nouveau-ici.wav" id="25_so1wb"]
+[ext_resource type="Resource" uid="uid://c17mpkim4ebyo" path="res://resources/stock/Actions/specialiter_for_player.tres" id="26_8iceh"]
 [ext_resource type="AudioStream" uid="uid://dqf08ybcp30lp" path="res://Audio/Dialogue/player/oui-c-est-la-premierfois.wav" id="26_hs3d3"]
 [ext_resource type="AudioStream" uid="uid://cnrewcmopvksb" path="res://Audio/Dialogue/barman/nouveau-speacialtier.wav" id="27_4r48e"]
 [ext_resource type="AudioStream" uid="uid://cknx3qulyh867" path="res://Audio/Dialogue/barman/billy_cela_ne_me_dit_rien.wav" id="28_vgpfn"]
@@ -36,7 +37,7 @@
 [ext_resource type="Script" uid="uid://xvtikdv26e50" path="res://story/1984/init_action_i0.gd" id="33_c76rr"]
 [ext_resource type="AudioStream" uid="uid://cvbnfug8maeg2" path="res://Audio/Dialogue/detective/ne-pas-me-parler.wav" id="33_hp3fj"]
 [ext_resource type="Script" uid="uid://cmc3awse4o6g" path="res://cam_ctrl.gd" id="34_eqe1f"]
-[ext_resource type="Resource" uid="uid://babe3xsy0fryw" path="res://resources/stock/story/init_scenario.tres" id="34_p8eo2"]
+[ext_resource type="Resource" uid="uid://cniyew4jqv5wq" path="res://resources/Scene/intro/init_state.tres" id="34_p8eo2"]
 [ext_resource type="Script" uid="uid://ci4oisbpnk0y2" path="res://scene_switcher.gd" id="35_wlfqa"]
 [ext_resource type="Script" uid="uid://cy11aqs8c853x" path="res://addons/sphere_radius_gizmo/SphereNode.gd" id="36_o00tu"]
 [ext_resource type="Script" uid="uid://dogucni45bll2" path="res://story/1984/player_cadreur.gd" id="37_330t7"]
@@ -106,7 +107,6 @@ text = "Bonsoire, que puis-je vous servir?"
 audio = ExtResource("23_4aorp")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([])
-action_called = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Resource" id="Resource_bd0kc"]
@@ -116,7 +116,6 @@ text = "vous"
 audio = ExtResource("24_p7unu")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([])
-action_called = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Resource" id="Resource_wgboi"]
@@ -126,7 +125,7 @@ text = "Ha, alors je vais vous servire la spécialité du \"tigre mongo\""
 audio = ExtResource("27_4r48e")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([])
-action_called = Array[Dictionary]([])
+action_called = ExtResource("26_8iceh")
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Resource" id="Resource_ckt75"]
@@ -136,7 +135,7 @@ text = "oui, c'est la 1er fois que je vient ici"
 audio = ExtResource("26_hs3d3")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([SubResource("Resource_wgboi")])
-action_called = Array[Dictionary]([])
+action_called = ExtResource("26_8iceh")
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Resource" id="Resource_xbw2y"]
@@ -146,7 +145,6 @@ text = "Billy? cela ne me dit rien"
 audio = ExtResource("28_vgpfn")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([])
-action_called = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Resource" id="Resource_3c7w5"]
@@ -155,7 +153,6 @@ qui = "player"
 text = "non, je suis billy."
 actions_trigger = "vous etes billy"
 response = Array[ExtResource("22_r1jnr")]([SubResource("Resource_xbw2y")])
-action_called = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Resource" id="Resource_6etq2"]
@@ -165,7 +162,6 @@ text = "vous étes nouveau ici, n'es pas?"
 audio = ExtResource("25_so1wb")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([SubResource("Resource_ckt75"), SubResource("Resource_3c7w5")])
-action_called = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_obyai"]
@@ -181,7 +177,6 @@ text = "vous! ne me parlez pas."
 audio = ExtResource("33_hp3fj")
 actions_trigger = ""
 response = Array[ExtResource("22_r1jnr")]([])
-action_called = Array[Dictionary]([])
 metadata/_custom_type_script = "uid://c8ihn1phkabfn"
 
 [sub_resource type="Curve" id="Curve_jwave"]
@@ -768,8 +763,8 @@ z_index = 100
 z_as_relative = false
 text = "Salu, ... Bonjours Monsieux! comment puis-je vous servire?"
 
-[node name="Barman" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox", "vocal")]
-transform = Transform3D(0.0907369, 0, 0.995875, 0, 1, 0, -0.995875, 0, 0.0907369, -42.5722, 0.457359, 2.76942)
+[node name="Barman" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox", "vocal", "scenario_char")]
+transform = Transform3D(0.0907369, 0, 0.995875, 0, 1, 0, -0.995875, 0, 0.0907369, -27.6627, 0.457359, -10.3872)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("21_6j2vg")
@@ -777,6 +772,7 @@ dialogs = Array[String](["Bonsoirs, que puis-je vous servire"])
 dialoguebox = NodePath("../DialogueBox")
 vocal = NodePath("AudioStreamPlayer3D")
 dialogues_2 = Array[ExtResource("22_r1jnr")]([SubResource("Resource_oyuoc"), SubResource("Resource_bd0kc"), SubResource("Resource_6etq2")])
+scenario_char = NodePath("ActionCtrl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Barman"]
 transform = Transform3D(1.00002, 0, 5.21541e-08, 0, 1, 0, -5.21541e-08, 0, 1.00002, -0.0177951, 1.05127, 0.150099)
@@ -870,20 +866,6 @@ visible = false
 [node name="ActionCtrl" type="Node3D" parent="Detective" node_paths=PackedStringArray("pnj", "NavAg")]
 transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
 script = ExtResource("31_du54f")
-actions = Array[Dictionary]([{
-"target": "20",
-"type": "wait"
-}, {
-"target": "BarFront1",
-"type": "move"
-}, {
-"anim": "test/speaking",
-"target": "5",
-"type": "wait"
-}, {
-"target": "ShadowPlace",
-"type": "move"
-}])
 pnj = NodePath("../all")
 speed = 3.0
 NavAg = NodePath("NavigationAgent3D")
@@ -1049,10 +1031,10 @@ metadata/_custom_type_script = "uid://cy11aqs8c853x"
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -20.6048, 0, -5.78167)
 
 [node name="frigo" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.2072, 0, -8.72927)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12.2072, 0.704002, -8.72927)
 
 [node name="verres" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -19.8929, -4.76837e-07, -11.1503)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -19.8929, 0.750225, -11.1503)
 
 [node name="plateau" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -24.5876, -4.76837e-07, -5.52173)

@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=18 format=3 uid="uid://c17mpkim4ebyo"]
+
+[ext_resource type="Script" uid="uid://b6gafmgfwmw1j" path="res://resources/event_step.gd" id="1_lkli3"]
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="2_idtjy"]
+[ext_resource type="Script" uid="uid://c8ihn1phkabfn" path="res://resources/dialogue_line.gd" id="2_jyd3q"]
+[ext_resource type="Script" uid="uid://brlsqk1l3diq1" path="res://resources/event_move.gd" id="3_m2h8s"]
+[ext_resource type="AudioStream" uid="uid://6gqav7qllsql" path="res://Audio/Dialogue/barman/tatadadada.wav" id="4_57l8x"]
+[ext_resource type="Script" uid="uid://c1x2y2in6jtok" path="res://resources/event_speaking.gd" id="5_gber4"]
+[ext_resource type="Script" uid="uid://b7veh4ku27lkd" path="res://resources/waiting_event.gd" id="6_jpmfl"]
+[ext_resource type="AudioStream" uid="uid://w3d3x46p3c1c" path="res://Audio/Dialogue/barman/plus_de_vodka.wav" id="7_gber4"]
+[ext_resource type="AudioStream" uid="uid://xfvseheivpjh" path="res://Audio/Dialogue/barman/tenner_la_specialiter_du_tigre_mongo.wav" id="8_jpmfl"]
+
+[sub_resource type="Resource" id="Resource_d6b63"]
+script = ExtResource("3_m2h8s")
+dest = "frigo"
+player_interact = Array[ExtResource("2_jyd3q")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_207ul"]
+script = ExtResource("5_gber4")
+audio = ExtResource("4_57l8x")
+anim = ""
+metadata/_custom_type_script = "uid://c1x2y2in6jtok"
+
+[sub_resource type="Resource" id="Resource_jfkos"]
+script = ExtResource("6_jpmfl")
+duree = 3.0
+anim = ""
+player_interact = Array[ExtResource("2_jyd3q")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_57l8x"]
+script = ExtResource("3_m2h8s")
+dest = "verres"
+player_interact = Array[ExtResource("2_jyd3q")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_gber4"]
+script = ExtResource("5_gber4")
+audio = ExtResource("7_gber4")
+anim = ""
+metadata/_custom_type_script = "uid://c1x2y2in6jtok"
+
+[sub_resource type="Resource" id="Resource_lwywj"]
+script = ExtResource("6_jpmfl")
+duree = 3.0
+anim = ""
+player_interact = Array[ExtResource("2_jyd3q")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_jpmfl"]
+script = ExtResource("3_m2h8s")
+dest = "back_bar"
+player_interact = Array[ExtResource("2_jyd3q")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_add16"]
+script = ExtResource("5_gber4")
+audio = ExtResource("8_jpmfl")
+anim = ""
+metadata/_custom_type_script = "uid://c1x2y2in6jtok"
+
+[resource]
+script = ExtResource("2_idtjy")
+actions = Array[ExtResource("1_lkli3")]([SubResource("Resource_d6b63"), SubResource("Resource_207ul"), SubResource("Resource_jfkos"), SubResource("Resource_57l8x"), SubResource("Resource_gber4"), SubResource("Resource_lwywj"), SubResource("Resource_jpmfl"), SubResource("Resource_add16")])
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"
