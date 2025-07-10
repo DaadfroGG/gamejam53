@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://dx5j18j0c8we6"]
+[gd_scene load_steps=99 format=3 uid="uid://dx5j18j0c8we6"]
 
 [ext_resource type="Script" uid="uid://b71lefo8ecrmh" path="res://sub_viewport.gd" id="1_q2oed"]
 [ext_resource type="Texture2D" uid="uid://cg14x5er1ayda" path="res://wood.png" id="2_c76rr"]
@@ -49,6 +49,8 @@
 [ext_resource type="AudioStream" uid="uid://duu2t0b5gmh8w" path="res://Audio/Dialogue/detective/commande_au_bar.wav" id="39_1ph58"]
 [ext_resource type="Script" uid="uid://c1x2y2in6jtok" path="res://resources/event_speaking.gd" id="40_h50w4"]
 [ext_resource type="Script" uid="uid://b7veh4ku27lkd" path="res://resources/waiting_event.gd" id="41_qq70n"]
+[ext_resource type="Resource" uid="uid://dapqnwlccv4ir" path="res://resources/stock/story/lena_scenario.tres" id="43_1ph58"]
+[ext_resource type="Resource" uid="uid://c68kqu3gebjtb" path="res://resources/stock/story/ini_billy.tres" id="44_h50w4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_gxj0l"]
 vertices = PackedVector3Array(-37.7717, 14.589, -12.5723, -37.9717, 14.589, -12.2723, -36.3717, 14.589, -12.0723, -36.0717, 14.589, -12.3723, 9.82834, 14.589, -11.9723, 9.82834, 14.589, -11.3723, 11.3283, 14.589, -11.4723, -37.7717, 14.589, -16.2723, 9.42833, 14.589, -12.3723, 11.3283, 14.589, -16.2723, -36.4717, 14.589, 12.8277, -176.272, 14.589, -12.1723, -176.272, 14.589, 12.8277, 10.4283, 0.839035, -6.47231, 10.4283, 0.839035, -3.57231, 11.3283, 0.839035, -3.47231, 11.3283, 0.839035, -12.1723, 9.82834, 0.839035, -12.1723, 9.92833, 0.839035, -6.87231, -36.4717, 1.08903, 5.22769, -36.4717, 1.08903, 1.72769, -36.9717, 1.08903, 1.72769, -36.9717, 1.08903, 5.22769, -66.5717, 1.08903, 11.8277, -37.3717, 1.08903, 11.8277, -37.3717, 1.08903, 5.62769, -37.3717, 1.08903, 1.32769, -37.3717, 1.08903, -11.7723, -66.5717, 1.08903, -11.7723, 9.82834, 14.589, 12.8277, 11.3283, 14.589, 12.8277, -30.8717, 0.839035, -5.77231, -30.8717, 0.839035, -8.67231, -31.3717, 0.839035, -8.77231, -31.3717, 0.839035, -5.67231, -35.4717, 0.839035, -3.47231, -31.5717, 0.839035, -3.47231, -31.5717, 0.839035, -5.37231, -31.5717, 0.839035, -9.07231, -35.4717, 0.839035, -11.3723, -31.5717, 0.839035, -11.3723, -35.4717, 8.83904, -11.3723, -35.4717, 8.83904, -2.87231, -31.1717, 8.83904, -2.87231, -31.1717, 8.83904, -11.3723, -30.1717, 0.839035, -4.37231, -27.7717, 0.839035, -4.37231, -27.7717, 0.839035, -5.27231, -30.2717, 0.839035, -5.57231, -30.1717, 0.839035, -11.3723, -30.1717, 0.839035, -9.07231, -27.3717, 0.839035, -5.67231, -9.97166, 0.839035, -5.67231, -9.97166, 0.839035, -11.3723, -30.3717, 0.839035, -8.77231, -8.97166, 6.08904, -11.3723, -8.97166, 6.08904, -3.47231, -7.67166, 6.08904, -3.47231, -7.67166, 6.08904, -11.3723, -9.87166, 0.839035, -4.57231, -9.87166, 0.839035, -4.27231, -9.27167, 0.839035, -4.27231, -9.27167, 0.839035, -4.57231, -7.77167, 0.839035, -11.3723, -8.87166, 0.839035, -11.3723, -8.87166, 0.839035, -4.97231, -7.77167, 0.839035, -3.97231, -8.97166, 0.839035, -3.97231, -6.67166, 0.839035, -7.37231, -5.27167, 0.839035, -7.37231, -5.27167, 0.839035, -11.3723, -6.67166, 0.839035, -11.3723, -0.171661, 0.839035, -7.37231, 2.22833, 0.839035, -7.37231, 2.22833, 0.839035, -11.3723, -0.171661, 0.839035, -11.3723, 7.32834, 0.839035, -11.3723, 7.32834, 0.839035, -6.87231, 8.82834, 0.839035, -6.87231, 8.82834, 0.839035, -11.3723, -4.27167, 3.33903, -11.2723, -4.27167, 3.33903, -7.17231, -1.17166, 3.33903, -7.17231, -1.17166, 3.33903, -11.2723, 3.22833, 3.33903, -11.2723, 3.22833, 3.33903, -7.17231, 6.32834, 3.33903, -7.17231, 6.32834, 3.33903, -11.2723, -4.17166, 0.839035, -11.1723, -4.17166, 0.839035, -7.27231, -1.27167, 0.839035, -7.27231, -1.27167, 0.839035, -11.1723, 3.32834, 0.839035, -11.1723, 3.32834, 0.839035, -7.27231, 6.22833, 0.839035, -7.27231, 6.22833, 0.839035, -11.1723, -6.67166, 0.839035, -2.87231, -7.07167, 0.839035, -2.57231, -7.07167, 0.839035, -1.87231, -5.27167, 0.839035, -6.57231, -4.87166, 0.839035, -6.17231, -0.171661, 0.839035, -6.57231, -0.571671, 0.839035, -6.17231, 2.32834, 0.839035, -2.97231, -7.37166, 0.839035, -1.57231, 2.42833, 0.839035, 2.42769, 2.72833, 0.839035, 2.12769, 3.42833, 0.839035, 2.12769, 3.42833, 0.839035, -2.57231, 2.72833, 0.839035, -2.57231, 3.32834, 1.58903, -5.87231, 3.32834, 1.58903, -3.57231, 8.82834, 1.58903, -3.57231, 8.82834, 1.58903, -5.87231, -26.7717, 3.08903, -4.67231, -26.7717, 3.08903, -4.17231, -9.97166, 3.08903, -4.17231, -9.97166, 3.08903, -4.67231, -26.6717, 0.839035, -4.57231, -26.6717, 0.839035, -4.27231, -27.7717, 0.839035, -3.57231, -30.2717, 0.839035, -2.17231, -27.3717, 0.839035, -3.17231, -25.1717, 0.839035, 7.72769, -24.5717, 0.839035, 7.72769, -24.6717, 0.839035, -3.17231, -25.4717, 0.839035, 8.02769, 10.3283, 0.839035, -2.77231, 10.4283, 0.839035, 2.52769, 11.3283, 0.839035, 5.52769, 10.4283, 0.839035, 5.42769, 9.92833, 0.839035, -2.57231, 9.92833, 0.839035, 2.12769, -22.0717, 0.839035, 7.72769, -21.9717, 0.839035, -3.17231, -9.47166, 0.839035, -1.67231, -9.57167, 0.839035, -2.57231, -9.87166, 0.839035, -2.67231, -21.4717, 0.839035, 7.72769, -21.0717, 0.839035, 8.12769, -8.67166, 0.839035, 12.8277, -9.17166, 0.839035, -1.47231, -9.97166, 0.839035, -3.17231, -21.0717, 0.839035, 12.8277, -8.57167, 0.839035, -1.47231, 8.82834, 0.839035, 2.12769, 8.82834, 0.839035, -2.57231, -35.8717, 0.839035, 5.22769, -35.8717, 0.839035, 1.72769, -30.5717, 0.839035, -1.87231, -35.4717, 0.839035, -1.87231, -35.4717, 0.839035, 1.32769, -35.4717, 0.839035, 5.62769, -35.4717, 0.839035, 12.8277, -25.5717, 0.839035, 12.8277, 3.52834, 0.839035, 12.8277, 3.52834, 0.839035, 6.42769, 2.72833, 0.839035, 6.42769, 2.32834, 0.839035, 6.02769, -7.97166, 0.839035, 12.8277, -8.07167, 0.839035, -1.47231, 3.32834, 1.58903, 3.12769, 3.32834, 1.58903, 5.42769, 8.82834, 1.58903, 5.42769, 8.82834, 1.58903, 3.12769, 10.3283, 0.839035, 6.22769, 11.3283, 0.839035, 12.7277, 9.92833, 0.839035, 6.42769, 9.92833, 0.839035, 12.7277, 8.82834, 0.839035, 12.8277, 8.82834, 0.839035, 6.42769, -24.5717, 1.58903, 8.72769, -24.5717, 1.58903, 14.3277, -22.0717, 1.58903, 14.3277, -22.0717, 1.58903, 8.72769, -13.2717, 3.08903, 8.72769, -13.2717, 3.08903, 12.8277, -10.8717, 3.08903, 12.8277, -10.8717, 3.08903, 8.72769)
@@ -211,9 +213,37 @@ player_interact = Array[ExtResource("22_r1jnr")]([])
 animation = ""
 metadata/_custom_type_script = "uid://brlsqk1l3diq1"
 
+[sub_resource type="Resource" id="Resource_h50w4"]
+script = ExtResource("37_vkckr")
+moment = 140.0
+anim = ""
+player_interact = Array[ExtResource("22_r1jnr")]([])
+metadata/_custom_type_script = "uid://bvvdce2mso462"
+
+[sub_resource type="Resource" id="Resource_qq70n"]
+script = ExtResource("37_yyuwt")
+dest = "ShadowPlace"
+player_interact = Array[ExtResource("22_r1jnr")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_r1jnr"]
+script = ExtResource("41_qq70n")
+duree = 3.0
+anim = ""
+player_interact = Array[ExtResource("22_r1jnr")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_4aorp"]
+script = ExtResource("37_yyuwt")
+dest = "Spawn"
+player_interact = Array[ExtResource("22_r1jnr")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
 [sub_resource type="Resource" id="Resource_6j2vg"]
 script = ExtResource("34_8iceh")
-actions = Array[ExtResource("35_yyuwt")]([SubResource("Resource_deyeq"), SubResource("Resource_4a0fi"), SubResource("Resource_th3os"), SubResource("Resource_tyj70"), SubResource("Resource_bgm27")])
+actions = Array[ExtResource("35_yyuwt")]([SubResource("Resource_deyeq"), SubResource("Resource_4a0fi"), SubResource("Resource_th3os"), SubResource("Resource_tyj70"), SubResource("Resource_bgm27"), SubResource("Resource_h50w4"), SubResource("Resource_qq70n"), SubResource("Resource_r1jnr"), SubResource("Resource_4aorp")])
 metadata/_custom_type_script = "uid://c5i86ps6u0bg2"
 
 [sub_resource type="Resource" id="Resource_wkpps"]
@@ -941,6 +971,138 @@ script = ExtResource("33_c76rr")
 node_action = NodePath("../ActionCtrl")
 scenario = SubResource("Resource_6j2vg")
 
+[node name="Lena" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox", "vocal", "scenario_char")]
+transform = Transform3D(0.0907369, 0, 0.995875, 0, 1, 0, -0.995875, 0, 0.0907369, -48.1767, 0.457359, 8.13913)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("21_6j2vg")
+dialogs = Array[String](["Bonsoirs, que puis-je vous servire"])
+dialoguebox = NodePath("../DialogueBox")
+vocal = NodePath("AudioStreamPlayer3D")
+dialogues_2 = Array[ExtResource("22_r1jnr")]([SubResource("Resource_oyuoc"), SubResource("Resource_bd0kc"), SubResource("Resource_6etq2")])
+scenario_char = NodePath("ActionCtrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lena"]
+transform = Transform3D(1.00002, 0, 5.21541e-08, 0, 1, 0, -5.21541e-08, 0, 1.00002, -0.0177951, 1.05127, 0.150099)
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="Mesh" type="MeshInstance3D" parent="Lena"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
+visible = false
+mesh = SubResource("CapsuleMesh_obyai")
+skeleton = NodePath("")
+
+[node name="Marker3D" type="Marker3D" parent="Lena"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
+
+[node name="Marker3D2" type="Marker3D" parent="Lena"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -0.0295737, 4.1153, 0.00819471)
+
+[node name="barman_i0" parent="Lena" instance=ExtResource("29_cflbx")]
+transform = Transform3D(-0.890522, 0, 1.79081, 0, 2, 0, -1.79081, 0, -0.890522, 0.0466285, -1.034, 0.249584)
+visible = false
+
+[node name="barman_ctrl" parent="Lena" instance=ExtResource("30_rm3vl")]
+transform = Transform3D(2.08616e-07, 0, 2, 0, 2, 0, -2, 0, 2.08616e-07, 0.177021, 1.0733, 0.314671)
+visible = false
+
+[node name="ActionCtrl" type="Node3D" parent="Lena" node_paths=PackedStringArray("pnj", "NavAg")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
+script = ExtResource("31_8du6b")
+pnj = NodePath("../all")
+speed = 3.0
+NavAg = NodePath("NavigationAgent3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Lena/ActionCtrl"]
+debug_enabled = true
+
+[node name="all" parent="Lena" instance=ExtResource("32_7a25l")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Lena"]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0.040792, 3.55272, 0.447708)
+bus = &"speak"
+
+[node name="Barman" type="StaticBody3D" parent="Lena"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_h50w4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lena/Barman"]
+transform = Transform3D(1.00001, 0, 9.0152e-07, 0, 1, 0, -9.0152e-07, 0, 1.00001, 0, 1.13623, 0)
+shape = SubResource("CylinderShape3D_ckt75")
+
+[node name="Init_action" type="Node3D" parent="Lena" node_paths=PackedStringArray("node_action")]
+script = ExtResource("33_c76rr")
+node_action = NodePath("../ActionCtrl")
+scenario = ExtResource("43_1ph58")
+
+[node name="Billy" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox", "vocal", "scenario_char")]
+transform = Transform3D(0.0907369, 0, 0.995875, 0, 1, 0, -0.995875, 0, 0.0907369, -47.3642, 0.457359, 0.623216)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("21_6j2vg")
+dialogs = Array[String](["Bonsoirs, que puis-je vous servire"])
+dialoguebox = NodePath("../DialogueBox")
+vocal = NodePath("AudioStreamPlayer3D")
+dialogues_2 = Array[ExtResource("22_r1jnr")]([SubResource("Resource_oyuoc"), SubResource("Resource_bd0kc"), SubResource("Resource_6etq2")])
+scenario_char = NodePath("ActionCtrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Billy"]
+transform = Transform3D(1.00002, 0, 5.21541e-08, 0, 1, 0, -5.21541e-08, 0, 1.00002, -0.0177951, 1.05127, 0.150099)
+shape = SubResource("BoxShape3D_1uwqr")
+
+[node name="Mesh" type="MeshInstance3D" parent="Billy"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
+visible = false
+mesh = SubResource("CapsuleMesh_obyai")
+skeleton = NodePath("")
+
+[node name="Marker3D" type="Marker3D" parent="Billy"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
+
+[node name="Marker3D2" type="Marker3D" parent="Billy"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, -0.0295737, 4.1153, 0.00819471)
+
+[node name="barman_i0" parent="Billy" instance=ExtResource("29_cflbx")]
+transform = Transform3D(-0.890522, 0, 1.79081, 0, 2, 0, -1.79081, 0, -0.890522, 0.0466285, -1.034, 0.249584)
+visible = false
+
+[node name="barman_ctrl" parent="Billy" instance=ExtResource("30_rm3vl")]
+transform = Transform3D(2.08616e-07, 0, 2, 0, 2, 0, -2, 0, 2.08616e-07, 0.177021, 1.0733, 0.314671)
+visible = false
+
+[node name="ActionCtrl" type="Node3D" parent="Billy" node_paths=PackedStringArray("pnj", "NavAg")]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.0466285, 0, 0.249584)
+script = ExtResource("31_8du6b")
+pnj = NodePath("../all")
+speed = 3.0
+NavAg = NodePath("NavigationAgent3D")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Billy/ActionCtrl"]
+debug_enabled = true
+
+[node name="all" parent="Billy" instance=ExtResource("32_7a25l")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Billy"]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0.040792, 3.55272, 0.447708)
+bus = &"speak"
+
+[node name="Barman" type="StaticBody3D" parent="Billy"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("14_h50w4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Billy/Barman"]
+transform = Transform3D(1.00001, 0, 9.0152e-07, 0, 1, 0, -9.0152e-07, 0, 1.00001, 0, 1.13623, 0)
+shape = SubResource("CylinderShape3D_ckt75")
+
+[node name="Init_action" type="Node3D" parent="Billy" node_paths=PackedStringArray("node_action")]
+script = ExtResource("33_c76rr")
+node_action = NodePath("../ActionCtrl")
+scenario = ExtResource("44_h50w4")
+
 [node name="Detective" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox", "vocal")]
 transform = Transform3D(0.0907369, 0, 0.995875, 0, 1, 0, -0.995875, 0, 0.0907369, -41.3854, 1.50319, 4.79212)
 visible = false
@@ -1004,6 +1166,7 @@ bus = &"speak"
 
 [node name="Patronne" type="CharacterBody3D" parent="." node_paths=PackedStringArray("dialoguebox")]
 transform = Transform3D(0.0907369, 0, 0.995875, 0, 1, 0, -0.995875, 0, 0.0907369, -51.251, 1.41951, -6.38648)
+visible = false
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("21_6j2vg")
@@ -1165,13 +1328,16 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -11.0976
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.67343, 0.507137, -1.43996)
 
 [node name="center" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0836, 0, 3.97176)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0836, 0.504966, 3.97176)
 
 [node name="corner" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17621, -9.53674e-07, 6.91833)
 
 [node name="bar_corner" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1972, -9.53674e-07, -2.23914)
+
+[node name="Spawn" type="Marker3D" parent="markers_maps" groups=["gaffeur"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.7969, -9.53674e-07, 0.167006)
 
 [node name="TouchControls" parent="." instance=ExtResource("12_vkckr")]
 
@@ -1327,6 +1493,12 @@ spot_angle = 27.8028
 [connection signal="cam_in" from="Gille" to="SubViewport/interact_screen/Control" method="_on_barman_cam_in"]
 [connection signal="cam_out" from="Gille" to="SubViewport/interact_screen/Control" method="_on_barman_cam_out"]
 [connection signal="anim_finished" from="Gille/all" to="Gille/ActionCtrl" method="_current_anim_is_finish"]
+[connection signal="cam_in" from="Lena" to="SubViewport/interact_screen/Control" method="_on_barman_cam_in"]
+[connection signal="cam_out" from="Lena" to="SubViewport/interact_screen/Control" method="_on_barman_cam_out"]
+[connection signal="anim_finished" from="Lena/all" to="Lena/ActionCtrl" method="_current_anim_is_finish"]
+[connection signal="cam_in" from="Billy" to="SubViewport/interact_screen/Control" method="_on_barman_cam_in"]
+[connection signal="cam_out" from="Billy" to="SubViewport/interact_screen/Control" method="_on_barman_cam_out"]
+[connection signal="anim_finished" from="Billy/all" to="Billy/ActionCtrl" method="_current_anim_is_finish"]
 [connection signal="cam_in" from="Detective" to="SubViewport/interact_screen/Control" method="_on_barman_cam_in"]
 [connection signal="cam_in" from="Detective" to="CamCtrl" method="go_bar"]
 [connection signal="cam_out" from="Detective" to="SubViewport/interact_screen/Control" method="_on_barman_cam_out"]

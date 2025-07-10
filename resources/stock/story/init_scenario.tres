@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="Event_scenario" load_steps=2 format=3 uid="uid://babe3xsy0fryw"]
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=3 format=3 uid="uid://babe3xsy0fryw"]
 
+[ext_resource type="Script" uid="uid://b6gafmgfwmw1j" path="res://resources/event_step.gd" id="1_tjaj5"]
 [ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="4_rxeel"]
 
 [resource]
 script = ExtResource("4_rxeel")
+actions = Array[ExtResource("1_tjaj5")]([])
 metadata/_custom_type_script = "uid://c5i86ps6u0bg2"

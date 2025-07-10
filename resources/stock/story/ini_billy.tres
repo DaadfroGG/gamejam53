@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=12 format=3 uid="uid://c68kqu3gebjtb"]
+
+[ext_resource type="Script" uid="uid://b6gafmgfwmw1j" path="res://resources/event_step.gd" id="1_60fcn"]
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="2_428cf"]
+[ext_resource type="Script" uid="uid://c8ihn1phkabfn" path="res://resources/dialogue_line.gd" id="2_njh7f"]
+[ext_resource type="Script" uid="uid://bvvdce2mso462" path="res://resources/event_wait_to.gd" id="3_pdmaa"]
+[ext_resource type="Script" uid="uid://brlsqk1l3diq1" path="res://resources/event_move.gd" id="4_6xncs"]
+[ext_resource type="Script" uid="uid://b7veh4ku27lkd" path="res://resources/waiting_event.gd" id="5_pdmaa"]
+
+[sub_resource type="Resource" id="Resource_w78mr"]
+script = ExtResource("3_pdmaa")
+moment = 120.0
+anim = ""
+player_interact = Array[ExtResource("2_njh7f")]([])
+metadata/_custom_type_script = "uid://bvvdce2mso462"
+
+[sub_resource type="Resource" id="Resource_3sj4k"]
+script = ExtResource("4_6xncs")
+dest = "BarFront0"
+player_interact = Array[ExtResource("2_njh7f")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_6xncs"]
+script = ExtResource("5_pdmaa")
+duree = 5.0
+anim = ""
+player_interact = Array[ExtResource("2_njh7f")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_pdmaa"]
+script = ExtResource("3_pdmaa")
+moment = 156.0
+anim = ""
+player_interact = Array[ExtResource("2_njh7f")]([])
+metadata/_custom_type_script = "uid://bvvdce2mso462"
+
+[sub_resource type="Resource" id="Resource_7j3wv"]
+script = ExtResource("4_6xncs")
+dest = "Spawn"
+player_interact = Array[ExtResource("2_njh7f")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[resource]
+script = ExtResource("2_428cf")
+actions = Array[ExtResource("1_60fcn")]([SubResource("Resource_w78mr"), SubResource("Resource_3sj4k"), SubResource("Resource_6xncs"), SubResource("Resource_pdmaa"), SubResource("Resource_7j3wv")])
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"

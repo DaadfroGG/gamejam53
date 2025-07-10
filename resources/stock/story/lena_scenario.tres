@@ -1,0 +1,103 @@
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=21 format=3 uid="uid://dapqnwlccv4ir"]
+
+[ext_resource type="Script" uid="uid://b6gafmgfwmw1j" path="res://resources/event_step.gd" id="1_vgkgb"]
+[ext_resource type="Script" uid="uid://c8ihn1phkabfn" path="res://resources/dialogue_line.gd" id="2_00xne"]
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="2_qyfv8"]
+[ext_resource type="Script" uid="uid://bvvdce2mso462" path="res://resources/event_wait_to.gd" id="3_cdj5o"]
+[ext_resource type="Script" uid="uid://brlsqk1l3diq1" path="res://resources/event_move.gd" id="4_gljuj"]
+[ext_resource type="Script" uid="uid://c1x2y2in6jtok" path="res://resources/event_speaking.gd" id="5_gljuj"]
+[ext_resource type="Script" uid="uid://b7veh4ku27lkd" path="res://resources/waiting_event.gd" id="6_vc0fi"]
+
+[sub_resource type="Resource" id="Resource_vc0fi"]
+script = ExtResource("3_cdj5o")
+moment = 82.0
+anim = ""
+player_interact = Array[ExtResource("2_00xne")]([])
+metadata/_custom_type_script = "uid://bvvdce2mso462"
+
+[sub_resource type="Resource" id="Resource_iv2ur"]
+script = ExtResource("4_gljuj")
+dest = "BarFront0"
+player_interact = Array[ExtResource("2_00xne")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_1sepc"]
+script = ExtResource("5_gljuj")
+anim = "Bonjours Kyle."
+metadata/_custom_type_script = "uid://c1x2y2in6jtok"
+
+[sub_resource type="Resource" id="Resource_x3u71"]
+script = ExtResource("6_vc0fi")
+duree = 4.0
+anim = ""
+player_interact = Array[ExtResource("2_00xne")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_1psho"]
+script = ExtResource("4_gljuj")
+dest = "center"
+player_interact = Array[ExtResource("2_00xne")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_gljuj"]
+script = ExtResource("6_vc0fi")
+duree = 4.0
+anim = ""
+player_interact = Array[ExtResource("2_00xne")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_7xwfl"]
+script = ExtResource("4_gljuj")
+dest = "ShadowPlace"
+player_interact = Array[ExtResource("2_00xne")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_6kyvi"]
+script = ExtResource("6_vc0fi")
+duree = 3.0
+anim = ""
+player_interact = Array[ExtResource("2_00xne")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_kfxov"]
+script = ExtResource("4_gljuj")
+dest = "BarFrontEnd"
+player_interact = Array[ExtResource("2_00xne")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_j3yp0"]
+script = ExtResource("3_cdj5o")
+moment = 135.0
+anim = ""
+player_interact = Array[ExtResource("2_00xne")]([])
+metadata/_custom_type_script = "uid://bvvdce2mso462"
+
+[sub_resource type="Resource" id="Resource_r63o5"]
+script = ExtResource("4_gljuj")
+dest = "BarFront1"
+player_interact = Array[ExtResource("2_00xne")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_gdigy"]
+script = ExtResource("6_vc0fi")
+duree = 8.0
+anim = ""
+player_interact = Array[ExtResource("2_00xne")]([])
+metadata/_custom_type_script = "uid://b7veh4ku27lkd"
+
+[sub_resource type="Resource" id="Resource_pg6gs"]
+script = ExtResource("4_gljuj")
+dest = "Spawn"
+player_interact = Array[ExtResource("2_00xne")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[resource]
+script = ExtResource("2_qyfv8")
+actions = Array[ExtResource("1_vgkgb")]([SubResource("Resource_vc0fi"), SubResource("Resource_iv2ur"), SubResource("Resource_1sepc"), SubResource("Resource_x3u71"), SubResource("Resource_1psho"), SubResource("Resource_gljuj"), SubResource("Resource_7xwfl"), SubResource("Resource_6kyvi"), SubResource("Resource_kfxov"), SubResource("Resource_j3yp0"), SubResource("Resource_r63o5"), SubResource("Resource_gdigy"), SubResource("Resource_pg6gs")])
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"
