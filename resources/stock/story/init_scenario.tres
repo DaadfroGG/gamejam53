@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=11 format=3 uid="uid://babe3xsy0fryw"]
+
+[ext_resource type="Script" uid="uid://b6gafmgfwmw1j" path="res://resources/event_step.gd" id="1_tjaj5"]
+[ext_resource type="Script" uid="uid://c8ihn1phkabfn" path="res://resources/dialogue_line.gd" id="2_63wew"]
+[ext_resource type="Script" uid="uid://cp2phplb8va3i" path="res://resources/event_anim.gd" id="3_3phpu"]
+[ext_resource type="Script" uid="uid://brlsqk1l3diq1" path="res://resources/event_move.gd" id="4_63wew"]
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="4_rxeel"]
+[ext_resource type="Script" uid="uid://bvvdce2mso462" path="res://resources/event_wait_to.gd" id="5_3phpu"]
+
+[sub_resource type="Resource" id="Resource_yyuwt"]
+script = ExtResource("3_3phpu")
+anim = "open_door"
+player_interact = Array[ExtResource("2_63wew")]([])
+metadata/_custom_type_script = "uid://cp2phplb8va3i"
+
+[sub_resource type="Resource" id="Resource_3phpu"]
+script = ExtResource("4_63wew")
+dest = "back_bar"
+player_interact = Array[ExtResource("2_63wew")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_rxeel"]
+script = ExtResource("2_63wew")
+qui = "barman"
+text = "Bonjours, je suis un ligne de dialogue"
+actions_trigger = ""
+response = Array[ExtResource("2_63wew")]([])
+action_called = Array[Dictionary]([])
+metadata/_custom_type_script = "uid://c8ihn1phkabfn"
+
+[sub_resource type="Resource" id="Resource_secxw"]
+script = ExtResource("5_3phpu")
+moment = 30.0
+anim = "idle"
+player_interact = Array[ExtResource("2_63wew")]([SubResource("Resource_rxeel")])
+metadata/_custom_type_script = "uid://bvvdce2mso462"
+
+[resource]
+script = ExtResource("4_rxeel")
+actions = Array[ExtResource("1_tjaj5")]([SubResource("Resource_yyuwt"), SubResource("Resource_3phpu"), SubResource("Resource_secxw")])
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"

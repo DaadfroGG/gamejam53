@@ -32,5 +32,5 @@ metadata/_custom_type_script = "uid://bm6udfet5tqlv"
 
 [resource]
 script = ExtResource("2_trgn7")
-actions = Array[ExtResource("1_d8a8s")]([SubResource("Resource_d8a8s"), SubResource("Resource_trgn7"), SubResource("Resource_w8hwo")])
+actions = Array[ExtResource("1_d8a8s")]([SubResource("Resource_d8a8s"), SubResource("Resource_trgn7"), SubResource("Resource_w8hwo"), null])
 metadata/_custom_type_script = "uid://c5i86ps6u0bg2"

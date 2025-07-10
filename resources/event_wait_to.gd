@@ -1,7 +1,7 @@
 extends EventStep
-class_name EventWaiting
+class_name EventWaitTo
 
-@export var duree: float
+@export var moment: float
 @export var audio: AudioStream
 @export var anim: String
 @export var player_interact:Array[dialogue_line]

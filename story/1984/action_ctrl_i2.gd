@@ -1,7 +1,6 @@
 extends Node3D
 
-@export var actions : Array[Dictionary]
-@export var actions_scenario : Array[Event_scenario]
+@export var actions_scenario : Event_scenario
 @export var action_index : int = 0
 @export var pnj : Node3D
 @export var speed : float
@@ -14,41 +13,58 @@ var moving := false
 
 func _ready() -> void:
 	pnj.anim_finished.connect(_current_anim_is_finish)
-	if actions.size() != 0:
-		_interpret_action(actions[action_index])
+	#if actions_scenario.size() != 0:
+	#	_interpret_action(actions_scenario.actions[action_index])
+		
+func start_action():
+	print(actions_scenario)
+	print(actions_scenario.actions)
+	print(actions_scenario.actions.size())
+	print("=============================")
+	if actions_scenario.actions.size() != 0:
+		_interpret_action(actions_scenario.actions[action_index])
+	
 
-func _interpret_action(action : Dictionary):
+func _interpret_action(action : EventStep):
+	print("LA!!!!!!!!!!!!!!!!!!!!!!!")
 	if not action:
 		print("aucune action")
 		return
 
 	print("Action reçue :", action)
-
-	if action["type"] == "anim":
-		print("→ Animation :", action["target"])
-		pnj.anim.play(action["target"])
-	elif action["type"] == "wait":
-		wait_cnt = float(action["target"])
+	print("======================================")
+	print(action, " est de type ", action.get_class())
+	print(action.is_class("EventAnim"))
+	print(typeof(action))
+	print(action is EventAnim)
+	print(action is EventMove)
+	
+	print("======================================")
+	if action is EventAnim:
+		print("→ Animation :", action.anim)
+		pnj.anim.play(action.anim)
+	elif action is EventWaiting:
+		wait_cnt = float(action.duree)
 		is_waiting = true
-		if (action.has("anim")):
-			pnj.anim.play(action["anim"])
+		if (action.anim != ""):
+			pnj.anim.play(action.anim)
 		else:
 			pnj.anim.play("test/idle")
-	elif action["type"] == "to_time":
-		wait_cnt = float(action["target"]) - AutoRun.moment
+	elif action is EventWaitTo:
+		wait_cnt = float(action.moment) - AutoRun.moment
 		is_waiting = true
-		if (action.has("anim")):
-			pnj.anim.play(action["anim"])
+		if (action.anim != ""):
+			pnj.anim.play(action.anim)
 		else:
 			pnj.anim.play("test/idle")
-	elif action["type"] == "move":
-		print("→ Déplacement vers :", action["target"])
-		var target_node = get_node_in_group_by_name("gaffeur", action["target"])
+	elif action is EventMove:
+		print("→ Déplacement vers :", action.dest)
+		var target_node = get_node_in_group_by_name("gaffeur", action.dest)
 		if target_node:
 			targer_marker = target_node
 			NavAg.target_position = target_node.global_position
-			if (action.has("anim")):
-				pnj.anim.play(action["anim"])
+			if (action.animation != ""):
+				pnj.anim.play(action.anim)
 			else:
 				pnj.anim.play("walk")
 			moving = true
@@ -63,12 +79,16 @@ func get_node_in_group_by_name(group_name: String, node_name: String) -> Node:
 	return null
 
 func _current_anim_is_finish(name: String):
+	print("lol")
 	if (moving):
 		return
-	if (actions.size() <= action_index):
+	print("1")
+	if (actions_scenario.actions.size() <= action_index):
 		return
-	var act = actions[action_index]
-	if act["type"] == "anim" and act["target"] == name:
+	print("2")
+	var act = actions_scenario.actions[action_index]
+	print("3")
+	if act is EventAnim and act.anim == name:
 		print("→ Animation terminée :", name)
 		_next_action()
 	else:
@@ -76,8 +96,8 @@ func _current_anim_is_finish(name: String):
 
 func _next_action():
 	action_index += 1
-	if action_index < actions.size():
-		_interpret_action(actions[action_index])
+	if action_index < actions_scenario.actions.size():
+		_interpret_action(actions_scenario.actions[action_index])
 	else:
 		print("Toutes les actions ont été traitées.")
 
