@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=15 format=3 uid="uid://cniyew4jqv5wq"]
+
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="1_0ee8g"]
+[ext_resource type="Script" uid="uid://c8ihn1phkabfn" path="res://resources/dialogue_line.gd" id="1_m2qtb"]
+[ext_resource type="Script" uid="uid://brlsqk1l3diq1" path="res://resources/event_move.gd" id="2_ldc1m"]
+[ext_resource type="Script" uid="uid://cp2phplb8va3i" path="res://resources/event_anim.gd" id="3_13x1u"]
+[ext_resource type="AudioStream" uid="uid://cwug5oqd72jc6" path="res://Audio/Dialogue/quepuis-je-vous-servire.wav" id="4_ldc1m"]
+[ext_resource type="AudioStream" uid="uid://csxgipuyyf65x" path="res://Audio/Dialogue/barman/vous1.wav" id="5_7e22r"]
+[ext_resource type="AudioStream" uid="uid://b5g36imrbh23g" path="res://Audio/Dialogue/barman/vous-etes-nouveau-ici.wav" id="6_ttrg8"]
+
+[sub_resource type="Resource" id="Resource_7e22r"]
+script = ExtResource("2_ldc1m")
+dest = "door"
+player_interact = Array[ExtResource("1_m2qtb")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_ttrg8"]
+script = ExtResource("3_13x1u")
+anim = "open_door"
+player_interact = Array[ExtResource("1_m2qtb")]([])
+metadata/_custom_type_script = "uid://cp2phplb8va3i"
+
+[sub_resource type="Resource" id="Resource_fm36t"]
+script = ExtResource("2_ldc1m")
+dest = "back_bar"
+player_interact = Array[ExtResource("1_m2qtb")]([])
+animation = ""
+metadata/_custom_type_script = "uid://brlsqk1l3diq1"
+
+[sub_resource type="Resource" id="Resource_m2qtb"]
+script = ExtResource("1_m2qtb")
+qui = "Barman"
+text = "bonjours, que puis-je vous servir"
+audio = ExtResource("4_ldc1m")
+actions_trigger = "speak_barman_on_start"
+response = Array[ExtResource("1_m2qtb")]([])
+action_called = Array[Dictionary]([])
+metadata/_custom_type_script = "uid://c8ihn1phkabfn"
+
+[sub_resource type="Resource" id="Resource_vtgnd"]
+script = ExtResource("1_m2qtb")
+qui = "barman"
+text = "vous..."
+audio = ExtResource("5_7e22r")
+actions_trigger = ""
+response = Array[ExtResource("1_m2qtb")]([])
+action_called = Array[Dictionary]([])
+metadata/_custom_type_script = "uid://c8ihn1phkabfn"
+
+[sub_resource type="Resource" id="Resource_oybey"]
+script = ExtResource("1_m2qtb")
+qui = "barman"
+text = "vous étes nouveau ici, n'es pas?"
+audio = ExtResource("6_ttrg8")
+actions_trigger = ""
+response = Array[ExtResource("1_m2qtb")]([])
+action_called = Array[Dictionary]([])
+metadata/_custom_type_script = "uid://c8ihn1phkabfn"
+
+[sub_resource type="Resource" id="Resource_ijm8y"]
+script = ExtResource("3_13x1u")
+anim = "idle"
+player_interact = Array[ExtResource("1_m2qtb")]([SubResource("Resource_m2qtb"), SubResource("Resource_vtgnd"), SubResource("Resource_oybey")])
+metadata/_custom_type_script = "uid://cp2phplb8va3i"
+
+[resource]
+script = ExtResource("1_0ee8g")
+actions = Array[Resource]([SubResource("Resource_7e22r"), SubResource("Resource_ttrg8"), SubResource("Resource_fm36t"), SubResource("Resource_ijm8y")])
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"

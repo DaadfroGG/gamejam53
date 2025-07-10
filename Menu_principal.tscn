@@ -162,6 +162,7 @@ offset_left = 202.0
 offset_top = 16.0
 offset_right = 746.0
 offset_bottom = 32.0
+value = 100.0
 
 [node name="Label" type="Label" parent="ColorRect/params/ControlAudio/AudioGenral"]
 layout_mode = 0
@@ -185,6 +186,7 @@ offset_left = 202.0
 offset_top = 16.0
 offset_right = 746.0
 offset_bottom = 32.0
+value = 75.0
 
 [node name="Label" type="Label" parent="ColorRect/params/ControlAudio/Music"]
 layout_mode = 0
@@ -208,6 +210,7 @@ offset_left = 202.0
 offset_top = 16.0
 offset_right = 746.0
 offset_bottom = 32.0
+value = 100.0
 
 [node name="Label" type="Label" parent="ColorRect/params/ControlAudio/Voix"]
 layout_mode = 0

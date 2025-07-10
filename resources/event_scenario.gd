@@ -1,4 +1,4 @@
 extends Resource
 class_name Event_scenario
 
-@export var actions: Array[Action]
+@export var actions: Array[EventStep]

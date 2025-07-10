@@ -252,7 +252,7 @@ size = Vector3(3.45703, 6.31195, 7.79675)
 size = Vector3(9.94931, 4.28308, 7.02539)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a4i6k"]
-size = Vector3(4.18469, 6.46973, 11.0967)
+size = Vector3(5.66803, 6.46973, 11.0967)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vlra3"]
 size = Vector3(4.29565, 3.47363, 8.92578)
@@ -431,7 +431,7 @@ collision_mask = 3
 shape = SubResource("BoxShape3D_1uwqr")
 
 [node name="Player" parent="SubViewport" instance=ExtResource("3_u6kql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5794, 2.18871, 2.62733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7154, 2.18871, 2.62733)
 
 [node name="cam_base" type="Marker3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -13.0007, 286.58, 280.967)
@@ -1209,7 +1209,7 @@ shape = SubResource("BoxShape3D_a4i6k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2965, 1.3958, 2.72804)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="player_cadreur/EnterArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92956, 1.44482, 1.47249)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.18789, 1.44482, 1.47249)
 shape = SubResource("BoxShape3D_a4i6k")
 
 [node name="BarDoor" type="Area3D" parent="player_cadreur"]
