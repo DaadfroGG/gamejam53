@@ -10,11 +10,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func interact():
+	cnt = 0
 	pass
 
 func out_game():
 	mesh_instance_3d.global_position = origin_pos.global_position
 	mesh_instance_3d.global_rotation = origin_pos.global_rotation
+	cnt = 0
 	pass
 	
 
@@ -24,9 +26,8 @@ func _process(delta: float) -> void:
 		if (cnt < 1):
 			mesh_instance_3d.global_position = lerp(origin_pos.global_position, view_point.global_position, cnt)
 			mesh_instance_3d.global_rotation = lerp(origin_pos.global_rotation, view_point.global_rotation, cnt)
-		else:
-			mesh_instance_3d.global_rotation = view_point.global_rotation
-			
+			cnt += delta
+		
 		
 		var vec = Controls.joystick_vector
 		mesh_instance_3d.rotate_y(vec.x * delta * speed_rot)

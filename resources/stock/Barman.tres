@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://dgo04d35tieb5"]
+
+[ext_resource type="Script" uid="uid://ihbuxpccev7d" path="res://resources/character_data.gd" id="1_l6rsa"]
+
+[resource]
+script = ExtResource("1_l6rsa")
+prenom = "Richard"
+nom = "Sauvé"
+surnom = "Barman"
+affaires = Array[String](["cadre photo"])
+bio = "Richard est un jeune barman, issue d'une famille défavorisé, c'est parent on grandi avec les parent de Lena c'est comme ça qu'il ce sont rencontré."
+metadata/_custom_type_script = "uid://ihbuxpccev7d"

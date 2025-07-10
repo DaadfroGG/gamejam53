@@ -10,6 +10,9 @@ class_name Player
 
 @export var input_dir: Vector2  # ✅ Add this line if not already defined
 
+@export var list_actions : Array[String]
+
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const HITBOX_OFFSET_DISTANCE = 1.3
@@ -58,7 +61,11 @@ func _physics_process(delta: float) -> void:
 			"Barman":
 				print("You are talking to the Barman.")
 				current_interact.interact()
-				in_dialogue = not current_interact.is_finish
+				in_dialogue = not current_interact.get_parent_node_3d().is_finish
+			"Detective":
+				print("You are talking to the Barman.")
+				current_interact.interact()
+				in_dialogue = not current_interact.get_parent_node_3d().is_finish
 			"Jukebox":
 				print("You are interacting with the Jukebox.")
 				current_interact.interact()

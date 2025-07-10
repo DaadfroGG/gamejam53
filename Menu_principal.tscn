@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvbxpn2r4mn4u"]
+[gd_scene load_steps=7 format=3 uid="uid://dvbxpn2r4mn4u"]
 
 [ext_resource type="Script" uid="uid://r80vyi7ahoa" path="res://menu_principal.gd" id="1_563nb"]
 [ext_resource type="PackedScene" uid="uid://bun3ws2siacw5" path="res://Assets/ui/item_collection.tscn" id="2_f5lth"]
 [ext_resource type="Script" uid="uid://d0raa2ocarfl4" path="res://params_viewer.gd" id="3_40ble"]
 [ext_resource type="Script" uid="uid://dgg2olsdsv23k" path="res://param_audio.gd" id="4_5k5fk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5k5fk"]
+
+[sub_resource type="Theme" id="Theme_wdymf"]
+TabBar/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0.647059)
+TabBar/font_sizes/font_size = 32
+TabBar/styles/button_highlight = SubResource("StyleBoxTexture_5k5fk")
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -127,18 +134,21 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.558908, 0.239379, 0.0463527, 1)
 
-[node name="ControlAudio" type="ColorRect" parent="ColorRect/params" node_paths=PackedStringArray("volume_slider")]
+[node name="ControlAudio" type="ColorRect" parent="ColorRect/params" node_paths=PackedStringArray("volume_slider", "music_slider", "voix_slider")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.558908, 0.239379, 0.0463527, 1)
 script = ExtResource("4_5k5fk")
-volume_slider = NodePath("ColorRect/HSlider")
+volume_slider = NodePath("AudioGenral/HSlider")
+music_slider = NodePath("Music/HSlider")
+voix_slider = NodePath("Voix/HSlider")
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect/params/ControlAudio"]
+[node name="AudioGenral" type="ColorRect" parent="ColorRect/params/ControlAudio"]
 layout_mode = 0
 offset_left = 9.0
 offset_top = 30.0
@@ -146,14 +156,14 @@ offset_right = 767.0
 offset_bottom = 80.0
 color = Color(0.500612, 0.239197, 0.0141573, 1)
 
-[node name="HSlider" type="HSlider" parent="ColorRect/params/ControlAudio/ColorRect"]
+[node name="HSlider" type="HSlider" parent="ColorRect/params/ControlAudio/AudioGenral"]
 layout_mode = 0
 offset_left = 202.0
 offset_top = 16.0
 offset_right = 746.0
 offset_bottom = 32.0
 
-[node name="Label" type="Label" parent="ColorRect/params/ControlAudio/ColorRect"]
+[node name="Label" type="Label" parent="ColorRect/params/ControlAudio/AudioGenral"]
 layout_mode = 0
 offset_right = 195.0
 offset_bottom = 48.0
@@ -161,11 +171,59 @@ text = "Audio Général"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Music" type="ColorRect" parent="ColorRect/params/ControlAudio"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 85.0
+offset_right = 767.0
+offset_bottom = 135.0
+color = Color(0.500612, 0.239197, 0.0141573, 1)
+
+[node name="HSlider" type="HSlider" parent="ColorRect/params/ControlAudio/Music"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 16.0
+offset_right = 746.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="ColorRect/params/ControlAudio/Music"]
+layout_mode = 0
+offset_right = 195.0
+offset_bottom = 48.0
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Voix" type="ColorRect" parent="ColorRect/params/ControlAudio"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 142.0
+offset_right = 767.0
+offset_bottom = 192.0
+color = Color(0.500612, 0.239197, 0.0141573, 1)
+
+[node name="HSlider" type="HSlider" parent="ColorRect/params/ControlAudio/Voix"]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 16.0
+offset_right = 746.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="ColorRect/params/ControlAudio/Voix"]
+layout_mode = 0
+offset_right = 195.0
+offset_bottom = 48.0
+text = "Voix"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TabBar" type="TabBar" parent="ColorRect/params"]
 layout_mode = 0
 offset_left = -4.0
 offset_top = -37.0
-offset_right = 329.0
+offset_right = 578.0
+offset_bottom = 44.0
+theme = SubResource("Theme_wdymf")
 current_tab = 0
 tab_count = 3
 tab_0/title = "Control"
@@ -177,5 +235,7 @@ tab_2/title = "Audio"
 [connection signal="button_down" from="ColorRect/Logs" to="ColorRect" method="go_logs"]
 [connection signal="button_down" from="ColorRect/Credit" to="ColorRect" method="go_credit"]
 [connection signal="button_down" from="ColorRect/Quite" to="ColorRect" method="quit_game"]
-[connection signal="changed" from="ColorRect/params/ControlAudio/ColorRect/HSlider" to="ColorRect/params/ControlAudio" method="_on_h_slider_changed"]
+[connection signal="changed" from="ColorRect/params/ControlAudio/AudioGenral/HSlider" to="ColorRect/params/ControlAudio" method="_on_h_slider_changed"]
+[connection signal="changed" from="ColorRect/params/ControlAudio/Music/HSlider" to="ColorRect/params/ControlAudio" method="_on_h_slider_changed"]
+[connection signal="changed" from="ColorRect/params/ControlAudio/Voix/HSlider" to="ColorRect/params/ControlAudio" method="_on_h_slider_changed"]
 [connection signal="tab_clicked" from="ColorRect/params/TabBar" to="ColorRect/params" method="_on_tab_bar_tab_clicked"]

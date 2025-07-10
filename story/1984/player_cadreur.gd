@@ -8,6 +8,8 @@ extends Node3D
 @export var cam_barback1 : Marker3D
 @export var cam_barback2 : Marker3D
 @export var cam_center : Marker3D
+@export var cam_junk_box : Marker3D
+@export var cam_bar_door : Marker3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,4 +58,18 @@ func _on_area_3d_body_center_cam_entered(body: Node3D) -> void:
 	if (body.name == "Player"):
 		print("je suis arrivé dans l'entré")
 		cam_ctrl.go_to(cam_center)
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_junk_box_cam_entered(body: Node3D) -> void:
+	if (body.name == "Player"):
+		print("je suis arrivé dans l'entré")
+		cam_ctrl.go_to(cam_junk_box)
+	pass # Replace with function body.
+
+
+func _on_area_3d_body_bar_door_cam_entered(body: Node3D) -> void:
+	if (body.name == "Player"):
+		print("je suis arrivé dans l'entré")
+		cam_ctrl.go_to(cam_bar_door)
 	pass # Replace with function body.

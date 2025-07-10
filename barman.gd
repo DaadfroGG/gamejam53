@@ -4,6 +4,9 @@ extends CharacterBody3D
 @export var dialoguebox : DialogueBox
 @export var is_finish : bool
 @export var cur_dialogue : int
+@export var vocal:AudioStreamPlayer3D
+@export var dialogues_2 : Array[dialogue_line]
+#const BARMAN_1 = preload("res://musique/Barman_1.wav")
 
 signal cam_out
 signal cam_in
@@ -17,8 +20,11 @@ func _ready() -> void:
 func interact():
 	#dialoguebox.text_box.text = 
 	if (cur_dialogue == -1):
+		#vocal.stream = BARMAN_1
+		#vocal.play()
 		emit_signal("cam_in")
 		dialoguebox.visible = true
+		
 	cur_dialogue+=1
 	if (cur_dialogue >= dialogs.size()):
 		stop_interact()

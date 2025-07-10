@@ -20,6 +20,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.33752)
 [node name="look_pos" type="Marker3D" parent="."]
 
 [node name="TouchControls" parent="." instance=ExtResource("2_s126b")]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.919575, -0.248196, 0.3046, 0, 0.775231, 0.631678, -0.392915, -0.580875, 0.712883, 1.72823, 0, 0.555216)

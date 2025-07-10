@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ddvnp65dhp0aa" path="res://dialogue_box.gd" id="1_senjy"]
 
-[node name="DialogueBox" type="Control"]
+[node name="DialogueBox" type="Control" node_paths=PackedStringArray("list_choix")]
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_senjy")
+list_choix = NodePath("ColorRect2/list_choix")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -52,3 +54,28 @@ grow_vertical = 2
 text = "Dialogue box template content blablabla lorem ipsum tu connais les bails poto mdr sisi la mif le missile arrive"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -302.0
+offset_top = -301.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.129412, 0.129412, 0.129412, 0.623529)
+
+[node name="list_choix" type="VBoxContainer" parent="ColorRect2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="ColorRect2/list_choix"]
+layout_mode = 2

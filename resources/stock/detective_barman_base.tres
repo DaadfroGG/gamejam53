@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="dialogue_line" load_steps=2 format=3 uid="uid://8071xyddw430"]
+
+[ext_resource type="Script" uid="uid://c8ihn1phkabfn" path="res://resources/dialogue_line.gd" id="1_rtq7g"]
+
+[resource]
+script = ExtResource("1_rtq7g")
+qui = "barman"
+text = ""
+response = Array[ExtResource("1_rtq7g")]([])
+action_called = Array[Dictionary]([])
+metadata/_custom_type_script = "uid://c8ihn1phkabfn"

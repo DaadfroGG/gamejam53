@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Event_scenario" load_steps=6 format=3 uid="uid://bc1jjbuve2jon"]
+
+[ext_resource type="Script" uid="uid://bm6udfet5tqlv" path="res://resources/action.gd" id="1_d8a8s"]
+[ext_resource type="Script" uid="uid://c5i86ps6u0bg2" path="res://resources/event_scenario.gd" id="2_trgn7"]
+
+[sub_resource type="Resource" id="Resource_d8a8s"]
+script = ExtResource("1_d8a8s")
+qui = "barman"
+moment = 0.0
+type = "anim"
+target = "open_door"
+is_finish = false
+metadata/_custom_type_script = "uid://bm6udfet5tqlv"
+
+[sub_resource type="Resource" id="Resource_trgn7"]
+script = ExtResource("1_d8a8s")
+qui = "barman"
+moment = 0.0
+type = "move"
+target = "back_bar"
+is_finish = false
+metadata/_custom_type_script = "uid://bm6udfet5tqlv"
+
+[sub_resource type="Resource" id="Resource_w8hwo"]
+script = ExtResource("1_d8a8s")
+qui = "braman"
+moment = 0.0
+type = "speak"
+target = ""
+is_finish = false
+metadata/_custom_type_script = "uid://bm6udfet5tqlv"
+
+[resource]
+script = ExtResource("2_trgn7")
+actions = Array[ExtResource("1_d8a8s")]([SubResource("Resource_d8a8s"), SubResource("Resource_trgn7"), SubResource("Resource_w8hwo")])
+metadata/_custom_type_script = "uid://c5i86ps6u0bg2"
